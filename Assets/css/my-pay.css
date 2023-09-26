@@ -1,0 +1,238 @@
+.my-pay {
+    display: none;
+    animation: var(--fadeInLeft);
+    padding: 20px;
+    
+}
+.my-pay .content-my-pay {
+    display: grid;
+    grid-template-columns: 1fr 24vw;
+    grid-gap: 40px;
+}
+.my-pay .content-my-pay .cards-pay-methods {
+    font-size: 1.6em;
+}
+.my-pay .content-my-pay .cards-pay-methods .title {
+    font-size: 1.2em;
+    color: #000;
+    font-weight: 800;
+}
+.my-pay .content-my-pay .cards-pay-methods .cursive-subtitle {
+    font-style: italic;
+    color: var(--color-primary-light);
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 10px
+}
+.my-pay .content-my-pay .cards-pay-methods .card-pay {
+    padding: 40px;
+    background: #fff;
+    box-shadow: 1px 7px 17px #00000026;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    justify-content: space-between;
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number label input{
+    padding: 0px;
+    
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number .input-form.user-data.ads {
+    margin: 0;
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number {
+    font-size: .85em;
+    display: flex;
+    flex-direction: column;
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number .title-input {
+    font-size: 1.1em;
+    margin-bottom: 8px
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number input::placeholder,
+.my-pay .content-my-pay .cards-pay-methods .input-number .currency,
+.my-pay .content-my-pay .cards-pay-methods .count,
+.my-pay .content-my-pay .cards-pay-methods .input-number input {
+    font-weight: 800;
+    color: var(--color-text);
+}
+.my-pay .content-my-pay .cards-pay-methods .input-number .currency {
+    top: 15px;
+}
+.my-pay .content-my-pay .cards-pay-methods .my-credits-pay{
+    display: flex;
+    flex-direction: column;
+}
+.my-pay .content-my-pay .cards-pay-methods .my-credits-pay .title {
+    font-size: 1em;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+.my-pay .content-my-pay .cards-pay-methods .my-credits-pay .count {
+    padding: 14px 10px;
+    border: 2px solid silver;
+    border-radius: 6px;
+    font-size: 1.3em;
+    width: 200px;
+}
+.my-pay .content-my-pay .cards-pay-methods i.arrow_forward {
+    margin: 45px 20px 0 20px;
+}
+.my-pay .content-my-pay .cards-pay-methods .price-credit {
+    background: #f5f5f5;
+    padding: 19px 13px;
+    margin-left: 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    margin-top: 27px;
+}
+.my-pay .content-my-pay .cards-pay-methods .price-credit span {
+    margin-left: 30px;
+    font-weight: bold;
+}
+.my-pay .content-my-pay .cards-pay-methods .title.payments {
+    margin-top: 100px;
+}
+.my-pay .content-my-pay .cards-pay-methods .card-pay.method {
+    cursor: pointer;
+    transition: var(--trs);
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+} 
+.my-pay .content-my-pay .cards-pay-methods .card-pay.method:hover {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+.my-pay .content-my-pay .cards-pay-methods .main-method {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #888;
+    font-size: 1.14em;
+    padding: 35px;
+    justify-content: space-between;
+    transition: var(--trs);
+}
+.my-pay .content-my-pay .cards-pay-methods .main-method i {
+    color: #888;
+}
+.my-pay .content-my-pay .cards-pay-methods .main-method .ratio {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid silver;
+    border-radius: 50%;
+    margin-right: 20px;
+    transition: var(--trs);
+}
+.my-pay .content-my-pay .cards-pay-methods .main-method i {
+    font-size: 2em;
+    justify-self: flex-end;
+}
+.my-pay .content-my-pay .cards-pay-methods .content-method {
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 35px 35px 35px;
+    animation: var(--fadeInLeft);
+}
+/* Summary Pay */
+.my-pay .content-my-pay .summary-pay-main {
+    display: flex;
+    flex-direction:column;
+    width: 25vw;
+    /* max-width: 25vw; */
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay {
+    background: #fff;
+    font-size: 1.6em;
+    box-shadow: 1px 1px 14px #00000026;
+    border-radius: 6px;
+    padding: 20px;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .title {
+    font-weight: 800;
+    color: #000;
+    font-size: 1.06em;
+    margin-top: 20px;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .card-summary {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 20px;
+    color: #434343;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .card-summary .content-summary {
+    display: flex;
+    justify-content: space-between;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .card-summary .content-summary:nth-child(1) {
+    margin-bottom: 15px;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .total {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    font-size: 1.06em;
+    margin: 30px 0;
+    font-weight: 800;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .total span {
+    font-size: 1.2em;
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .btn-pay-full {
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%;
+    background: #42b57482;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: var(--trs);
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .btn-pay-full:hover {
+    transform: translateY(3px);
+}
+.my-pay .content-my-pay .summary-pay-main .summary-pay .btn-pay-full.active {
+    cursor: pointer;
+    background: var(--color-primary-light);
+}
+.my-pay .content-my-pay .summary-pay-main .terms-pay {
+    margin: 20px 0;
+    font-size: 1.3em;
+    margin-left: 16px;
+    color: #434343;
+}
+.my-pay .content-my-pay .summary-pay-main .terms-pay a {
+    color: var(--color-primary-light);
+}
+
+.my-pay .card-pay.method .content-method.card-payment {
+    display: none;
+}
+.my-pay .card-pay.method .content-method.card-transfer {
+    display: none;
+}
+.my-pay .card-pay.method .content-method.card-crypto {
+    display: none;
+}
+.my-pay .card-pay.method .content-method.card-transfer .data-transfer {
+    background: #f5f5f5;
+    padding: 30px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.my-pay .content-my-pay .cards-pay-methods .card-pay.method.active .ratio {
+    border: 6px solid var(--color-primary-light);
+}
+.my-pay .content-my-pay .cards-pay-methods .card-pay.method.active .main-method {
+    color: var(--color-text);
+}
+.my-credits-pay .summary-pay .btn-pay-full.active {
+    background: var(--color-primary-light);
+}

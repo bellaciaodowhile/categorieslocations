@@ -1,0 +1,298 @@
+
+.search-box-main {
+    position: fixed;
+    top: 1.1em;
+    right: 10em;
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    background: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 4px;
+    box-shadow: 1px 4px 10px #00000026;
+    width: 500px;
+    animation: 300ms fadeInUp ease-in-out;
+}
+.search-box-main .search {
+    display: flex;
+}
+.search-box-main .search .select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px ;
+    cursor: pointer;
+    border-radius: 4px 0 0 4px;
+    background: #f5f5f5;
+    transition: var(--trs);
+}
+.search-box-main .search .select:hover {
+    padding: 20px 25px;
+}
+.search-box-main .search .select i {
+    margin-left: 10px;
+}
+input:focus {
+    outline: none;
+}
+input::placeholder {
+    font-weight: bold;
+    color: #bbb;
+}
+.search-box-main .input {
+    position: relative;
+    width: 100%;
+}
+.search-box-main .input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.search-box-main .search .input input {
+    padding: 20px 130px 20px 20px;
+    border-radius: 0 4px 4px 0;
+}
+.search-box-main .input i {
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    cursor: pointer;
+    font-size: 2.2em;
+    transition: var(--trs);
+}
+
+.search-box-main .input i:hover{
+    background: #efefef;
+    width: 63px;
+}
+.search-box-main .input i:nth-of-type(1) {
+    right: 0px;
+    border-radius: 0 4px 4px 0;
+}
+.search-box-main .input i:nth-of-type(2) {
+    right: 60px;
+    border-radius: 0;
+}
+/* Box-filters */
+/* Tab active: #60cb8e != #42b573 */
+.box-filters {
+    display: none;
+    animation: 300ms fadeInUp ease-in-out;
+}
+
+.box-filters .tabs {
+    display: flex;
+}
+.box-filters .tabs .tab {
+    position: relative;
+    background: #42b573;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    transition: var(--trs);
+}
+
+.box-filters .tabs .tab.active {
+    background: #60cb8e ;
+    box-shadow: 0px 4px 10px #00000026;
+}
+.box-filters .tabs .tab span {
+    opacity: 0;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: rotateZ(45deg);
+    background: #60cb8e;
+    bottom: -5px;
+    transition: var(--trs);
+    z-index: 1;
+}
+.box-filters .tabs-content .tab {
+    display: none;
+    transition: var(--trs);
+}
+.box-filters .tabs-content .tab.active {
+    display: block;
+}
+/* Tab Category */
+.box-filters .tabs-content .tab.one input {
+    width: 100%;
+    padding: 15px 70px 15px 15px;
+}
+.box-filters .tabs-content .tab.one input::placeholder {
+    color: #ddd;
+}
+.box-filters .tabs-content .tab.one .input {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-filters .tabs-content .tab.one .input i {
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    color: #aaa;
+}
+.box-filters .tabs-content .tab.one .checkboxs {
+    display: flex;
+}
+
+/* Checkboxs */
+.checkboxs {
+    background: #e9e9e9;
+    padding: 10px 17px;
+    display: flex; 
+    justify-content: space-between;
+}
+.checkbox {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.checkbox .icon{
+    background: #fff;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    transition:  var(--trs);
+}
+.checkbox .icon i{
+    font-size: 1em;
+}
+.checkbox .text{ 
+    margin-left: 10px;
+}
+
+.checkbox .icon.active {
+    background: #60cb8e ;
+}
+/* Checkbox input */
+/* Customize the label (the container) */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-container .checkmark-expand {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.checkbox-container .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #ddd;
+}
+.checkbox-container .checkmark i {
+    border-radius: 2px;
+    opacity: 0;
+    transition: var(--trs);
+    color: white;
+    font-size: 1em;
+    padding: 1px;
+}
+.checkbox-container:hover input.done + .checkmark i {
+    background-color: #ccc;
+}
+.checkbox-container input.done:checked + .checkmark i {
+    background-color: #60cb8e;
+    opacity: 1;
+}
+
+.sub-content {
+    display: none;
+    animation: 300ms fadeInRight ease-in-out;
+    padding: 10px;
+}
+.checkbox-container:hover input.expand + .checkmark-expand + .sub-content  {
+    background-color: red;
+}
+.checkbox-container input.expand:checked + .checkmark-expand + .sub-content  {
+    background-color: #60cb8e;
+}
+
+
+
+.checkboxs-content {
+    animation: 300ms fadeInUp ease-in-out;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.checkboxs-content .item {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: var(--trs);
+    padding: 10px 17px;
+    
+}
+.checkboxs-content .item:hover {
+    background: #eee;
+}
+.checkboxs-content .item .item-category {
+    color: #60cb8e;
+    font-size: 1em;
+    margin: -7px 0 0 29px;
+    animation: 300ms fadeInRight ease-in-out;
+}
+.checkboxs-content .all {
+    display: block;
+}
+.checkboxs-content .category {
+    display: none;
+}
+.checkboxs-content .sub-category {
+    display: none;
+}
+.search-box-main .footer {
+    padding: 10px;
+    background: #ddd;
+}
+.search-box-main .footer button {
+    padding: 5px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-text);
+}

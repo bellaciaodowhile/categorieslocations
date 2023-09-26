@@ -1,0 +1,20 @@
+.bars-steps-gj8 {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+    .bar-gj8 {
+        background: #dddddd;
+        border-radius: 50px;
+        height: 9px;
+        flex-grow: 1;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        &.active {
+            transition: $trs;
+            background: $color-primary-light;
+        }
+    }
+}

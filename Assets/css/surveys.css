@@ -1,0 +1,48 @@
+.main-surveys .option-survey {
+    display: flex;
+    animation: var(--fadeInLeft);
+    position: relative;
+    transition: var(--trs);
+}
+.main-surveys .option-survey:hover {
+    padding-left: 22px;
+}
+.main-surveys .option-survey:hover i.icon-drag {
+    display: block;
+} 
+.main-surveys .option-survey i.icon-drag {
+    position: absolute;
+    top: 29px;
+    left: -7px;
+    font-size: 3em;
+    cursor: grab;
+    display: none;
+    animation: var(--fadeInLeft);
+}
+.main-surveys .option-survey i.icon-drag.subtitle {
+    top: 40px;
+}
+.main-surveys .option-survey .input-form {
+    width: 100%;
+    transition: var(--trs);
+}
+.main-surveys .option-survey .btn-light {
+    margin-left: 10px;
+    height: 49.59px;
+    margin-top: 20px;
+    font-weight: 800;
+    padding: 12px;
+    transition: var(--trs);
+}
+.main-surveys .option-survey .btn-pink {
+    margin-left: 10px;
+    height: 49.59px;
+    margin-top: 20px;
+    font-weight: 800;
+    padding: 10px;
+    transition: var(--trs);
+}
+.main-surveys .option-survey .btn-light:hover,
+.main-surveys .option-survey .btn-pink:hover {
+    transform: translateY(-3px);
+}

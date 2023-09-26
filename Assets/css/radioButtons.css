@@ -1,0 +1,159 @@
+
+.radio-wrapper {
+    display: flex;
+    width: 100%;
+    font-size: 1.5em;
+    grid-gap: 10px;
+    margin-top: 20px;
+  }
+.radio-wrapper.articles {
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.radio-wrapper.articles.normal-my {
+  margin-bottom: 20px;
+}
+  .radio-wrapper .option{
+    /* background: #f5f5f5; */
+    height: 100%;
+    margin-right: 3em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0px;
+    transition: all 0.3s ease;
+  }
+  .radio-wrapper .option .dot {
+    width: 18px;
+    height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    padding: 6px;
+    background: #f5f5f5;
+    border: 3px solid var(--color-primary-light);
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    transition: var(--color-primary-light);
+  }
+  .radio-wrapper input[type="radio"]{
+    display: none;
+  }
+  .radio-wrapper #option-1:checked:checked ~ .option-1,
+  .radio-wrapper #option-2:checked:checked ~ .option-2,
+  .radio-wrapper #optionArticle-1:checked:checked ~ .optionArticle-1,
+  .radio-wrapper #optionArticle-2:checked:checked ~ .optionArticle-2,
+  .radio-wrapper #loadVideoArticle-1:checked:checked ~ .loadVideoArticle-1,
+  .radio-wrapper #loadVideoArticle-2:checked:checked ~ .loadVideoArticle-2,
+  .radio-wrapper #linkVideo-1:checked:checked ~ .linkVideo-1,
+  .radio-wrapper #linkVideo-2:checked:checked ~ .linkVideo-2,
+  .radio-wrapper #linkVideo-3:checked:checked ~ .linkVideo-3,
+  .radio-wrapper #adArticles-1:checked:checked ~ .adArticles-1,
+  .radio-wrapper #adArticles-2:checked:checked ~ .adArticles-2,
+  .radio-wrapper #imgProfileCv-1:checked:checked ~ .imgProfileCv-1,
+  .radio-wrapper #imgProfileCv-2:checked:checked ~ .imgProfileCv-2,
+  .radio-wrapper #geners-1:checked:checked ~ .geners-1,
+  .radio-wrapper #geners-2:checked:checked ~ .geners-2,
+  .radio-wrapper #minusvalia-1:checked:checked ~ .minusvalia-1,
+  .radio-wrapper #minusvalia-2:checked:checked ~ .minusvalia-2,
+  .radio-wrapper #statusCivil-1:checked:checked ~ .statusCivil-1,
+  .radio-wrapper #statusCivil-2:checked:checked ~ .statusCivil-2,
+  .radio-wrapper #statusCivil-3:checked:checked ~ .statusCivil-3,
+  .radio-wrapper #whatsappCv-1:checked:checked ~ .whatsappCv-1,
+  .radio-wrapper #whatsappCv-2:checked:checked ~ .whatsappCv-2,
+  .radio-wrapper #imgsVideoCv-1:checked:checked ~ .imgsVideoCv-1,
+  .radio-wrapper #imgsVideoCv-2:checked:checked ~ .imgsVideoCv-2,
+  .radio-wrapper #typeContract-1:checked:checked ~ .typeContract-1,
+  .radio-wrapper #typeContract-2:checked:checked ~ .typeContract-2,
+  .radio-wrapper #typeContract-3:checked:checked ~ .typeContract-3,
+  .radio-wrapper #teletrabajo-1:checked:checked ~ .teletrabajo-1,
+  .radio-wrapper #teletrabajo-2:checked:checked ~ .teletrabajo-2,
+  .radio-wrapper #dispongoVehiculo-1:checked:checked ~ .dispongoVehiculo-1,
+  .radio-wrapper #dispongoVehiculo-2:checked:checked ~ .dispongoVehiculo-2,
+  .radio-wrapper #dispongoVehiculo-3:checked:checked ~ .dispongoVehiculo-3,
+  .radio-wrapper #dispongoVehiculo-4:checked:checked ~ .dispongoVehiculo-4,
+  .radio-wrapper #dispongoCarnet-1:checked:checked ~ .dispongoCarnet-1,
+  .radio-wrapper #dispongoCarnet-2:checked:checked ~ .dispongoCarnet-2,
+  .radio-wrapper #domicilioRegion-1:checked:checked ~ .domicilioRegion-1,
+  .radio-wrapper #domicilioRegion-2:checked:checked ~ .domicilioRegion-2,
+  .radio-wrapper #diasFestivos-1:checked:checked ~ .diasFestivos-1,
+  .radio-wrapper #diasFestivos-2:checked:checked ~ .diasFestivos-2,
+  .radio-wrapper #domicilioPais-1:checked:checked ~ .domicilioPais-1,
+  .radio-wrapper #domicilioPais-2:checked:checked ~ .domicilioPais-2,
+  .radio-wrapper #fumador-1:checked:checked ~ .fumador-1,
+  .radio-wrapper #fumador-2:checked:checked ~ .fumador-2,
+ .radio-wrapper #motivoBaja-1:checked:checked ~ .motivoBaja-1,
+  .radio-wrapper #motivoBaja-2:checked:checked ~ .motivoBaja-2,
+.radio-wrapper #motivoBaja-3:checked:checked ~ .motivoBaja-3,
+.radio-wrapper #motivoBaja-4:checked:checked ~ .motivoBaja-4,
+.radio-wrapper #motivoBaja-5:checked:checked ~ .motivoBaja-5,
+.radio-wrapper #dependients-1:checked:checked ~ .dependients-1,
+.radio-wrapper #dependients-2:checked:checked ~ .dependients-2{
+    font-weight: bold;
+  }
+  .radio-wrapper #option-1:checked:checked ~ .option-1 .dot,
+  .radio-wrapper #option-2:checked:checked ~ .option-2 .dot,
+  .radio-wrapper #optionArticle-1:checked:checked ~ .optionArticle-1 .dot,
+  .radio-wrapper #optionArticle-2:checked:checked ~ .optionArticle-2 .dot,
+  .radio-wrapper #loadVideoArticle-1:checked:checked ~ .loadVideoArticle-1 .dot,
+  .radio-wrapper #loadVideoArticle-2:checked:checked ~ .loadVideoArticle-2 .dot,
+  .radio-wrapper #linkVideo-1:checked:checked ~ .linkVideo-1 .dot,
+  .radio-wrapper #linkVideo-2:checked:checked ~ .linkVideo-2 .dot,
+  .radio-wrapper #linkVideo-3:checked:checked ~ .linkVideo-3 .dot,
+  .radio-wrapper #adArticles-1:checked:checked ~ .adArticles-1 .dot,
+  .radio-wrapper #adArticles-2:checked:checked ~ .adArticles-2 .dot,
+  .radio-wrapper #imgProfileCv-1:checked:checked ~ .imgProfileCv-1 .dot,
+  .radio-wrapper #imgProfileCv-2:checked:checked ~ .imgProfileCv-2 .dot,
+  .radio-wrapper #geners-1:checked:checked ~ .geners-1 .dot,
+  .radio-wrapper #geners-2:checked:checked ~ .geners-2 .dot,
+  .radio-wrapper #minusvalia-1:checked:checked ~ .minusvalia-1 .dot,
+  .radio-wrapper #minusvalia-2:checked:checked ~ .minusvalia-2 .dot,
+  .radio-wrapper #statusCivil-1:checked:checked ~ .statusCivil-1 .dot,
+  .radio-wrapper #statusCivil-2:checked:checked ~ .statusCivil-2 .dot,
+  .radio-wrapper #statusCivil-3:checked:checked ~ .statusCivil-3 .dot,
+  .radio-wrapper #whatsappCv-1:checked:checked ~ .whatsappCv-1 .dot,
+  .radio-wrapper #whatsappCv-2:checked:checked ~ .whatsappCv-2 .dot,
+  .radio-wrapper #imgsVideoCv-1:checked:checked ~ .imgsVideoCv-1 .dot,
+  .radio-wrapper #imgsVideoCv-2:checked:checked ~ .imgsVideoCv-2 .dot,
+  .radio-wrapper #typeContract-1:checked:checked ~ .typeContract-1 .dot,
+  .radio-wrapper #typeContract-2:checked:checked ~ .typeContract-2 .dot,
+  .radio-wrapper #typeContract-3:checked:checked ~ .typeContract-3 .dot,
+  .radio-wrapper #teletrabajo-1:checked:checked ~ .teletrabajo-1 .dot,
+  .radio-wrapper #teletrabajo-2:checked:checked ~ .teletrabajo-2 .dot,
+  .radio-wrapper #dispongoVehiculo-1:checked:checked ~ .dispongoVehiculo-1 .dot,
+  .radio-wrapper #dispongoVehiculo-2:checked:checked ~ .dispongoVehiculo-2 .dot,
+  .radio-wrapper #dispongoVehiculo-3:checked:checked ~ .dispongoVehiculo-3 .dot,
+  .radio-wrapper #dispongoVehiculo-4:checked:checked ~ .dispongoVehiculo-4 .dot,
+  .radio-wrapper #dispongoCarnet-1:checked:checked ~ .dispongoCarnet-1 .dot,
+  .radio-wrapper #dispongoCarnet-2:checked:checked ~ .dispongoCarnet-2 .dot,
+  .radio-wrapper #domicilioRegion-1:checked:checked ~ .domicilioRegion-1 .dot,
+  .radio-wrapper #domicilioRegion-2:checked:checked ~ .domicilioRegion-2 .dot,
+  .radio-wrapper #diasFestivos-1:checked:checked ~ .diasFestivos-1 .dot,
+  .radio-wrapper #diasFestivos-2:checked:checked ~ .diasFestivos-2 .dot,
+  .radio-wrapper #domicilioPais-1:checked:checked ~ .domicilioPais-1 .dot,
+  .radio-wrapper #domicilioPais-2:checked:checked ~ .domicilioPais-2 .dot,
+  .radio-wrapper #fumador-1:checked:checked ~ .fumador-1 .dot,
+  .radio-wrapper #fumador-2:checked:checked ~ .fumador-2 .dot,
+  .radio-wrapper #motivoBaja-1:checked:checked ~ .motivoBaja-1 .dot,
+  .radio-wrapper #motivoBaja-2:checked:checked ~ .motivoBaja-2 .dot,
+.radio-wrapper #motivoBaja-3:checked:checked ~ .motivoBaja-3 .dot,
+.radio-wrapper #motivoBaja-4:checked:checked ~ .motivoBaja-4 .dot,
+.radio-wrapper #motivoBaja-5:checked:checked ~ .motivoBaja-5 .dot,
+.radio-wrapper #dependients-1:checked:checked ~ .dependients-1 .dot,
+.radio-wrapper #dependients-2:checked:checked ~ .dependients-2 .dot{
+    background: var(--color-primary-light);
+  }
+  .radio-wrapper label span{
+      padding-left: 5px;
+      width: 100%;
+  }
+  .radio-content {
+    display: none;
+  }
+  .radio-content[isActive] {
+    display: block;
+  }
+  .radio-wrapper .option-active-gj8 .dot {
+    background: var(--color-primary-light);
+  }

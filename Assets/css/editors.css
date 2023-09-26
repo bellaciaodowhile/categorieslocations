@@ -1,0 +1,100 @@
+.main-editors {
+    font-size: 1em;
+    border: 3px solid silver;
+    border-radius: 6px;
+    margin-top: 1em;
+}
+
+.main-editors .head-editors {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 0 0px;
+    align-items: center;
+}
+
+.main-editors .head-editors .functions-editors {
+    padding: 14px;
+    display: flex;
+    /* background: red; */
+    align-items: center;
+    justify-content: center;
+}
+
+.main-editors .head-editors .functions-editors .item-editors {
+    padding: 12px;
+    transition: var(--trs);
+    cursor: pointer;
+    color: #333;
+    border-radius: 6px;
+    border: none;
+    background: white;
+}
+.main-editors .head-editors .functions-editors .item-editors:hover {
+    background: var(--color-primary-light);
+    color: white;
+}
+.main-editors .head-editors .functions-editors .dropdown-editors {
+    /* display: none; */
+    position: relative;
+}
+.main-editors .head-editors .functions-editors .dropdown-editors .main-dropdown-editors {
+    /* display: none; */
+    position: relative;
+}
+.main-editors .head-editors .functions-editors .dropdown-editors .content-dropdown-editors{
+    background: #f5f5f5;
+    display: none;
+    position: absolute;
+    border-radius: 6px;
+    left: -72px;
+    top: 70px;
+    box-shadow: 0 4px 15px #00000026;
+    animation: var(--fadeInDown);
+}
+
+.main-editors .content-textarea {
+    padding: 0 15px;
+   
+}
+.main-editors .content-textarea .textarea {
+    height: 200px;
+    outline: none;
+    font-size: 1.6em;
+    padding: 20px 0;
+    overflow: auto;
+}
+.main-editors .content-textarea  ~ *{
+    padding: 0 15px;
+    font-size: 1em !important;
+}
+.main-editors .content-textarea .textarea  p {
+    font-size: 1em;
+}
+.main-editors .content-textarea textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    padding: 10px;
+    outline: none;
+    font-size: 1em;
+}
+.main-editors .btn-autocomplete {
+    font-size: 2.6em;
+    background: var(--color-primary-light);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 15px;
+    height: 35px;
+    transition: var(--trs);
+}
+.main-editors .btn-autocomplete i {
+    font-size: .6em;
+    margin-top: 3px;
+}
+.main-editors .btn-autocomplete:hover {
+    transform: translateY(-3px);
+}

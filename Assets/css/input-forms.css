@@ -1,0 +1,247 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* REPOSO INPUT */
+.input-form.user-data.ads {
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.input-form.user-data.normal-my {
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.input-form.user-data.group-my {
+    margin-top: 20px;
+}
+
+.input-form.user-data.normal-m0 {
+    margin: 0;
+}
+
+.input-form.user-data.price {
+    width: 200px;
+}
+
+.input-form.user-data.price div.currency {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: silver;
+    transition: var(--trs);
+}
+
+.input-form.user-data.price input:focus+div.currency {
+    color: var(--pink);
+}
+
+.input-form label.txt-field span.input-normal,
+.input-form label.txt-field input {
+    font: 1.6em/1.6em "Lato";
+    padding: 0;
+    display: block;
+}
+
+.input-form label.txt-field span {
+    font: 1.6em/1.6em "Lato";
+}
+
+.input-form label.txt-field {
+    display: block;
+    width: 100%;
+    border: 2px solid silver;
+    padding: 10px;
+    position: relative;
+    border-radius: 6px;
+    background: white;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.input-form label.txt-field input {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    transition: var(--trs);
+    font-weight: bold;
+    color: #434345;
+    padding-left: 5px;
+}
+
+.input-form label.txt-field span.input-normal {
+    background: white;
+    color: silver;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    position: absolute;
+    transition: 0.4s;
+    font-weight: bold;
+    display: flex;
+    padding: 0 30px 0 0;
+    top: 9px;
+}
+
+/* TOP INPUT */
+.input-form label.txt-field span.top {
+    left: 5px;
+    top: -10px;
+    font-size: 1.3em;
+    background: white;
+    padding: 0 5px;
+}
+
+/* select-input */
+.select-input-form select {
+    padding: 15px 10px;
+    width: 100%;
+    color: silver;
+    font-size: 1.7em;
+    outline: none;
+    font-weight: bold;
+    border: 2px solid silver;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.input-form textarea {
+    resize: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.6em;
+}
+
+.input-form.ads textarea {
+    height: 150px;
+}
+
+.input-form textarea::placeholder {
+    font-weight: bold;
+    color: silver;
+}
+
+.input-form .txt-field .location span {
+    top: 8px !important;
+}
+
+.input-form .search-location .icons {
+    top: 8px;
+}
+
+.input-form .txt-field {
+    position: relative;
+}
+
+.input-form .txt-field.icon-right {
+    /* padding: 10px 54px 10px 10px; */
+}
+
+.input-form .txt-field.icon-right i {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    font-size: 3em;
+    color: var(--pink);
+}
+
+.input-form .txt-field.input-line input {
+    color: var(--color-text)
+}
+
+.input-form .txt-field.icon-right i.icon-right {
+    position: absolute;
+    top: 0px;
+    right: 1px;
+    font-size: 3em;
+    color: silver;
+    background: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: auto;
+    border-radius: 0 4px 4px 0;
+}
+
+.input-form .txt-field.icon-left {
+    padding-left: 45px
+}
+
+.input-form .txt-field.icon-left .icon-left {
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    font-size: 3em;
+    color: silver;
+}
+
+.input-form .txt-field.icon-left .icon-left img {
+    width: 20px;
+}
+
+.input-simple {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.input-simple label {
+    color: var(--color-text);
+    font-size: .9em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input-simple input {
+    padding: 14px;
+    border: none;
+    border: 1px solid silver;
+    font-size: 1.09em;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: var(--trs);
+}
+
+.input-simple input::placeholder {
+    color: #dbdbdb;
+}
+
+.input-simple input:focus {
+    border: 2px solid var(--color-primary-light);
+}
+
+.input-form .date ::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+input[type=date]::-webkit-datetime-edit {
+    color: var(--color-text);
+}
+/* input[type=date]:focus::-webkit-datetime-edit {
+    color: var(--color-text);
+} */

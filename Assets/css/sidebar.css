@@ -1,0 +1,109 @@
+/* Sidebar */
+.overlay {
+  display: none; /* Cambiar a block para trabajar con el sidebar en tiempo real */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #00000080;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  transition: all ease-in 200ms;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Cambiar a 0px para trabajar tranquilo con el sidebar en tiempo real */
+  max-width: 300px;
+  min-width: 300px;
+  height: 100%;
+  background: var(--icon-language);
+  z-index: 13;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar .logo .menu {
+  cursor: pointer;
+  height: 20px;
+}
+.sidebar .logo {
+  background: var(--icon-language);
+  padding: 20px;
+  width: 100%;
+  height: 100px;
+  max-width: 300px;
+  max-height: 100px;
+  min-height: 100px;
+  display: flex;
+}
+
+.sidebar .content {
+  margin-top: 0;
+  overflow-y: auto;
+  height: 100%;
+  padding: 20px 0px 120px 0px;
+}
+.sidebar .content .px {
+  padding: 0 10px;
+}
+.sidebar .content .px .title-sidebar {
+  font-size: 1.7em;
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding-left: 18px;
+  margin: 5px 0;
+  color: var(--color-primary);
+}
+.sidebar .content hr {
+  margin: 17px 0 17px 0;
+  border-top: 1px solid #ebebeb;
+}
+.sidebar .content .item.active {
+  color: #fff;
+  background: var(--color-primary);
+}
+.sidebar .content a.item {
+  text-decoration: none;
+}
+.sidebar .content .item {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 15px;
+  color: var(--color-primary);
+  transition: all 0.2s ease-in-out;
+}
+.sidebar .content .item:hover {
+  background: #f1f1f1;
+  transform: translateX(3px);
+}
+
+.sidebar .content .item .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar .content .item .icon i {
+  font-size: 2.4em;
+  color: #434343;
+}
+.sidebar .content .item .text {
+  font-size: 1.7em;
+  margin-left: 1em;
+  font-weight: bold;
+  color: #434343;
+}
+
+.sidebar .more-content {
+  display: none;
+}
+.sidebar p {
+  padding: 0 18px 20px 18px;
+}
+.sidebar .content .footer-nav {
+  padding: 20px;
+}

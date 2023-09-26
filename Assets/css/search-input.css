@@ -1,0 +1,147 @@
+/* REPOSO INPUT */
+.search-form-input .user-data {
+    margin-bottom: 20px;
+}
+.search-form-input label.txt-field span,
+.search-form-input label.txt-field input {
+    font: 1.6em/1.6em "Lato";
+    font-weight: bold;
+    padding: 0;
+    display: block;
+}
+.search-form-input label.txt-field {
+    display: block;
+    width: 100%;
+    border: 2px solid silver;
+    padding: 8px 10px 8px 36px;
+    position: relative;
+    border-radius: 6px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+.search-form-input label.txt-field input {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.search-form-input label.txt-field span {
+    background: #fff;
+    color: mediumvioletred;
+    position: absolute;
+    top: 8px;
+    left: 36px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+/* FOCUS INPUT */
+.search-form-input label.txt-field.focus {
+    border-color: mediumvioletred;
+}
+.search-form-input label.txt-field span.focus {
+    border-color: mediumvioletred;
+}
+/* TOP INPUT */
+.search-form-input label.txt-field span.top {
+    left: 5px;
+    top: -10px;
+    font-size: 1.3em;
+    background: white;
+    padding: 0 5px;
+}
+.search-form-input .user-data {
+    position: relative;
+}
+.search-form-input .icons {
+    position: absolute;
+    color: var(--pink);
+    left: 7px;
+    top: 12px;
+}
+.search-form-input .icons i {
+    transition: var(--trs);
+}
+
+
+.search-form-input .time-real-search::-webkit-scrollbar {
+    width: 12px;
+}
+
+.search-form-input .time-real-search::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.search-form-input .time-real-search::-webkit-scrollbar-thumb {
+    background-color: #cfcfcf;
+    border-radius: 10px;
+    border: 4px solid #ffffff;
+}
+
+
+.search-form-input .time-real-search {
+    top: 55px;
+    z-index: 1;
+    width: 100%;
+    display: none;
+    overflow-y: auto;
+    position: absolute;
+    border-radius: 0 0 6px 6px;
+    animation: var(--fadeInUp);
+    border-left: 2px solid var(--pink);
+    border-right: 2px solid var(--pink);
+    border-bottom: 2px solid var(--pink);
+}
+
+.search-form-input .time-real-search.time-search-category {
+    max-height: 400px;
+}
+
+
+.search-form-input .time-real-search .item-real-time {
+    padding: 20px 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-bottom: 1px solid silver;
+    cursor: pointer;
+}
+.search-form-input .time-real-search .item-real-time:nth-child(1) {
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+.search-form-input .time-real-search .item-real-time:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
+.search-form-input .time-real-search .item-real-time .title {
+    color: var(--color-text);
+    font-size: 1.6em;
+    transition: var(--trs);
+    padding-left: 5px;
+    font-weight: normal !important;
+}
+
+.search-form-input .time-real-search .item-real-time .subtitle {
+    color: grey;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+.search-form-input .time-real-search .item-real-time .subtitle i {
+    font-size: 1.4em;
+    margin-right: 3px;
+}
+
+.search-form-input .time-real-search .item-real-time:hover {
+    background: #f5f5f5;
+    transition: var(--trs);
+    
+}
+.search-form-input .time-real-search .item-real-time:hover > .title {
+    color: var(--pink);
+}

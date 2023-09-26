@@ -1,0 +1,226 @@
+.main-file-upload-logo-cv .dropBoxLogoCv {
+    min-height: 300px;
+    border-radius: 6px;
+    border: 2px dashed var(--color-primary-light);
+    background: #f5f5f5;
+    padding: 2em 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: var(--fadeInLeft);
+}
+.main-file-upload-logo-cv .dropBoxLogoCv i {
+    font-size: 7.5em;
+    color: var(--color-primary-light);
+}
+.main-file-upload-logo-cv .title-drag {
+    color: var(--color-primary-light);
+    font-weight: 700;
+    font-size: 3em;
+    text-align: center;
+}
+.main-file-upload-logo-cv .dropBoxLogoCv .title-drag {
+    /* margin-top: 15px; */
+    margin-bottom: 0;
+}
+.main-file-upload-logo-cv .dropBoxLogoCv .subtitle-drag {
+    font-size: 3em;
+    /* margin-top: 10px; */
+    color: var(--color-primary-light);
+    margin-bottom: 0;
+}
+.main-file-upload-logo-cv .dropBoxLogoCv.hover {
+    background: aliceblue;
+}
+.main-file-upload-logo-cv .add-more {
+    display: none;
+    padding: 3em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 320px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 2px dashed var(--color-primary-light);
+    background: #f5f5f5;
+}
+.main-file-upload-logo-cv .add-more i {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-primary-light);
+    margin-bottom: 15px;
+}
+.main-file-upload-logo-cv .add-more .title-drag {
+    cursor: pointer;
+}
+.main-file-upload-logo-cv .button {
+    display: inline-block;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.8em;
+    background: white;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid var(--color-primary-light);
+    color: var(--color-primary-light);
+    transition: var(--trs);
+}
+
+.main-file-upload-logo-cv .button:hover {
+    transform: translateY(-5px);
+}
+
+.main-file-upload-logo-cv #imgUploadLogoCv {
+    display: none;
+}
+.main-file-upload-logo-cv img {
+    width: 100%;
+    max-width: 200px;
+}
+.main-file-upload-logo-cv #addMoreArticles {
+    display: none;
+    animation: var(--fadeInLeft);
+}
+
+.main-file-upload-logo-cv .galleryLogoCv {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv img {
+    max-height: 150px;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv .fName,
+.main-file-upload-logo-cv .galleryLogoCv .fSize {
+    display: block;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv .fName {
+    color: brown;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv .fSize {
+    font-size: .8em;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv .fType {
+    font-size: .7em;
+}
+
+/* Only DragAndDrop */
+
+/* Prevent the text contents of draggable elements from being selectable. */
+.main-file-upload-logo-cv [draggable] {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}
+
+.main-file-upload-logo-cv .galleryLogoCv {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0 0 20px 0;
+}
+
+.main-file-upload-logo-cv .column {
+    --bg-img-logoCv: red;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    cursor: -webkit-grab;
+    cursor: grab;
+    width: 320px;
+    height: 320px;
+    background-size: cover;
+    animation: var(--fadeInLeft);
+}
+.main-file-upload-logo-cv .column::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-img-logoCv);
+    border-radius: 6px;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: var(--rotate-img-logoCv, rotate(0));
+}
+.main-file-upload-logo-cv .column.dragging {
+    opacity: 0.4;
+    transform: scale(0.75);
+    transition: transform 0.2s ease-in-out;
+
+}
+.main-file-upload-logo-cv .column.over {
+    border: 2px dashed rgba(0, 0, 0, 0.4);
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+
+}
+.main-file-upload-logo-cv .column.over > img{
+    transform: scale(0.50);
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: red;
+    display: none;
+    animation: var(--fadeInUp);
+    border-radius: 0 0 6px 6px;
+    z-index: 1;
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv div {
+    flex-grow: 1;
+    background: #f4f5f7;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    transition: var(--trs);
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv div:nth-child(1) {
+    border-right: 2px solid #79888d;
+    border-radius: 0 0 0 6px;
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv div:nth-child(2) {
+    border-radius: 0 0 6px 0;
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv div:hover {
+    background: #dedfe0;
+}
+.main-file-upload-logo-cv .column .actions-img-logoCv div i {
+    color: #79888d;
+    font-size: 4.5em;
+}
+.main-file-upload-logo-cv .column:hover > .actions-img-logoCv {
+    display: flex;
+}
+.main-file-upload-logo-cv .column .number-img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+    border-radius: 200px;
+    padding: 10px 16px;
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    background: var(--color-primary-light);
+    z-index: 1;
+    animation: var(--fadeInLeft);
+}

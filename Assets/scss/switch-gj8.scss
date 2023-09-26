@@ -1,0 +1,55 @@
+.switch-main-gj8 {
+    display: flex;
+
+    .switch-gj8 {
+        position: relative;
+        font-size: 1.6em;
+        background: $pink;
+        border-radius: 200px;
+        color: white;
+        padding: 7px 40px 10px 10px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: $trs;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-radius: 200px;
+            background: white;
+            position: absolute;
+            right: 8px;
+            top: 6px;
+            transition: $trs;
+        }
+
+        .slider-gj8 {
+            .inactive {
+                display: none;
+                animation: $fadeIn;
+            }
+        }
+
+        &.off {
+            .inactive {
+                display: flex;
+                animation: $fadeIn;
+            }
+
+            .active {
+                display: none;
+                animation: $fadeIn;
+            }
+
+            &::before {
+                transform: translateX(-69px);
+            }
+
+            background: #ccc;
+            padding: 7px 10px 10px 40px;
+            color: $pink;
+        }
+    }
+}

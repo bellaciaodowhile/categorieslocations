@@ -1,0 +1,66 @@
+@media only screen and (max-width: 870px) {
+    .main-table-tabulator .tabulator-gloobal.tabulator .tabulator-footer {
+        padding: 60px 10px 10px 10px;
+        .tabulator-paginator {
+            justify-content: flex-start;
+        } 
+    }
+
+    .dropdown-table {
+        &.selected {
+            bottom: 75px;
+        }
+        &.actions {
+            bottom: 75px;
+        }
+    
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .main-table-tabulator {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .dropdown-table {
+        &.selected {
+            left: 20px;
+            bottom: 65px;
+        }
+        &.actions {
+            left: 200px;
+            bottom: 65px;
+        }
+    }
+}
+
+@media only screen and (max-width: 398px) {
+    .main-table-tabulator .tabulator-gloobal.tabulator {
+        .tabulator-footer {
+            padding: 150px 10px 10px 10px;
+
+            .tabulator-paginator label {
+                display: none;
+            }
+
+            .tabulator-footer-contents {
+                padding: 0;
+            }
+        }
+    }
+
+    .dropdown-table {
+        &.selected {
+            left: 5vw;
+            width: 90%;
+            bottom: 150px;
+        }
+
+        &.actions {
+            left: 5vw;
+            width: 90%;
+            bottom: 100px;
+        }
+    }
+}

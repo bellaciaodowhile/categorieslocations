@@ -1,0 +1,132 @@
+.my-movements {
+    animation: var(--fadeInLeft);
+    display: none;
+}
+.my-movements .header-my-movements {
+    background: #f0f0f0;
+    padding: 25px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.my-movements .header-my-movements .title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--color-text);
+    margin-bottom: 0;
+    display: flex;
+}
+.my-movements .header-my-movements .subtitle {
+    font-size: 1.6em;
+    color: var(--color-text);
+    margin-top: 5px;
+    font-weight: normal;
+}
+.my-movements .header-my-movements .subtitle span {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+/* Tabs */
+.main-search-my-movements-tabs {
+    display: flex;
+    flex-direction: column;
+}
+.main-search-my-movements-tabs .box-my-movements {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+    background: #fff;
+}
+
+.main-search-my-movements-tabs .tabs-my-movements {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+}
+.main-search-my-movements-tabs .tabs-my-movements span.bar {
+    position: absolute;
+    width: 146px;
+    height: 3px;
+    border-radius: 200px;
+    bottom: 0px;
+    left: 30px;
+    transition: var(--trs);
+    background:  var(--color-primary-light);
+}
+.main-search-my-movements-tabs .tabs-my-movements .tab-trigger-my-movements {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--color-text);
+    transition: var(--trs);
+    padding: 30px 15px 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.main-search-my-movements-tabs .tabs-my-movements .tab-trigger-my-movements.active {
+    color: var(--color-primary-light);
+}
+.main-search-my-movements-tabs .count-tab-my-movements {
+    margin-left: 5px;
+}
+.main-search-my-movements-tabs .tabs-content-my-movements {
+    font-size: 1.6em;
+}
+.main-search-my-movements-tabs .tabs-content-my-movements .tab-item-my-movements:nth-child(1) {
+    display: block;
+}
+.main-search-my-movements-tabs .tabs-content-my-movements .tab-item-my-movements {
+    display: none;
+    animation: var(--fadeInUp);
+}
+.content-my-movements {
+    display: flex;
+}
+.content-my-movements .my-movements-made {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content-my-movements .my-movements-made .title {
+    font-size: 1.6em;
+    font-weight: 800;
+    color: var(--color-text);
+    text-align: center;
+    margin-top: 30px;
+}
+.content-my-movements .my-movements-made .subtitle {
+    font-size: 1.2em;
+    color: #999999;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 25px;
+    max-width: 420px;
+    line-height: 1.5;
+}
+.content-my-movements .footer-banner {
+    width: 350px;
+}
+.content-my-movements .footer-banner {
+    flex-direction: column;
+}
+.content-my-movements .footer-banner img {
+    max-width: 300px;
+}
+.content-my-movements .footer-banner .banner-content {
+    padding: 3em .5em 2em .5em;
+}
+.content-my-movements .footer-banner .title-footer-banner {
+    font-size: 2em;
+    text-align: center;
+}
+.content-my-movements .footer-banner .subtitle-footer-banner {
+    font-size: 1.2em;
+    text-align: center;
+}
+.content-my-movements .footer-banner .btn-primary-light {
+    font-size: 1.2em;
+    margin-top: 80px;
+}

@@ -1,0 +1,168 @@
+.select-form-gloobal {
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+.select-form-gloobal .main {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 11px;
+    border: 2px solid silver;
+    border-radius: 6px;
+    cursor: pointer;
+    color: silver;
+}
+.select-form-gloobal .options {
+    border-radius: 0 0 6px 6px;
+    background: #fff;
+    border: 2px solid silver;
+    border-top: none;
+    position: absolute;
+    z-index: 1;
+    top: 42px;
+    width: 100%;
+    animation: var(--fadeInDown);
+    display: none;
+}
+.select-form-gloobal .content-options {
+    height: 260px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.select-form-gloobal .content-options::-webkit-scrollbar {
+	width: 10px;
+}
+
+.select-form-gloobal .content-options::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+.select-form-gloobal .content-options::-webkit-scrollbar-thumb {
+	background-color: #dadada;
+	border-radius: 11px;
+	border: 1px solid #ffffff;
+}
+.select-form-gloobal .options hr {
+	margin: 15px 10px 10px 10px;
+}
+.select-form-gloobal .options .option {
+    padding: 15px;
+    font-size: 1.6em;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.select-form-gloobal .options .option:hover {
+    background: #f5f5f5;
+	transform: translateX(3px);
+}
+.select-form-gloobal .options .option div.active {
+    font-weight: bold;
+}
+.select-form-gloobal .options .option span {
+    margin-top: 5px;
+    font-size: .85em;
+    color: silver;
+}
+/* Selected checkbox */ 
+.select-form-gloobal-checkbox {
+    width: 100%;
+	position: relative;
+	margin-top: 20px;
+}
+.select-form-gloobal-checkbox .main {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid silver;
+    border-radius: 6px;
+    cursor: pointer;
+    color: silver;
+}
+.select-form-gloobal-checkbox .options {
+    border-radius: 0 0 6px 6px;
+    background: #fff;
+    border: 2px solid silver;
+    border-top: none;
+    position: absolute;
+    z-index: 1;
+    top: 49px;
+    width: 100%;
+    animation: var(--fadeInDown);
+    display: none;
+}
+.select-form-gloobal-checkbox .content-options {
+    height: 260px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.select-form-gloobal-checkbox .content-options::-webkit-scrollbar {
+	width: 10px;
+}
+
+.select-form-gloobal-checkbox .content-options::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+.select-form-gloobal-checkbox .content-options::-webkit-scrollbar-thumb {
+	background-color: #dadada;
+	border-radius: 11px;
+	border: 1px solid #ffffff;
+}
+.select-form-gloobal-checkbox .options hr {
+	margin: 15px 10px 10px 10px;
+}
+.select-form-gloobal-checkbox .options .option {
+    padding: 15px;
+    font-size: 1.6em;
+    display: flex;
+	align-items: center;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.select-form-gloobal-checkbox .options .option:hover {
+    background: #f5f5f5;
+	transform: translateX(3px);
+}
+.select-form-gloobal-checkbox .options .option img {
+	max-width: 130px;
+	border-radius: 6px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.select-form-gloobal-checkbox .options .option .title {
+	font-weight: bold;
+}
+.select-form-gloobal-checkbox .options .option .city {
+	color: var(--color-primary-light);
+	display: flex;
+	align-items: center;
+	margin-top: 10px
+}
+.select-form-gloobal-checkbox .options .option .checkbox-article-ads {
+	border-radius: 6px;
+	border: 3px solid var(--color-primary-light);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	width: 20px;
+	height: 20px;
+	transition: var(--trs);
+}
+.select-form-gloobal-checkbox .options .option .checkbox-article-ads i {
+	font-size: 1em;
+	color: white;
+	transition: var(--trs);
+}

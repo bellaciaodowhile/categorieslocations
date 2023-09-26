@@ -1,0 +1,37 @@
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 {
+    background: #dddddd;
+    width: 100%;
+    display: flex;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 .tab-trigger-subtabs-gj8{
+    font-size: 1.6em;
+    padding: 12px 18px;
+    font-weight: bold;
+    display: flex;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 .tab-trigger-subtabs-gj8 i {
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 .tab-trigger-subtabs-gj8:nth-child(1) {
+    background: var(--color-primary-light);
+    color: #fff;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 .tab-trigger-subtabs-gj8 {
+    color: #333;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-gj8 .tab-trigger-subtabs-gj8.active {
+    background: #f0f0f0;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-content-gj8 {
+    font-size: 1.6em;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-content-gj8 .tab-content-subtabs-gj8:nth-child(1) {
+    display: block;
+}
+.main-global-users-subtabs-gj8 .main-subtabs-content-gj8 .tab-content-subtabs-gj8 {
+    display: none;
+    animation: var(--fadeInUp);
+}

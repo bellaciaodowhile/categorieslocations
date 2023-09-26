@@ -1,0 +1,22 @@
+.create-filters {
+    .categories-repeat {
+        display: none;
+        flex-wrap: wrap;
+        animation: $fadeInLeft;
+    }
+}
+// update filters
+.preview-categorie {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.6em;
+    margin-top: 15px;
+    font-weight: 800;
+    .preview-name {
+        color: $pink;
+    }
+    .preview-child {
+        margin-top: 10px;
+    }
+}

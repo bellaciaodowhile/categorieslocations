@@ -1,0 +1,25 @@
+.main-chevrondown {
+    font-size: 1.8em;
+    margin-top: 30px;
+}
+.main-chevrondown .chevrondown-item {
+    margin-top: 18px;
+    margin-left: -7px;
+}
+.main-chevrondown .chevrondown-item .chevrondown-head {
+    display: flex;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.main-chevrondown .chevrondown-item .chevrondown-head i {
+    transition: var(--trs);
+}
+.main-chevrondown .chevrondown-item .chevrondown-content {
+    display: none;
+    animation: var(--fadeInLeft);
+    margin-left: 45px;
+}
+.main-chevrondown .chevrondown-item .chevrondown-content .category {
+    margin-top: 18px;
+    cursor: pointer;
+}

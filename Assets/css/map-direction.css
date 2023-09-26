@@ -1,0 +1,125 @@
+.main-map-direction {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000059;
+    padding: 2em 4em;
+    z-index: 10;
+    display: none;
+    justify-content: center;
+}
+.main-map-direction .card-map-direction {
+    background: silver;
+    border-radius: 6px;
+    color: #333;
+    width: 851px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    animation: var(--fadeInUp);
+}
+.main-map-direction .header-map {
+    background: #fff;
+    text-align: center;
+    border-radius: 6px 6px 0 0;
+}
+.main-map-direction .header-map h3 {
+    font-size: 2.6em;
+    margin: 0;
+    margin-top: 25px;
+}
+.main-map-direction .header-map h2 {
+    font-size: 2.8em;
+    font-weight: 900;
+
+}
+.main-map-direction .header-map hr {
+    margin: 10px auto 20px;
+}
+.main-map-direction .footer-map {
+    background: #fff;
+    border-radius: 0 0 6px 6px;
+    display: flex;
+    font-size: 1.5em;
+    padding: 10px;
+    justify-content: space-between;
+}
+.main-map-direction .footer-map .action {
+    border-radius: 6px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    background: var(--color-primary-light);
+    color: #eee;
+    font-weight: bold;
+    cursor: pointer;
+}
+.main-map-direction .footer-map .action.cancel {
+    background: var(--color-text);
+}
+.main-map-direction .content-map {
+    position: relative;
+}
+.main-map-direction .main-content-map {
+    position: absolute;
+    width: 100%;
+    top: -173px;
+    left: auto;
+    display: flex;
+    justify-content: center;
+}
+.main-map-direction .content-map .search-content-map {
+    width: 360px;
+}
+.main-map-direction .txt-field span,
+.main-map-direction .txt-field input {
+    font: 1.6em/1.6em "Lato";
+    font-weight: bold;
+    padding: 0;
+    display: block;
+}
+.main-map-direction .txt-field {
+    display: block;
+    background: #fff;
+    width: 360px;
+    border: 2px solid silver;
+    padding: 8px 10px;
+    position: relative;
+    border-radius: 6px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+.main-map-direction .txt-field input {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.main-map-direction .txt-field span {
+    background: #fff;
+    color: mediumvioletred;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+.main-map-direction .txt-field.focus {
+    border-color: mediumvioletred;
+}
+.main-map-direction .txt-field span.focus {
+    border-color: mediumvioletred;
+}
+.main-map-direction .txt-field span.top {
+    left: 5px;
+    top: -10px;
+    font-size: 1.3em;
+    background: white;
+    padding: 0 5px;
+}

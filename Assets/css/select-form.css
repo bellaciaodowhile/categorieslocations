@@ -1,0 +1,89 @@
+  .select-form{
+    position: relative;
+    font-family: Arial;
+    text-align: start;
+  }
+  .select-form.form {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+  
+  .select-form select {
+    display: none; 
+  }
+  
+  .select-form .select-selected {
+    border-radius: 6px;
+    border: 2px solid silver;
+    color: var(--pink);
+    font-weight: bold;
+    padding: 8px 10px;
+  }
+  .select-form.table .select-selected {
+    border: none;
+    border-bottom: 1px solid #333;
+    color: var(--color-text);
+    border-radius: 0;
+    padding: 10px 30px 10px 10px;
+  }
+  
+  .select-form .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    margin-top: 4px;
+    border: 6px solid transparent;
+    border-color: #8f8f8f transparent transparent transparent;
+  }
+  
+  .select-form .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #8f8f8f transparent;
+    top: 7px;
+  }
+  
+  .select-form .select-items div,.select-selected {
+    color: #333;
+    padding: 11px 10px;
+    border: 1px solid #c4c4c4;
+    border-top: none;
+    border-bottom: none;
+    cursor: pointer;
+  }
+  .select-form .select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    padding-bottom: 30px;
+    animation: var(--fadeInUp);
+  }
+  .select-form .select-items div:nth-child(1) {
+    background: #fff;
+    border-radius: 5px 5px 0 0;
+    margin-top: 10px;
+    border-top: 1px solid #c4c4c4;
+  }
+  .select-form .select-items div:last-child {
+    background: #fff;
+    border-radius:  0 0 5px 5px;
+    border-bottom: 1px solid #c4c4c4;
+  }
+  .select-form .select-items div {
+    background: #fff;
+  }
+  
+  .select-form .select-hide {
+    display: none;
+  }
+  
+  .select-form .select-items div:hover, .same-as-selected {
+    background-color: #eee;
+  }
+  
+  select .show-placeholder {
+    margin-bottom: 18px !important;
+  }

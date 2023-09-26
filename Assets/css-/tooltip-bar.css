@@ -1,0 +1,41 @@
+.parent-tooltip-bar-gj8 .tooltip-bar-gj8 {
+  display: none;
+  animation: var(--fadeInDown);
+  position: absolute;
+  bottom: 21px;
+  font-size: 1.6em;
+  height: 51px;
+  width: auto;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 6px;
+  padding: 11px;
+  align-items: center;
+  justify-content: center;
+}
+.parent-tooltip-bar-gj8 .tooltip-bar-gj8::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  bottom: -4px;
+  rotate: 45deg;
+}
+.parent-tooltip-bar-gj8 .tooltip-bar-gj8 i {
+  background: var(--color-primary-light);
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parent-tooltip-bar-gj8 .tooltip-bar-gj8 span {
+  white-space: nowrap;
+}
+.parent-tooltip-bar-gj8:hover .tooltip-bar-gj8 {
+  display: flex;
+}
+
+/*# sourceMappingURL=tooltip-bar.css.map */

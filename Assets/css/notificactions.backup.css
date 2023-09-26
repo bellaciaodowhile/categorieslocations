@@ -1,0 +1,227 @@
+/* Notifications */
+.notifications {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Cambiar a 0px para trabajar tranquilo con el sidebar en tiempo real */
+    max-width: 300px;
+    min-width: 300px;
+    height: 100%;
+    background: var(--icon-language);
+    z-index: 13;
+    transition: all 0.2s ease-in-out;
+}
+.notifications .banner-notifications  {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    padding: 24px 15px;
+    color: var(--pink);
+}
+.notifications .banner-notifications .title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.notifications .banner-notifications .close { 
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+.notifications .content .main-expand {
+    transition: var(--trs);
+}
+.notifications .content .main-expand .banner-messages {
+    background: #fff;
+    display: flex;
+    color: #fff;
+    padding: 15px 10px;
+    justify-content: space-between;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+.notifications .content .main-expand .banner-messages.messages {
+    background: var(--pink);
+}
+.notifications .content .main-expand .banner-messages.messages-gloobal {
+    background: var(--color-primary-light);
+}
+.notifications .content .main-expand .banner-messages.budget-request,
+.notifications .content .main-expand .banner-messages.offers,
+.notifications .content .main-expand .banner-messages.opinions,
+.notifications .content .main-expand .banner-messages.ratings  {
+    color: var(--color-text)
+}
+
+.notifications .content .main-expand .banner-messages {
+    transition: var(--trs);
+}
+
+.notifications .content .main-expand .banner-messages .title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 0 0 7px;
+}
+.notifications .content .main-expand .banner-messages .number-of-messages {
+    background: #fff;
+    width: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+.notifications .content .main-expand .banner-messages.messages .number-of-messages {
+    color: var(--pink);
+}
+.notifications .content .main-expand .banner-messages.messages-gloobal .number-of-messages {
+    color: var(--color-primary-light);
+}
+.notifications .content .main-expand .banner-messages.budget-request .number-of-messages {
+    color: var(--color-text);
+}
+
+
+.notifications .content .main-expand .d-flex {
+    align-items: center;
+}
+.notifications .content .main-expand .all-messages {
+    padding: 10px;
+    background: #ddd;
+    color: var(--pink);
+    font-weight: bold;
+    text-align: right;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+.notifications .content .main-expand .item-message {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.notifications .content .main-expand .item-message:hover {
+    transform: translateX(2px);
+}
+
+.notifications .content .main-expand .item-message .img-user {
+    width: 50px;
+    height: 50px;
+    max-width: 50px;
+    border-radius: 200px;
+}
+.notifications .content .main-expand .item-message .message {
+    display: flex;
+    flex-direction: column;
+    margin-left: 14px;
+}
+.notifications .content .main-expand .item-message .message .name{
+    color: var(--pink);
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.notifications .content .main-expand .item-message .message .name i{
+    margin-right: 4px;
+    font-size: 1.4em;
+}
+.notifications .content .main-expand .item-message .message .message-content {
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--color-text);
+    margin-top: 4px;
+    line-height: 1.5;
+}
+.notifications .content .main-expand .item-message .message .time-of-arrival {
+    color: gray;
+    text-align: right;
+    margin-top: 6px;
+}
+.notifications .content .main-expand .content-banner {
+    display: none;
+    transition: var(--trs);
+}
+
+.notifications .logo {
+    background: var(--icon-language);
+    padding: 20px;
+    width: 100%;
+    height: 100px;
+    max-width: 300px;
+    max-height: 100px;
+    min-height: 100px;
+    display: flex;
+}
+
+.notifications .content {
+    margin-top: 0;
+    overflow-y: auto;
+    height: 100%;
+    padding: 0px 0px 120px 0px;
+}
+.notifications .content .px {
+    padding: 0 10px;
+}
+.notifications .content .px .title-sidebar {
+    font-size: 1.7em;
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-left: 18px;
+    margin: 5px 0;
+    color: var(--color-primary);
+}
+.notifications .content hr {
+    margin: 17px 0 17px 0;
+    border-top: 1px solid #ebebeb;
+}
+.notifications .content .item.active {
+    color: #fff;
+    background: var(--color-primary);
+}
+.notifications .content .item {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 14px;
+    padding: 15px;
+    color: var(--color-primary);
+    transition: all 0.2s ease-in-out;
+}
+.notifications .content .item:hover {
+    background: #f1f1f1;
+    transform: translateX(3px);
+}
+
+.notifications .content .item .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.notifications .content .item .icon i {
+    font-size: 2.4em;
+    color: #434343;
+}
+.notifications .content .item .text {
+    font-size: 1.7em;
+    margin-left: 1em;
+    font-weight: bold;
+    color: #434343;
+}
+
+.notifications .more-content {
+    display: none;
+}
+.notifications p {
+    padding: 0 18px 20px 18px;
+}
+.notifications .content .footer-nav {
+    padding: 20px;
+}

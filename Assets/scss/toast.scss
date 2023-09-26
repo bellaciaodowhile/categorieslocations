@@ -1,0 +1,152 @@
+:root {
+    --dark: #f5f5f5;
+    --light: #ffffff;
+    --success: #42b574;
+    --error: #E24D4C;
+    --warning: #c71585;
+    --info: #555;
+}
+.toastGj8 {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    z-index: 20;
+}
+
+.toastGj8 :where(.toast, .column) {
+    display: flex;
+    align-items: center;
+}
+
+.toastGj8 .toast {
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--light);
+    justify-content: space-between;
+    animation: show_toast 0.3s ease forwards;
+    font-size: 1.6em;
+}
+
+@keyframes show_toast {
+    0% {
+        transform: translateX(100%);
+    }
+
+    40% {
+        transform: translateX(-5%);
+    }
+
+    80% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+.toastGj8 .toast.hide {
+    animation: hide_toast 0.3s ease forwards;
+}
+
+@keyframes hide_toast {
+    0% {
+        transform: translateX(-10px);
+    }
+
+    40% {
+        transform: translateX(0%);
+    }
+
+    80% {
+        transform: translateX(-5%);
+    }
+
+    100% {
+        transform: translateX(calc(100% + 20px));
+    }
+}
+
+.toast::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        width: 0%;
+    }
+}
+
+.toast.success::before,
+.btn#success {
+    background: var(--success);
+}
+
+.toast.error::before,
+.btn#error {
+    background: var(--error);
+}
+
+.toast.warning::before,
+.btn#warning {
+    background: var(--warning);
+}
+
+.toast.info::before,
+.btn#info {
+    background: var(--info);
+}
+
+.toast .column span.material-icons {
+    font-size: 1.6em;
+}
+
+.toast.success .column span {
+    color: var(--success);
+}
+
+.toast.error .column span {
+    color: var(--error);
+}
+
+.toast.warning .column span {
+    color: var(--warning);
+}
+
+.toast.info .column span {
+    color: var(--info);
+}
+
+.toast .column span {
+    margin-left: 12px;
+}
+
+.toast span:last-child {
+    color: #aeb0d7;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 530px) {
+    .toastGj8 {
+        width: 95%;
+    }
+
+    .toastGj8 .toast {
+        width: 100%;
+        font-size: 1rem;
+        margin-left: 20px;
+    }
+
+}

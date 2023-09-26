@@ -1,0 +1,109 @@
+.breadcumb-main {
+  background: #fff;
+  padding: 0 5em;
+}
+.bg-white {
+  background: white;
+}
+.breadcumb {
+  padding: 2em  15px 0;
+  color: var(--color-text);
+  animation: var(--fadeInDown);
+}
+.breadcumb h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.breadcumb .links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.breadcumb .links i {
+  color: var(--color-primary-light);
+}
+.breadcumb .links i.dark {
+  color: var(--color-text);
+  font-size: 2em;
+  padding: 0 3px;
+}
+.breadcumb .links i.light {
+  color: white;
+  font-size: 2.5em;
+  padding: 0 3px;
+}
+.breadcumb .links .span {
+  font-size: 1.6em;
+  position: relative;
+}
+.breadcumb .links a {
+  /* color: var(--color-primary-light); */
+  text-decoration: none;
+}
+.bc-nav {
+  background: white;
+  border-radius: 6px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 30em;
+  height: auto;
+  padding-bottom: 2em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.bc-nav div.header {
+  background: var(--color-primary-light);
+  width: 100%;
+  height: 4.5em;
+  color: white;
+  font-weight: 700;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.bc-nav a.links {
+  background: white;
+  color: var(--color-text);
+  width: 100%;
+  height: 2.8em;
+  font-weight: 700;
+  font-size: 1.8em;
+  padding: 1em;
+  transition: padding-left 0.4s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bc-nav a.links:hover,
+a.links:focus {
+  background: #f5f5f5;
+  color: var(--color-primary-light);
+  padding-left: 1.5em;
+}
+a:active, a:visited {
+  color: var(--color-text);
+}
+/* Show´s options */
+.user-options {
+  transition: var(--trs);
+  display: none;
+  animation: 200ms fadeInUp ease-in-out;
+}
+/* Trigger */
+.user-trigger {
+  transition: var(--trs);
+}
+.user-trigger:focus {
+  color: var(--color-primary-light);
+}
+.user-trigger:focus + .user-options {
+  display: block;
+  z-index: 2;
+}
+

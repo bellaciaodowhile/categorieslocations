@@ -1,0 +1,309 @@
+.main-container-edit-personal-information {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    overflow: auto;
+    background: #00000059;
+}
+
+.main-container-edit-personal-information .container-personal-data {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: 300ms fadeInUp ease-in-out;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data.create-direction{
+    width: 40em;
+}
+
+.main-container-edit-personal-information .container-personal-data .wrap-form {
+    padding: 4em;
+}
+.main-container-edit-personal-information .container-personal-data .bottom-form {
+    width: 100%;
+    height: 90px;
+    background: #f8f8f8;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px !important;
+    margin-top: 50px;
+    padding: 15px !important;
+}
+.main-container-edit-personal-information .container-personal-data .bottom-form .action {
+    background: var(--color-text);
+    border-radius: 6px;
+    color: #eee;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.main-container-edit-personal-information .container-personal-data .bottom-form .action i {
+    font-size: 2.4em;
+}
+.main-container-edit-personal-information .container-personal-data .bottom-form .action.save {
+    background: var(--color-primary-light) !important;
+    color: white !important;
+    box-shadow: none;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data h2 {
+    font-size: 2.8em;
+    margin-bottom: 0;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data h3 {
+    font-size: 2.6em;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+.main-container-edit-personal-information .container-personal-data .divider {
+    margin: 10px auto 50px;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="radio"],
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="checkbox"] {
+    display: none;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data .radio {
+    margin-bottom: 20px;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data .radio label,
+.main-container-edit-personal-information .container-personal-data .personal-data .checkbox label {
+    color: mediumvioletred;
+    padding: 5px 15px 5px 38px;
+    display: inline-block;
+    position: relative;
+    font-size: 1.6em;
+    border-radius: 6px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data .radio label:hover,
+.main-container-edit-personal-information .container-personal-data .personal-data .checkbox label:hover {
+    background: rgba(255, 255, 255, 1);
+}
+.main-container-edit-personal-information .container-personal-data .personal-data .radio label:before,
+.main-container-edit-personal-information .container-personal-data .personal-data .checkbox label:before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background: none;
+    border: 3px solid mediumvioletred;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    top: 4px;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data .checkbox label:before {
+    border-radius: 3px;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="radio"]:checked + label,
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="checkbox"]:checked + label {
+    padding: 5px 15px;
+    background: mediumvioletred;
+    border-radius: 3px;
+    color: white;
+}
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="radio"]:checked + label:before,
+.main-container-edit-personal-information .container-personal-data .personal-data input[type="checkbox"]:checked + label:before {
+    display: none;
+}
+/* REPOSO INPUT */
+.main-container-edit-personal-information .container-personal-data .personal-data .user-data {
+    margin-bottom: 20px;
+}
+.main-container-edit-personal-information .container-personal-data label.txt-field span,
+.main-container-edit-personal-information .container-personal-data label.txt-field input {
+    font: 1.6em/1.6em "Lato";
+    font-weight: bold;
+    padding: 0;
+    display: block;
+}
+.main-container-edit-personal-information .container-personal-data label.txt-field {
+    display: block;
+    width: 100%;
+    border: 2px solid silver;
+    padding: 8px 10px;
+    position: relative;
+    border-radius: 6px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+.main-container-edit-personal-information .container-personal-data label.txt-field input {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.main-container-edit-personal-information .container-personal-data label.txt-field span {
+    background: #fff;
+    color: mediumvioletred;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+/* FOCUS INPUT */
+.main-container-edit-personal-information .container-personal-data label.txt-field.focus {
+    border-color: mediumvioletred;
+}
+.main-container-edit-personal-information .container-personal-data label.txt-field span.focus {
+    border-color: mediumvioletred;
+}
+/* TOP INPUT */
+.main-container-edit-personal-information .container-personal-data label.txt-field span.top {
+    left: 5px;
+    top: -10px;
+    font-size: 1.3em;
+    background: white;
+    padding: 0 5px;
+}
+
+/* PRETTY VIEW */
+.main-container-edit-personal-information .container-personal-data .wrap-personal-data-pretty {
+    width: 100%;
+    padding: 4em 5em;
+}
+.main-container-edit-personal-information .container-personal-data .box-personal-data {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.main-container-edit-personal-information .container-personal-data .box-personal-data h2 {
+    text-align: center;
+    font-size: 2.6em;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+.main-container-edit-personal-information .container-personal-data .box-personal-data .user-mail {
+    font-size: 1.9em;
+    text-align: center;
+    color: var(--color-primary-light);
+    margin-bottom: 0.8em;
+}
+
+.main-container-edit-personal-information .container-personal-data .user-data-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #828282;
+    padding: 0 15px;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .titles {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #828282;
+    border-bottom: 1px solid #ddd;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .titles .w26,
+.main-container-edit-personal-information .container-personal-data .user-data-table .results .w26 {
+    width: 26%;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .titles .w24,
+.main-container-edit-personal-information .container-personal-data .user-data-table .results .w24 {
+    width: 24%;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .titles .w14,
+.main-container-edit-personal-information .container-personal-data .user-data-table .results .w14 {
+    width: 14%;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .titles .w6 {
+    width: 6%;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .results {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 50px 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: black;
+}
+.main-container-edit-personal-information .container-personal-data .user-data-table .select-view-results {
+    margin-left: auto;
+    color: #828282;
+}
+.main-container-edit-personal-information .container-personal-data .bg-user {
+    width: 100%;
+    background: #f5f5f5 url(../../Assets/img/app/users/bg-user.jpg);
+    height: 180px;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+    color: #c71585;
+}
+.main-container-edit-personal-information .container-personal-data .bg-user::after {
+    font-size: 3em;
+    color: rgba(255, 255, 255, 0.7);
+    content: "\ea38";
+    font-family: "Material Icons";
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+}
+.main-container-edit-personal-information .container-personal-data .box-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+.main-container-edit-personal-information .container-personal-data .box-pic img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+.main-container-edit-personal-information .container-personal-data .box-pic::after {
+    font-size: 3em;
+    color: rgba(255, 255, 255, 0.7);
+    content: "\ea38";
+    font-family: "Material Icons";
+    position: absolute;
+    bottom: 18px;
+    right: 0;
+}
+
+.main-container-edit-personal-information .container-personal-data .close-modal-form {
+    cursor: pointer;
+    text-align: right;
+}

@@ -1,0 +1,54 @@
+.tabs-user-main {
+    width: 100%;
+    height: 48px;
+}
+.tabs-user-main .tabs-user-x {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: grab;
+    background: #eee;
+}
+.tabs-user-main .tabs-user-x span.marker-bottom {
+    position: absolute;
+    display: block;
+    height: 3px;
+    width: 139px;
+    background: var(--color-primary-light);
+    bottom: 0;
+    left: 3px;
+    transition: var(--trs);
+}
+.tabs-user-main .tabs-user-x li {
+    background: #eee;
+    padding: 13px 0px;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--trs);
+    color: var(--color-text);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tabs-user-main .tabs-user-x li i {
+    margin-right: 5px;
+    font-size: 1.8em;
+}
+.tabs-user-main .tabs-user-x li a {
+    text-decoration: none;
+    font-size: 1.5em;
+}
+/* Menu User Content */
+.menu-user-content .tab:nth-child(1) {
+    display: block;
+}
+.menu-user-content .tab {
+    display: none;
+    animation: 300ms fadeIn ease-in-out;
+    background: #f5f5f5;
+}

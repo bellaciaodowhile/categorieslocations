@@ -1,0 +1,66 @@
+/* Burguer */
+.burguer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.burguer div {
+  position: relative;
+  width: 3em;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 5px;
+}
+.burguer div::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 3px;
+  background: var(--color-primary);
+}
+.burguer div::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 3px;
+  background: var(--color-primary);
+}
+.burguer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+/* Burguer White */
+.burguer.white div {
+  position: relative;
+  width: 3em;
+  height: 3px;
+  background: var(--icon-language);
+  border-radius: 5px;
+}
+.burguer.white div::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 3px;
+  background: var(--icon-language);
+}
+.burguer.white div::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 3px;
+  background: var(--icon-language);
+}

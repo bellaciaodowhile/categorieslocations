@@ -1,0 +1,78 @@
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  transition: var(--trs);
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.1em 1em;
+  background: #fff;
+  box-shadow: 0px 14px 22px -9px #00000026;
+  height: 100px;
+  max-height: 100px;
+  min-height: 100px;
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+.nav-img-logo {
+  width: 21em;
+  margin-left: 12px;
+}
+nav .items {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+nav .items .search-box {
+  position: absolute;
+  z-index: 4;
+  font-size: 1.7em;
+  color: red;
+  top: 0;
+  left: 10px;
+}
+nav .items .item {
+  background: #0000;
+  padding: 10px 6px;
+  cursor: pointer;
+}
+nav .items .item .language {
+  animation: 300ms fadeInUp ease-in-out;
+}
+nav .items .item i {
+  font-size: 3em;
+  color: var(--color-text);
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #0000;
+}
+nav .items .item:hover i {
+  background: #efefef;
+  border-radius: 6px;
+  padding: 5px;
+}
+nav .nav-logo-mobile {
+  display: none;
+}
+/* Image Header */
+.image-header {
+  position: relative;
+  width: 100%;
+  background: url('../..Assets/img/app/header.jpg') no-repeat;
+  background-position: center top;
+  background-size: cover;
+  height: 50em;
+}
+.image-header .gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20em;
+  background: linear-gradient(to bottom, #0000, #fff);
+}

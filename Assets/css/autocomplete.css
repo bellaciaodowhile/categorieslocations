@@ -1,0 +1,139 @@
+.main-autocomplete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 10;
+    animation: var(--fadeInLeft);
+}
+
+.main-autocomplete .close-autocomplete {
+    float: right;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.main-autocomplete .content-autocomplete {
+    padding: 2em 5em 15em 5em;
+    background: #fff;
+}
+.main-autocomplete .content-autocomplete i.icon-right {
+    background: var(--color-primary-light) !important;
+    color: white !important;
+    padding: 12px;
+    /* width: 50px !important; */
+    right: 0px !important;
+    cursor: pointer;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete {
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: var(--trs);
+    cursor: pointer;
+    line-height: 1.5;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected {
+    color: var(--color-primary-light);
+    transition:  var(--trs); 
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected .icon-autocomplete {
+    background-color: var(--color-primary-light);
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete .remove-icon {
+    display: none;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected:hover {
+    color: var(--pink);
+    background: #fbe6f3;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected:hover .add-icon {
+    display: none;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected:hover .remove-icon {
+    display: block;
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete.selected:hover .icon-autocomplete {
+    background: var(--pink);
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete:hover {
+    transform: translateY(-3px);
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete .icon-autocomplete i {
+    font-size: 2em;
+    transition: var(--trs);
+    color: #fff;
+    animation: var(--fadeInDown);
+}
+.main-autocomplete .content-autocomplete .list-prefix-autocomplete .item-autocomplete .icon-autocomplete {
+    background: #fdbb59;
+    color: white;
+    margin-right: 15px;
+    border-radius: 200px;
+    display: flex;
+    padding: 5px;
+    transition: var(--trs);
+}
+.main-autocomplete .search-autocomplete {
+    position: relative;
+
+}
+.main-autocomplete .search-autocomplete .search-match {
+    position: absolute;
+    display: none;
+    animation: var(--fadeInUp);
+    width: 100%;
+    border-radius: 0 0 6px 6px;
+    background: #f5f5f5;
+    font-size: 1.6em;
+    top: 45px;
+    border-left: 2px solid silver;
+    border-bottom: 2px solid silver;
+    border-right: 2px solid silver;
+}
+.main-autocomplete .search-autocomplete .search-match .item-match {
+    padding: 15px;
+    cursor: pointer;
+    transition: var(--trs);
+    border-top: 1px solid #e2e2e2;
+}
+.main-autocomplete .search-autocomplete .search-match .item-match:hover {
+    transform: translateX(3px);
+}
+.main-autocomplete .list-prefix-autocomplete {
+    animation: var(--fadeInDown);
+}
+.main-autocomplete .main-btn-autocomplete {
+    position: fixed;
+    width: 100%;
+    box-shadow: -9px 1px 10px #00000026;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    padding: 20px;
+    background: whitesmoke;
+    bottom: 0;
+}
+.main-autocomplete .main-btn-autocomplete .btn-autocomplete-next {
+    font-size: 1.6em;
+    background: var(--color-primary-light);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.main-autocomplete .main-btn-autocomplete .btn-autocomplete-next:hover {
+    transform: translateY(-3px);
+}

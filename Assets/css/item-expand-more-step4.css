@@ -1,0 +1,258 @@
+.main-file-upload-step4-cv .dropBoxStep4Cv {
+    min-height: 300px;
+    border-radius: 6px;
+    border: 2px dashed var(--color-primary-light);
+    background: #f5f5f5;
+    padding: 7em 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: var(--fadeInLeft);
+}
+.main-file-upload-step4-cv .dropBoxStep4Cv i {
+    font-size: 7.5em;
+    color: var(--color-primary-light);
+}
+.main-file-upload-step4-cv .title-drag {
+    color: var(--color-primary-light);
+    font-weight: 700;
+    font-size: 3em;
+    text-align: center;
+}
+.main-file-upload-step4-cv .dropBoxStep4Cv .title-drag {
+    margin-top: 15px;
+}
+.main-file-upload-step4-cv .dropBoxStep4Cv .subtitle-drag {
+    font-size: 3em;
+    margin-top: 10px;
+    color: var(--color-primary-light);
+}
+.main-file-upload-step4-cv .dropBoxStep4Cv.hover {
+    background: aliceblue;
+}
+.main-file-upload-step4-cv .add-more {
+    display: none;
+    padding: 3em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 320px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 2px dashed var(--color-primary-light);
+    background: #f5f5f5;
+}
+.main-file-upload-step4-cv .add-more i {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-primary-light);
+    margin-bottom: 15px;
+}
+.main-file-upload-step4-cv .add-more .title-drag {
+    cursor: pointer;
+}
+.main-file-upload-step4-cv .button {
+    display: inline-block;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.8em;
+    background: white;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid var(--color-primary-light);
+    color: var(--color-primary-light);
+    transition: var(--trs);
+    text-align: center;
+}
+
+.main-file-upload-step4-cv .button:hover {
+    transform: translateY(-5px);
+}
+
+.main-file-upload-step4-cv #imgUploadArticles {
+    display: none;
+}
+.main-file-upload-step4-cv .addMoreStep4Cv {
+    display: none;
+    animation: var(--fadeInLeft);
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv img {
+    max-height: 150px;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv .fName,
+.main-file-upload-step4-cv .galleryStep4Cv .fSize {
+    display: block;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv .fName {
+    color: brown;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv .fSize {
+    font-size: .8em;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv .fType {
+    font-size: .7em;
+}
+
+/* Only DragAndDrop */
+
+/* Prevent the text contents of draggable elements from being selectable. */
+.main-file-upload-step4-cv [draggable] {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}
+
+.main-file-upload-step4-cv .galleryStep4Cv {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 0 0 20px 0;
+}
+
+.main-file-upload-step4-cv .column {
+    --bg-img-articles: red;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    cursor: -webkit-grab;
+    cursor: grab;
+    width: 320px;
+    height: 320px;
+    background-size: cover;
+    animation: var(--fadeInLeft);
+}
+.main-file-upload-step4-cv .column::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-img-articles);
+    border-radius: 6px;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: var(--rotate-img-articles, rotate(0));
+}
+
+.main-file-upload-step4-cv .column.dragging {
+    opacity: 0.4;
+    transform: scale(0.75);
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.main-file-upload-step4-cv .column.over {
+    border: 2px dashed rgba(0, 0, 0, 0.4);
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+
+}
+.main-file-upload-step4-cv .column.over > img{
+    transform: scale(0.50);
+}
+
+.main-file-upload-step4-cv .column .actions-img-articles {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: red;
+    display: none;
+    animation: var(--fadeInUp);
+    border-radius: 0 0 6px 6px;
+    z-index: 1;
+}
+.main-file-upload-step4-cv .column .actions-img-articles div {
+    flex-grow: 1;
+    background: #f4f5f7;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    transition: var(--trs);
+}
+.main-file-upload-step4-cv .column .actions-img-articles div:nth-child(1) {
+    border-right: 2px solid #79888d;
+    border-radius: 0 0 0 6px;
+}
+.main-file-upload-step4-cv .column .actions-img-articles div:nth-child(2) {
+    border-radius: 0 0 6px 0;
+}
+.main-file-upload-step4-cv .column .actions-img-articles div:hover {
+    background: #dedfe0;
+}
+.main-file-upload-step4-cv .column .actions-img-articles div i {
+    color: #79888d;
+    font-size: 4.5em;
+}
+.main-file-upload-step4-cv .column:hover > .actions-img-articles {
+    display: flex;
+}
+.main-file-upload-step4-cv .column .number-img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+    border-radius: 200px;
+    padding: 10px 16px;
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    background: var(--color-primary-light);
+    z-index: 1;
+    animation: var(--fadeInLeft);
+}
+.main-file-upload-step4-cv .preview-pdf {
+    position: fixed;
+    animation: var(--fadeInUp);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+    background: #00000059;
+}
+.main-file-upload-step4-cv .preview-pdf .content-card {
+    height: 100vh;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.main-file-upload-step4-cv .preview-pdf .content-card .btn-primary-close {
+    font-size: 1.6em;
+    background: var(--color-primary-light);
+    padding: 15px 23px;
+    color: #fff;
+    font-weight: bold;
+    height: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+    border-radius: 6px !important;
+    display: flex;
+}

@@ -1,0 +1,29 @@
+.main-tabs-cv {
+    background: #dddddd;
+    width: 100%;
+    display: flex;
+}
+.main-tabs-cv .tab-cv {
+    font-size: 1.6em;
+    padding: 12px 18px;
+    font-weight: bold;
+    display: flex;
+    cursor: pointer;
+    transition: var(--trs);
+}
+.main-tabs-cv .tab-cv.add {
+    background: var(--color-primary-light);
+    color: #fff;
+}
+
+.main-tabs-cv .tab-cv i {
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+.main-tabs-cv .tab-cv.post-ad {
+    color: #fff;
+    background: var(--color-primary-light);
+}
+.main-tabs-cv .tab-cv.active {
+    background: #f0f0f0;
+}
