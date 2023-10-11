@@ -15,7 +15,7 @@
         <h4 class="subtitle normal mt-4"><strong>CATEGORÍAS</strong></h4>
         <div class="grid-inputs-2">
             <div class="col">
-                <h4 class="subtitle normal"><strong>Tipo de filtro</strong></h4>
+                <h4 class="subtitle normal mt-4"><strong>Tipo de filtro</strong></h4>
                 <div class="radio-wrapper normal-my">
                     <input type="radio" name="typeFilter" id="typeFilter-1" checked>
                     <input type="radio" name="typeFilter" id="typeFilter-2">
@@ -31,7 +31,7 @@
             </div>
             <!-- Categories -->
             <div class="col radio-content categories" isActive>
-                <h4 class="subtitle normal"><strong>Tipo de subida</strong></h4>
+                <h4 class="subtitle normal mt-4"><strong>Tipo de subida</strong></h4>
                 <div class="radio-wrapper normal-my">
                     <input type="radio" name="typeUpload" id="typeUpload-1" checked>
                     <input type="radio" name="typeUpload" id="typeUpload-2">
@@ -47,11 +47,12 @@
             </div>
             <!-- Locations -->
             <div class="col radio-content locations">
-                <h4 class="subtitle normal"><strong>Tipo de subida loca...</strong></h4>
+                <h4 class="subtitle normal mt-4"><strong>Tipo de subida loca...</strong></h4>
                 <div class="radio-wrapper normal-my">
                     <input type="radio" name="typeUploadLocations" id="typeUploadLocations-1" checked>
                     <input type="radio" name="typeUploadLocations" id="typeUploadLocations-2">
-                    <label for="typeUploadLocations-1" class="option typeUploadLocations-1 radio-trigger-gj8 option-active-gj8">
+                    <label for="typeUploadLocations-1"
+                        class="option typeUploadLocations-1 radio-trigger-gj8 option-active-gj8">
                         <div class="dot"></div>
                         <span>Único</span>
                     </label>
@@ -98,7 +99,8 @@
             <div class="radio-content type-list">
                 <h4 class="subtitle normal mt-4"><strong>Nombre</strong></h4>
                 <div class="categories-repeat">
-                    <h4 class="subtitle normal mt-4"><strong>Categorías repetidas (pulse para eliminar la repetida)</strong></h4>
+                    <h4 class="subtitle normal mt-4"><strong>Categorías repetidas (pulse para eliminar la
+                            repetida)</strong></h4>
                     <div class="d-flex"></div>
                 </div>
                 <div class="input-form user-data mt-2 fadeInLeft">
@@ -138,20 +140,131 @@
                 </div>
             </div>
         </div>
+
+        <!-- Locations -->
         <div class="radio-content locations">
+            <div class="grid-inputs-2">
+                <div class="col">
+                    <h4 class="subtitle normal mt-4"><strong>Tipo de Localización</strong></h4>
+                    <div class="radio-wrapper normal-my">
+                        <input type="radio" name="typeLocation" id="typeLocation-1" checked>
+                        <input type="radio" name="typeLocation" id="typeLocation-2">
+                        <label for="typeLocation-1" class="option typeLocation-1 radio-trigger-gj8 option-active-gj8">
+                            <div class="dot"></div>
+                            <span>País</span>
+                        </label>
+                        <label for="typeLocation-2" class="option typeLocation-2 radio-trigger-gj8">
+                            <div class="dot"></div>
+                            <span>División administrativa</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col radio-content locations" isActive>
+                    <div class="radio-content type-country" isActive>
+                        <h4 class="subtitle normal mt-4"><strong>Nombre</strong></h4>
+                        <div class="input-form user-data normal-my fadeInLeft">
+                            <label class="txt-field icon-right">
+                                <span class="input-normal"></span>
+                                <input type="text" name="input" placeholder="Especifica el nombre del País" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="radio-content type-division" notActive>
+                        <!-- <h4 class="subtitle normal mt-4"><strong>División Administrativa</strong></h4> -->
 
-            <h4 class="subtitle normal mt-4"><strong>Localizaciones</strong></h4>
-            
+                        <div class="select-gj8 select-gj8--edit fadeInLeft">
+                            <div class="select-gj8__label">
+                                <div class="select-gj8__label__text">
+                                    división administrativa
+                                </div>
+                                <div class="select-gj8__label__action">
+                                    <i class="material-icons-outlined select-gj8__label__action__icon">drive_file_rename_outline</i>
+                                    <span class="select-gj8__label__action__text">Editar</span>
+                                </div>
+                            </div>
+                            <div class="select-gj8__title">
+                                <div class="select-gj8__title__current">Seleccione una opción:</div>
+                                <i class="material-icons select-gj8__title__arrow">expand_more</i>
+                            </div>
+                            <div class="select-gj8__content">
+                                <div class="select-gj8__content__subtitle">
+                                    divisiones administrativas: <span
+                                        class="select-gj8__content__subtitle__current">españa</span>
+                                </div>
+                                <div class="select-gj8__content__add">
+                                    <div class="select-gj8__content__add__form">
+                                        <input type="text" class="select-gj8__content__add__input"
+                                            placeholder="nueva división administrativa" required autocomplete="off">
+                                        <button class="select-gj8__btn select-gj8__btn--add">
+                                            agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="select-gj8__content__options">
+                                    <div class="select-gj8__option">
+                                        <div class="select-gj8__option__edit">
+                                            <div class="select-gj8__option__name">
+                                                <i class="material-icons">drag_indicator</i>
+                                                <div class="select-gj8__option__name__current">Blanco</div>
+                                                <input type="text" disabled class="select-gj8__option__name__input"
+                                                    value="Blanco" required>
+                                            </div>
+                                            <i class="material-icons select-gj8__option__trigger">more_vert</i>
+                                            <button class="select-gj8__btn select-gj8__btn--option">
+                                                <i class="material-icons-outlined">done</i>
+                                            </button>
+                                        </div>
 
-            
+                                        <div class="select-gj8__option__settings">
+                                            <div class="select-gj8__option__settings__item">
+                                                <i class="material-icons-outlined">drive_file_rename_outline</i>
+                                            </div>
+                                            <div class="select-gj8__option__settings__item">
+                                                <i class="material-icons-outlined">delete</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-
-
-
-
-
+            </div>
         </div>
+
+        <!-- Locations type-unique -->
+        <div class="radio-content type-unique locations">
+            <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
+            <div class="input-form user-data normal-my fadeInLeft">
+                <label class="txt-field icon-right">
+                    <span class="input-normal"></span>
+                    <input type="text" name="input" placeholder="Especifica el nombre de la Localización" />
+                </label>
+            </div>
+        </div>
+
+        <!-- Locations type-list-->
+        <div class="radio-content locations">
+            <div class="radio-content type-list" notActive>
+                <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
+                <div class="categories-repeat">
+                    <h4 class="subtitle normal mt-4"><strong>Localizaciones repetidas (pulse para eliminar la
+                            repetida)</strong></h4>
+                    <div class="d-flex"></div>
+                </div>
+                <div class="input-form user-data mt-2 fadeInLeft">
+                    <label class="txt-field">
+                        <textarea name="description" cols="30" rows="10"
+                            placeholder="Especifica el Nombre para cada País por fila"></textarea>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Active / Inactive -->
         <h4 class="subtitle normal mt-4"><strong>Seleccionar un estado para el filtro</strong></h4>
         <div class="switch-main-gj8 mt-2">
             <label class="switch-gj8">

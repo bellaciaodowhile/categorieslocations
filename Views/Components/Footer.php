@@ -1,6 +1,7 @@
 <script>
     const BASE_URL = "<?php echo BASE_URL; ?>"
 </script>
+
 <script src="<?php echo BASE_URL;?>Assets/js/helpers/sortable.min.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/data.filters.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/data.settings.js"></script>
@@ -48,6 +49,7 @@
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/tags.js"></script> -->
 <script src="<?php echo BASE_URL;?>Assets/js/rangeGloobal.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/editors.js"></script>
+<script src="<?php echo BASE_URL;?>Assets/js/select-edit.js"></script>
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/file-drop-drag-cv-imgs.js"></script> -->
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/file-drop-drag-video-cv.js"></script> -->
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/item-expand-more.js"></script> -->

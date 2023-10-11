@@ -6,7 +6,6 @@
             <i class="material-icons dark">chevron_right</i>
             <a href="#">
                 <a href="#" class="user-trigger span">Usuario Particular</a>
-                
                 <div class="bc-nav user-options">
                     <a href="#">
                         <div class="header">

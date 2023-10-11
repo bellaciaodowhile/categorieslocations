@@ -157,4 +157,24 @@
         
             return $ancestros;
         }
+        public function setAdministrativeDivition($divition) {
+            $sql = "SELECT * FROM divisiones WHERE division = '$divition'";
+            $arrValidation = $this->selectAll($sql);
+            $return;
+            if (empty($arrValidation)) {
+                $insert = "INSERT INTO divisiones (division) VALUES (?)";
+                $arrValues = array($divition);
+                $reqInsert = $this->insert($insert, $arrValues);
+                $return = $reqInsert;
+            } else {
+                $return = 'exist';
+            }
+            return $return;
+        }
+        public function getDivitions() {
+            $sql = "SELECT * FROM divisiones";
+            $res = $this->selectAll($sql);
+            return $res;
+        }
+
     }

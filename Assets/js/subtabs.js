@@ -9,12 +9,9 @@ subtabsGj8.map((main, index) => {
                 if (iContent == iTrigger) {
                     content.style.display = 'block'
                     mainTabsSubtabs[iContent].classList.add('active')
-                    // mainTabsSubtabs[iContent].style.borderRadius = '6px 6px 0 0'
                 } else {
                     content.style.display = 'none'
-                    // mainTabsSubtabs[iContent].style.background = '#ddd'
                     mainTabsSubtabs[iContent].classList.remove('active')
-                    // mainTabsSubtabs[iContent].style.borderRadius = '0
                 }
             });
         });

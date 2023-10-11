@@ -81,8 +81,19 @@
         public function tree($id) {
             $arrData = $this->model->obtenerAncestros($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
-            // echo var_dump($arrData);
-            // echo var_dump('fjdkslajfdkslañfjdska');
         }
-
+        public function setAdministrativeDivition() {
+            $administrativeDivition = $_POST['administrativeDivition'];
+            $arrData = $this->model->setAdministrativeDivition($administrativeDivition);
+            if ($arrData == 'exist') {
+                $arrResponse = array('status' => false, 'msg' => 'Este registro ya existe');
+            } else {
+                $arrResponse = array('status' => true, 'msg' => '¡Registro exitoso!');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE); 
+        }
+        public function getAdministrativeDivition() {
+            $arrData = $this->model->getDivitions();
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
     }

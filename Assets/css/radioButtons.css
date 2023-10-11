@@ -154,6 +154,9 @@
   .radio-content[isActive] {
     display: block;
   }
+  .radio-content[notActive] {
+    display: none;
+  }
   .radio-wrapper .option-active-gj8 .dot {
     background: var(--color-primary-light);
   }

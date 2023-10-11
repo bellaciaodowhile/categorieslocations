@@ -56,18 +56,20 @@ radiosOptions.map((option, index) => {
             // } else if(content.classList.contains('type-list')) {
             //     console.log(content.querySelector('textarea'))
             // }
-            if (content.querySelector('textarea') != undefined) {
-                content.querySelector('textarea').setAttribute('placeholder', 'Especifica el nombre para cada ' + inputCurrent + ' por cada fila')
-            }
-            if (content.querySelector('input') != undefined) {
-                content.querySelector('input').setAttribute('placeholder', 'Especifica el nombre de la ' + inputCurrent)
+            if (content.classList.contains('categories')) {
+                if (content.querySelector('textarea') != undefined) {
+                    content.querySelector('textarea').setAttribute('placeholder', 'Especifica el nombre para cada ' + inputCurrent + ' por cada fila')
+                }
+                if (content.querySelector('input') != undefined) {
+                    content.querySelector('input').setAttribute('placeholder', 'Especifica el nombre de la ' + inputCurrent)
+                }
             }
         });
 
 
         if (option.closest('.radio-content')) {
 
-            console.log(option.closest('.radio-content').classList.contains('locations'))
+            // console.log(option.closest('.radio-content').classList.contains('locations'))
 
             if (itemOption == 'unico' && option.closest('.radio-content').classList.contains('categories')) {
                 // [document.querySelector('.typeCategorie-1'), document.querySelector('.typeCategorie-2')].map(tag => {
@@ -77,14 +79,18 @@ radiosOptions.map((option, index) => {
                 // });
 
                 radiosContents.map(content => {
-                    if (content.classList.contains('type-unique')) {
-                        console.log(content)
-                        content.style.display = 'block'
-                        // content.querySelector('strong').innerHTML = 'Input único ' +inputCurrent
-                    } else if (content.classList.contains('type-list')) {
-                        console.log('No va', content)
-                        content.style.display = 'none'
+                    console.log(content.parentElement.classList.contains('categories'))
+                    if (content.parentElement.classList.contains('categories')) {
+                        if (content.classList.contains('type-unique')) {
+                            // console.log(content)
+                            content.style.display = 'block'
+                            // content.querySelector('strong').innerHTML = 'Input único ' +inputCurrent
+                        } else if (content.classList.contains('type-list')) {
+                            // console.log('No va', content)
+                            content.style.display = 'none'
+                        }
                     }
+                    
                 });
             }
             if (itemOption == 'lista' && option.closest('.radio-content').classList.contains('categories')) {
@@ -95,11 +101,13 @@ radiosOptions.map((option, index) => {
                 // });
 
                 radiosContents.map(content => {
-                    if (content.classList.contains('type-list')) {
-                        content.style.display = 'block'
-                    } else if (content.classList.contains('type-unique')) {
-                        console.log('No va', content)
-                        content.style.display = 'none'
+                    if (content.parentElement.classList.contains('categories')) {
+                        if (content.classList.contains('type-list')) {
+                            content.style.display = 'block'
+                        } else if (content.classList.contains('type-unique')) {
+                            console.log('No va', content)
+                            content.style.display = 'none'
+                        }
                     }
                 });
             }
@@ -120,11 +128,60 @@ radiosOptions.map((option, index) => {
 
             // Locations features
             if (itemOption == 'unico' && option.closest('.radio-content').classList.contains('locations')) {
-                alert('Mostrar tipo único de locations')
+                // alert('Mostrar tipo único de locations')
+                radiosContents.map(content => {
+                    if (content.classList.contains('locations')) {
+                        if (content.classList.contains('type-unique')) {
+                            // console.log(content, ' Unico')
+                            content.style.display = 'block'
+                        }
+                        if (content.querySelector('.type-list') != null) {
+                            content.querySelector('.type-list').style.display = 'none'
+                        }
+                    }
+                });
             }
             if (itemOption == 'lista' && option.closest('.radio-content').classList.contains('locations')) {
-                alert('Mostrar tipo lista de locations')
+                // alert('Mostrar tipo lista de locations')
+                radiosContents.map(content => {
+                    if (content.classList.contains('locations')) {
+                        if (content.classList.contains('type-unique')) {
+                            // console.log(content, ' Unico')
+                            content.style.display = 'none'
+                        }
+                        if (content.querySelector('.type-list') != null) {
+                            content.querySelector('.type-list').style.display = 'block'
+                        }
+                    }
+                });
             }
+            if (itemOption == 'pais' && option.closest('.radio-content').classList.contains('locations')) {
+                radiosContents.map(content => {
+                    if (content.classList.contains('type-division')) {
+                        // console.log(content, ' Unico')
+                        content.style.display = 'none'
+                    }
+                    if (content.classList.contains('type-country')) {
+                        // console.log(content, ' Unico')
+                        content.style.display = 'block'
+                    }
+                });
+            }
+            if (itemOption == 'division administrativa' && option.closest('.radio-content').classList.contains('locations')) {
+                // console.log(itemOption)
+                radiosContents.map(content => {
+                    console.log(content)
+                    if (content.classList.contains('type-country')) {
+                        console.log(content, ' country')
+                        content.style.display = 'none'
+                    }
+                    if (content.classList.contains('type-division')) {
+                        console.log(content, ' division')
+                        content.style.display = 'block'
+                    }
+                });
+            }
+            // console.log(itemOption)
         }
 
 
