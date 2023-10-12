@@ -176,5 +176,19 @@
             $res = $this->selectAll($sql);
             return $res;
         }
-
+        public function delRegister($table, $id) {
+            $sql = "DELETE FROM $table WHERE id = '$id'";
+            $res = $this->delete($sql);
+            return $res;
+        }
+        public function updateDivition($id, $nombre) {
+            if ($id != '' || $nombre != '') {
+                $sql = "UPDATE divisiones SET division = ? WHERE id = $id";
+                $arrValues = array($nombre);
+                $res = $this->update($sql, $arrValues);
+            } else {
+                $res = false;
+            }
+            return $res;
+        }
     }

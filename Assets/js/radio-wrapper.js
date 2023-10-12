@@ -43,8 +43,8 @@ radiosOptions.map((option, index) => {
                 }
             })
         }
-        // Type categories
 
+        // Type categories
         if (itemOption == 'categoria') {
             inputCurrent = 'Categoría'
         }
@@ -52,10 +52,6 @@ radiosOptions.map((option, index) => {
             inputCurrent = 'Subcategoría'
         }
         radiosContents.map(content => {
-            // if (content.classList.contains('type-unique')) {
-            // } else if(content.classList.contains('type-list')) {
-            //     console.log(content.querySelector('textarea'))
-            // }
             if (content.classList.contains('categories')) {
                 if (content.querySelector('textarea') != undefined) {
                     content.querySelector('textarea').setAttribute('placeholder', 'Especifica el nombre para cada ' + inputCurrent + ' por cada fila')
@@ -69,15 +65,8 @@ radiosOptions.map((option, index) => {
 
         if (option.closest('.radio-content')) {
 
-            // console.log(option.closest('.radio-content').classList.contains('locations'))
-
             if (itemOption == 'unico' && option.closest('.radio-content').classList.contains('categories')) {
-                // [document.querySelector('.typeCategorie-1'), document.querySelector('.typeCategorie-2')].map(tag => {
-                //     if (tag.classList.contains('option-active-gj8')) {
-                //         inputCurrent = tag.textContent.trim();
-                //     }
-                // });
-
+                
                 radiosContents.map(content => {
                     console.log(content.parentElement.classList.contains('categories'))
                     if (content.parentElement.classList.contains('categories')) {
@@ -94,11 +83,6 @@ radiosOptions.map((option, index) => {
                 });
             }
             if (itemOption == 'lista' && option.closest('.radio-content').classList.contains('categories')) {
-                // [document.querySelector('.typeCategorie-1'), document.querySelector('.typeCategorie-2')].map(tag => {
-                //     if (tag.classList.contains('option-active-gj8')) {
-                //         inputCurrent = tag.textContent.trim();
-                //     }
-                // });
 
                 radiosContents.map(content => {
                     if (content.parentElement.classList.contains('categories')) {

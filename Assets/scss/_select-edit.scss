@@ -1,10 +1,10 @@
 .select-gj8 {
     &--edit {
-        margin-top: 3em; // Propiedad temporal
+        // margin-top: 3em; // Propiedad temporal
         .select-gj8__label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 13px;
             &__text {
                 text-transform: capitalize;
                 font-weight: bold;
@@ -21,6 +21,21 @@
             }
         }
         .select-gj8__content {
+            &__options {
+                max-height: 161px;
+                overflow-y: auto;
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: #cccccc;
+                    border-radius: 11px;
+                    border: 0px solid #ffffff;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #fff;
+                }
+            }
             &--editing {
                 .select-gj8__content {
                     &__add {
@@ -122,15 +137,14 @@
             &__settings {
                 display: none;
                 position: absolute;
-                top: -90px;
-                right: 8px;
-                flex-direction: column;
+                top: 0px;
+                right: 44px;
                 gap: 5px;
                 &--active {
                     display: flex;
                 }
                 &__item {
-                    padding: 10px;
+                    padding: 7px 23px;
                     cursor: pointer;
                     display: flex;
                     align-items: center;

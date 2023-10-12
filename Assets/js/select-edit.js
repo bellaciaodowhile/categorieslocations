@@ -8,7 +8,8 @@ function selectsGj8() {
         let titleCurrent = title.querySelector('.select-gj8__title__current')
         let content = select.querySelector('.select-gj8__content')
         let arrow = title.querySelector('.select-gj8__title__arrow')
-        let options = [...content.querySelectorAll('.select-gj8__option')]
+        let options = [...content.querySelectorAll('.select-gj8__option')];
+
         title.onclick = (e) => {
             e.preventDefault();
             content.classList.toggle('select-gj8__content--active')
@@ -22,30 +23,6 @@ function selectsGj8() {
             option.onclick = (e) => {
                 e.preventDefault();
                 let name = select.classList.contains('select-gj8--edit') ? option.querySelector('.select-gj8__option__name__current').textContent.trim() : option.textContent.trim()
-                /*
-                    
-                    En caso de querer usar solamente un select base, debes usar:
-
-                        ------------------------------------
-                        > let name = option.textContent.trim()
-                        ------------------------------------
-
-                    En caso de querer usar solamente un select edit, debes usar:
-
-                        ----------------------------------------------------------------------------------
-                        > let name = option.querySelector('.select-gj8__option__name__current').value.trim()
-                        ----------------------------------------------------------------------------------
-
-                    En caso de querer usar los dos tipos de select en el mismo documento debes usar:
-
-                        ----------------------------------------------------------------------------------
-                        > let name = select.classList.contains('select-gj8--edit') ? option.querySelector('.select-gj8__option__name__current').value.trim() : option.textContent.trim()
-                        ----------------------------------------------------------------------------------
-
-                    NOTA: esta instrucción está haciendo una comparación en el tipo de select ya que no todos tienen la misma estructura y las mismas clases
-
-                */
-
                 // Condicional en caso de usar el select 'edit'
                 if (!content.classList.contains('select-gj8__content--editing')) {
                     titleCurrent.textContent = name
@@ -56,9 +33,6 @@ function selectsGj8() {
                 }
             };
         });
-
-        // En caso de estar usando un select de edición o ambos. Debes colocar la siguiente instrucción:
-        // Inicio de la instrucción:
 
         // Función para verificar si ya existe un registro dentro la BBDD
         function dataRepeat(data) {
@@ -115,20 +89,46 @@ function selectsGj8() {
                             saveEdit.classList.add('select-gj8__btn--option--active')
                             // Guardando edición
                             input.onkeyup = (e) => {
-                                console.log(e.currentTarget.value)
+                                console.log(e.key)
+                                if (e.key == 'Enter') {
+                                    editDivition()
+                                }
                             }
                             saveEdit.onclick = (e) => {
                                 // Acá todo el proceso para editar un registro
                                 e.preventDefault();
-                                if (validationFields(input.value)) {
-                                    alert('Debe llenar este campo') 
-                                } else {
-                                    name.textContent = input.value
-                                    input.disabled = true
-                                    saveEdit.classList.remove('select-gj8__btn--option--active')
-                                    trigger.classList.remove('select-gj8__option__trigger--hide')
-                                    name.classList.remove('select-gj8__option__name__current--hide')
-                                    input.classList.remove('select-gj8__option__name__input--active')
+                                console.log(input.value)
+                                editDivition()
+                                
+                            }
+                            function editDivition() {
+                                let id = edit.attributes[1].textContent
+                                let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+                                let url = BASE_URL + 'Filter/updateAdministrativeDivition'
+                                req.open("POST", url, true);
+                                function datosFormulario() {
+                                    let datos = '';
+                                    datos += '&id=' + id.trim();
+                                    datos += '&nombre=' + input.value.trim();
+                                    return datos;
+                                }
+                                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                req.send(datosFormulario())
+                                req.onreadystatechange = (e) => {
+                                    if (req.readyState == 4 && req.status == 200) {
+                                        console.log(req.response)
+                                        if (req.response) {
+                                            createToast('success')
+                                            name.textContent = input.value
+                                            input.disabled = true
+                                            saveEdit.classList.remove('select-gj8__btn--option--active')
+                                            trigger.classList.remove('select-gj8__option__trigger--hide')
+                                            name.classList.remove('select-gj8__option__name__current--hide')
+                                            input.classList.remove('select-gj8__option__name__input--active')
+                                        } else {
+                                            createToast('warning','Se requiere llenar los campos')
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -137,7 +137,21 @@ function selectsGj8() {
                             e.preventDefault();
                             if (confirm('¿Está seguro de eliminar este registro?')) {
                                 // Acá todo el proceso para eliminar el item o la opción seleccionada
-                                itemOption.remove()
+                                let id = del.attributes[1].textContent
+                                let urlDelDivition = BASE_URL + 'Filter/delAdministrativeDivition/' + id
+                                async function fetchFilterJSON() {
+                                    const response = await fetch(urlDelDivition);
+                                    const divitions = await response.json();
+                                    return divitions;
+                                }
+                                fetchFilterJSON().then(res => {
+                                    if (res) {
+                                        itemOption.remove()
+                                        createToast('success')
+                                    } else {
+                                        createToast('warning','Ha ocurrido un error. . .')
+                                    }
+                                })
                             }
                         }
                     }
@@ -170,17 +184,21 @@ function selectsGj8() {
                 contentEditing.classList.toggle('select-gj8__content--editing')
                 // Acción de agregar registro
                 input.onkeyup = (e) => {
-                    console.log(e.currentTarget.value)
+                    if (e.key == 'Enter') {
+                        addDivition();
+                    }
                 }
                 btnAdd.onclick = (e) => {
                     e.preventDefault();
-
+                    addDivition();
+                }
+                function addDivition() {
                     if (validationFields(input.value)) {
-                        alert('Debe llenar el campo')
+                        createToast('warning','Se requiere llenar los campos')
                     } else {
                         // Condicional para verificar que no hayan registro repetidos
                         if (dataRepeat(input.value)) {
-                            alert('Este registro ya existe')
+                            createToast('warning','Este registro ya existe')
                         } else {
                             // START AJAX
                             let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
@@ -207,7 +225,7 @@ function selectsGj8() {
                                                 <input type="text" required disabled class="select-gj8__option__name__input" value="${ input.value.trim() }">
                                             </div>
                                             <i class="material-icons select-gj8__option__trigger">more_vert</i>
-                                            <button type="submit" class="select-gj8__btn select-gj8__btn--option">
+                                            <button class="select-gj8__btn select-gj8__btn--option">
                                                 <i class="material-icons-outlined">done</i>
                                             </button>
                                         </div>
@@ -235,20 +253,49 @@ function selectsGj8() {
                         }
                     }
                 }
-                
             }
         }   
         // Fin de la instrucción
-        // Listado de divisiones
-        let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition'
-        async function fetchFilterJSON() {
-            const response = await fetch(urlGetDivition);
-            const divitions = await response.json();
-            return divitions;
-        }
-        fetchFilterJSON().then(divitions => {
-            console.log(divitions)
-        })
     });
+    
 }
 selectsGj8()
+// Listado de divisiones
+let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition'
+let boxOptions = document.querySelector('#select-gj8__administrative_divition')
+async function fetchFilterJSON() {
+    const response = await fetch(urlGetDivition);
+    const divitions = await response.json();
+    return divitions;
+}
+fetchFilterJSON().then(divitions => {
+    console.log(divitions)
+    boxOptions.innerHTML = ``
+    divitions.map(divition => {
+        boxOptions.innerHTML += /*html*/ `
+        <div class="select-gj8__option">
+            <div class="select-gj8__option__edit">
+                <div class="select-gj8__option__name">
+                    <i class="material-icons">drag_indicator</i>
+                    <div class="select-gj8__option__name__current">${divition.division}</div>
+                    <input type="text" disabled class="select-gj8__option__name__input"
+                        value="${divition.division}" required>
+                </div>
+                <i class="material-icons select-gj8__option__trigger">more_vert</i>
+                <button class="select-gj8__btn select-gj8__btn--option">
+                    <i class="material-icons-outlined">done</i>
+                </button>
+            </div>
+
+            <div class="select-gj8__option__settings">
+                <div class="select-gj8__option__settings__item" item="${divition.id}">
+                    <i class="material-icons-outlined">drive_file_rename_outline</i>
+                </div>
+                <div class="select-gj8__option__settings__item" item="${divition.id}">
+                    <i class="material-icons-outlined">delete</i>
+                </div>
+            </div>
+        </div>`
+    })
+    selectsGj8();
+});

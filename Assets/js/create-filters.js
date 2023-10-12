@@ -19,7 +19,7 @@ function addFilters() {
         let valueUnique = document.querySelector('.create-filters .radio-content.type-unique input')
         let valueList = document.querySelector('.create-filters .radio-content.type-list textarea')
         if (document.querySelector('.create-filters .typeUpload-1').classList.contains('option-active-gj8')) {
-            typeUploadFilter = valueUnique.value
+            typeUploadFilter = valueUnique.value.trim()
         } else if (document.querySelector('.create-filters .typeUpload-2').classList.contains('option-active-gj8')) {
             typeUploadFilter = valueList.value.trim()
             let lines = valueList.value.split('\n');
@@ -31,6 +31,7 @@ function addFilters() {
             }
             typeUploadFilter = arrTypeUploadFilter
         }
+        // 
         if (document.querySelector('.create-filters .typeCategorie-1').classList.contains('option-active-gj8')) {
             typeCategoryFilter = 'categoria'
         } else if (document.querySelector('.create-filters .typeCategorie-2').classList.contains('option-active-gj8')) {
@@ -136,5 +137,27 @@ function addFilters() {
 
     } else if (document.querySelector('.typeFilter-2').classList.contains('option-active-gj8')) {
         console.log('Enviando localizaciones')
+        let typeUploadFilter = '';
+        let typeCategoryFilter = '';
+        let statusFilter = '';
+        let mapCategories = 'base'
+        let valueUnique = document.querySelector('.create-filters .radio-content.locations.type-unique input')
+        // let typeLocation = document.querySelector('.create-filters .radio-content.type-country input')
+        let valueList = document.querySelector('.create-filters .radio-content.type-list textarea')
+        if (document.querySelector('.create-filters .typeUpload-1').classList.contains('option-active-gj8')) {
+            typeUploadFilter = valueUnique.value.trim()
+        } else if (document.querySelector('.create-filters .typeUpload-2').classList.contains('option-active-gj8')) {
+            typeUploadFilter = valueList.value.trim()
+            let lines = valueList.value.split('\n');
+            let arrTypeUploadFilter = [];
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i] != '') {
+                    arrTypeUploadFilter.push(lines[i].trim())
+                }
+            }
+            typeUploadFilter = arrTypeUploadFilter
+        }
+        console.log(typeUploadFilter)
+
     }
 }

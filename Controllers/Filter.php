@@ -96,4 +96,14 @@
             $arrData = $this->model->getDivitions();
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
+        public function delAdministrativeDivition($id) {
+            $arrData = $this->model->delRegister('divisiones', $id);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function updateAdministrativeDivition() {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $arrData = $this->model->updateDivition($id, $nombre);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
     }

@@ -978,13 +978,10 @@
   border-radius: 0 0 6px 6px;
 }
 
-.select-gj8--edit {
-  margin-top: 3em;
-}
 .select-gj8--edit .select-gj8__label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 13px;
 }
 .select-gj8--edit .select-gj8__label__text {
   text-transform: capitalize;
@@ -1002,6 +999,21 @@
 }
 .select-gj8--edit .select-gj8__content {
   top: 100px;
+}
+.select-gj8--edit .select-gj8__content__options {
+  max-height: 161px;
+  overflow-y: auto;
+}
+.select-gj8--edit .select-gj8__content__options::-webkit-scrollbar {
+  width: 5px;
+}
+.select-gj8--edit .select-gj8__content__options::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 11px;
+  border: 0px solid #ffffff;
+}
+.select-gj8--edit .select-gj8__content__options::-webkit-scrollbar-track {
+  background: #fff;
 }
 .select-gj8--edit .select-gj8__content--editing .select-gj8__content__add {
   display: block;
@@ -1095,16 +1107,15 @@
 .select-gj8--edit .select-gj8__option__settings {
   display: none;
   position: absolute;
-  top: -90px;
-  right: 8px;
-  flex-direction: column;
+  top: 0px;
+  right: 44px;
   gap: 5px;
 }
 .select-gj8--edit .select-gj8__option__settings--active {
   display: flex;
 }
 .select-gj8--edit .select-gj8__option__settings__item {
-  padding: 10px;
+  padding: 7px 23px;
   cursor: pointer;
   display: flex;
   align-items: center;

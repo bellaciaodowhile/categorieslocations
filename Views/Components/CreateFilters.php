@@ -169,10 +169,32 @@
                             </label>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="col radio-content-locations" isActive>
+                    <div class="radio-content type-division" notActive>
+                        <h4 class="subtitle normal mt-4 mb-1"><strong>País</strong></h4>
+                        <div class="select-gj8">
+                            <div class="select-gj8__title">
+                                <div class="select-gj8__title__current">Seleccione un país:</div>
+                                <i class="material-icons select-gj8__title__arrow">expand_more</i>
+                            </div>
+                            <div class="select-gj8__content">
+                                <div class="select-gj8__option">Blanco</div>
+                                <div class="select-gj8__option">Azul</div>
+                                <div class="select-gj8__option">Amarillo</div>
+                                <div class="select-gj8__option">Verde</div>
+                                <div class="select-gj8__option">Morado</div>
+                                <div class="select-gj8__option">Negro</div>
+                                <div class="select-gj8__option">Rojo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col radio-content-locations" isActive>
                     <div class="radio-content type-division" notActive>
                         <!-- <h4 class="subtitle normal mt-4"><strong>División Administrativa</strong></h4> -->
-
-                        <div class="select-gj8 select-gj8--edit fadeInLeft">
+                        <div class="select-gj8 select-gj8--edit fadeInLeft mt-4">
                             <div class="select-gj8__label">
                                 <div class="select-gj8__label__text">
                                     división administrativa
@@ -195,53 +217,32 @@
                                     <div class="select-gj8__content__add__form">
                                         <input type="text" class="select-gj8__content__add__input"
                                             placeholder="nueva división administrativa" required autocomplete="off">
-                                        <button class="select-gj8__btn select-gj8__btn--add">
+                                        <button type="button" class="select-gj8__btn select-gj8__btn--add">
                                             agregar
                                         </button>
                                     </div>
                                 </div>
-                                <div class="select-gj8__content__options">
-                                    <div class="select-gj8__option">
-                                        <div class="select-gj8__option__edit">
-                                            <div class="select-gj8__option__name">
-                                                <i class="material-icons">drag_indicator</i>
-                                                <div class="select-gj8__option__name__current">Blanco</div>
-                                                <input type="text" disabled class="select-gj8__option__name__input"
-                                                    value="Blanco" required>
-                                            </div>
-                                            <i class="material-icons select-gj8__option__trigger">more_vert</i>
-                                            <button class="select-gj8__btn select-gj8__btn--option">
-                                                <i class="material-icons-outlined">done</i>
-                                            </button>
-                                        </div>
-
-                                        <div class="select-gj8__option__settings">
-                                            <div class="select-gj8__option__settings__item">
-                                                <i class="material-icons-outlined">drive_file_rename_outline</i>
-                                            </div>
-                                            <div class="select-gj8__option__settings__item">
-                                                <i class="material-icons-outlined">delete</i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id="select-gj8__administrative_divition" class="select-gj8__content__options"></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col radio-content-locations" isActive>
+                    <!-- Locations type-unique -->
+                    <div class="radio-content type-unique locations">
+                        <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
+                        <div class="input-form user-data normal-my fadeInLeft">
+                            <label class="txt-field icon-right">
+                                <span class="input-normal"></span>
+                                <input type="text" name="input" placeholder="Especifica el nombre de la Localización" />
+                            </label>
                         </div>
                     </div>
                 </div>
 
 
-            </div>
-        </div>
 
-        <!-- Locations type-unique -->
-        <div class="radio-content type-unique locations">
-            <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
-            <div class="input-form user-data normal-my fadeInLeft">
-                <label class="txt-field icon-right">
-                    <span class="input-normal"></span>
-                    <input type="text" name="input" placeholder="Especifica el nombre de la Localización" />
-                </label>
+
             </div>
         </div>
 
