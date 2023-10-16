@@ -106,4 +106,65 @@
             $arrData = $this->model->updateDivition($id, $nombre);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
+        public function setLocation() {
+            
+            $name =  $_POST['name'];
+            $type =  $_POST['type'];
+            $status =  $_POST['status'];
+            $country =  $_POST['country'];
+            $divition =  $_POST['divition'];
+            $idParent =  $_POST['idParent'];
+
+            // $val = fieldsEmpty([$name, $type, $status, $country, $divition, $idParent]);
+            // echo json_encode($val, JSON_UNESCAPED_UNICODE);
+            // if ($type == 'division' && $idParent == 'base') {
+            //     $arrResponse = array('status' => false, 'msg' => 'Debe registrar o seleccionar un país para continuar.');
+            //     echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            //     die();
+            // } else
+            if ($name == '' || $type == '' || $status == '' || $country == 'Seleccione un país:' || $divition == 'Seleccione una opción:' || $idParent == '') {
+                $arrResponse = array('status' => false, 'msg' => 'Debe llenar todos los campos.');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                die();
+            } else {
+                if (is_array(json_decode($name))) {
+                    $arrNombres = json_decode($name);
+                    
+                    $req = $this->model->insertMultipleLocation($arrNombres, $type, $status, $country, $divition, $idParent);
+                    if ($req[0] == 'insert') {
+                        $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+                    }
+                    if ($req[0] == "exist") {
+                        $arrResponse = array('status' => false, 'msg' => '¡Atención! Verifique las localizaciones existentes.', 'data' =>$req[1]);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    die();
+    
+    
+                } else {
+                    $req = $this->model->insertLocation($name, $type, $status, $country, $divition, $idParent);
+                    if ($req > 0) {
+                        $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+                    }
+                    if ($req == "exist") {
+                        $arrResponse = array('status' => false, 'msg' => '¡Atención! Esta localización ya existe.');
+                    }
+                    if ($req == 0) {
+                        $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos. Contacte a soporte.');
+                    }
+                    
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    die();
+    
+                }
+            }
+        }
+        public function getCountrys() {
+            $arrData = $this->model->getCountrys();
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function getLocationParent() {
+            $arrData = $this->model->selectLocationParent();
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
     }

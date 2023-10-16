@@ -31,6 +31,10 @@ function selectsGj8() {
                     reloadOptions()
                     option.classList.add('select-gj8__option--active');
                 }
+                if (select.classList.contains('select-country')) {
+                    let countryCurrent = document.querySelector('.select-gj8__content__subtitle__current')
+                    countryCurrent.textContent = name
+                }
             };
         });
 
@@ -263,12 +267,12 @@ selectsGj8()
 // Listado de divisiones
 let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition'
 let boxOptions = document.querySelector('#select-gj8__administrative_divition')
-async function fetchFilterJSON() {
+async function fetchFilterJSONDivition() {
     const response = await fetch(urlGetDivition);
     const divitions = await response.json();
     return divitions;
 }
-fetchFilterJSON().then(divitions => {
+fetchFilterJSONDivition().then(divitions => {
     console.log(divitions)
     boxOptions.innerHTML = ``
     divitions.map(divition => {
@@ -299,3 +303,29 @@ fetchFilterJSON().then(divitions => {
     })
     selectsGj8();
 });
+// Listado de países
+let boxCountrys = document.querySelector('#select-gj8__countrys')
+async function fetchFilterJSONCountrys() {
+    const response = await fetch(BASE_URL + 'Filter/getCountrys');
+    const countrys = await response.json();
+    return countrys;
+}
+fetchFilterJSONCountrys().then(countrys => {
+    console.log(countrys)
+    boxCountrys.innerHTML = '';
+    // function eliminarRepetidos(array) {
+    //     return Array.from(new Set(array));
+    // }
+    let arrCountrys = []
+    countrys.map(country => {
+        arrCountrys.push(country.pais)
+    })
+    function deleteRepeat(arr) {
+        return Array.from(new Set(arr));
+    }
+    let data = deleteRepeat(arrCountrys);
+    data.map(item => {
+        boxCountrys.innerHTML += /* html */`
+        <div class="select-gj8__option">${ item }</div>`
+    })
+})

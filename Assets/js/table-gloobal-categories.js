@@ -856,10 +856,6 @@ function loadDataFilter(idParentCurrent = 'base') {
             }
         })
         }
-
-
-
-
         // table end
     }); // end fetch
 }

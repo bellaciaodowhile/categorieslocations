@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <!-- Categories -->
+        <!-- Mapa de categorías -->
         <div class="radio-content categories" isActive>
             <div class="radio-content subcategories">
                 <h4 class="subtitle normal mt-4"><strong>Mapa de categorías</strong></h4>
@@ -174,12 +174,12 @@
                 <div class="col radio-content-locations" isActive>
                     <div class="radio-content type-division" notActive>
                         <h4 class="subtitle normal mt-4 mb-1"><strong>País</strong></h4>
-                        <div class="select-gj8">
+                        <div class="select-gj8 fadeInLeft select-country">
                             <div class="select-gj8__title">
-                                <div class="select-gj8__title__current">Seleccione un país:</div>
+                                <div class="select-gj8__title__current" id="select_country_current">españa</div>
                                 <i class="material-icons select-gj8__title__arrow">expand_more</i>
                             </div>
-                            <div class="select-gj8__content">
+                            <div class="select-gj8__content" id="select-gj8__countrys">
                                 <div class="select-gj8__option">Blanco</div>
                                 <div class="select-gj8__option">Azul</div>
                                 <div class="select-gj8__option">Amarillo</div>
@@ -193,7 +193,6 @@
                 </div>
                 <div class="col radio-content-locations" isActive>
                     <div class="radio-content type-division" notActive>
-                        <!-- <h4 class="subtitle normal mt-4"><strong>División Administrativa</strong></h4> -->
                         <div class="select-gj8 select-gj8--edit fadeInLeft mt-4">
                             <div class="select-gj8__label">
                                 <div class="select-gj8__label__text">
@@ -205,7 +204,7 @@
                                 </div>
                             </div>
                             <div class="select-gj8__title">
-                                <div class="select-gj8__title__current">Seleccione una opción:</div>
+                                <div class="select-gj8__title__current" id="select_divition_current">Seleccione una opción:</div>
                                 <i class="material-icons select-gj8__title__arrow">expand_more</i>
                             </div>
                             <div class="select-gj8__content">
@@ -248,7 +247,7 @@
 
         <!-- Locations type-list-->
         <div class="radio-content locations">
-            <div class="radio-content type-list" notActive>
+            <div class="radio-content type-list location" notActive>
                 <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
                 <div class="categories-repeat">
                     <h4 class="subtitle normal mt-4"><strong>Localizaciones repetidas (pulse para eliminar la
@@ -260,6 +259,35 @@
                         <textarea name="description" cols="30" rows="10"
                             placeholder="Especifica el Nombre para cada País por fila"></textarea>
                     </label>
+                </div>
+            </div>
+        </div>
+        <!-- Mapa de localizaciones -->
+        <div class="radio-content locations" isActive>
+            <div class="radio-content administrative-divition">
+                <h4 class="subtitle normal mt-4"><strong>Mapa de localizaciones</strong></h4>
+                <div class="main-chevrondown-gj8 mt-2">
+                    <div class="d-flex jcsb aic size-normal pt-1 mb-05">
+                        <div class="d-flex expand-less-gj8">
+                            <i class="material-icons-outlined">expand_less</i>
+                            Contraer todo
+                        </div>
+                        <div class="d-flex expand-more-gj8">
+                            <i class="material-icons-outlined">expand_more</i>
+                            Expandir todo
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="chevrondown-gj8" id="locations-tree-main">
+                        <div class="chevrondown-item-gj8">
+                            <div class="chevrondown-head-gj8">
+                                <i class="material-icons">chevron_right</i>
+                                <span class="chevrondown-radio-button not active" item="base"></span>
+                                Todas las localizaciones
+                            </div>
+                            <div class="chevrondown-content-gj8 not" id="locations-tree"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

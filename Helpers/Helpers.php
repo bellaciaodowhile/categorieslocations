@@ -76,6 +76,14 @@
         $token = $r1.'-'.$r2.'-'.$r3.'-'.$r4;
         return $token;
     }
+    function fieldsEmpty($arr) {
+        foreach ($arr as $item) {
+            if (empty($item)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
 
 ?>

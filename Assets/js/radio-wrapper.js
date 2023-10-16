@@ -142,25 +142,25 @@ radiosOptions.map((option, index) => {
             if (itemOption == 'pais' && option.closest('.radio-content').classList.contains('locations')) {
                 radiosContents.map(content => {
                     if (content.classList.contains('type-division')) {
-                        // console.log(content, ' Unico')
                         content.style.display = 'none'
                     }
                     if (content.classList.contains('type-country')) {
-                        // console.log(content, ' Unico')
                         content.style.display = 'block'
+                    }
+                    if (content.classList.contains('administrative-divition')) {
+                        content.style.display = 'none'
                     }
                 });
             }
             if (itemOption == 'division administrativa' && option.closest('.radio-content').classList.contains('locations')) {
-                // console.log(itemOption)
                 radiosContents.map(content => {
-                    console.log(content)
                     if (content.classList.contains('type-country')) {
-                        console.log(content, ' country')
                         content.style.display = 'none'
                     }
                     if (content.classList.contains('type-division')) {
-                        console.log(content, ' division')
+                        content.style.display = 'block'
+                    }
+                    if (content.classList.contains('administrative-divition')) {
                         content.style.display = 'block'
                     }
                 });

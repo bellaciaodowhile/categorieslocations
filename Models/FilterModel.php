@@ -191,4 +191,96 @@
             }
             return $res;
         }
+        public function insertLocation(string $name, string $type, string $status, string $country, string $divition, string $idParent) {
+            $return = "";
+
+            $sql = "SELECT * FROM localizaciones WHERE nombre = '$name'";
+            $req = $this->selectAll($sql);
+            if (empty($req)) {
+                $q = "INSERT INTO localizaciones (nombre, tipo, estado, pais, division, idParent ) VALUES (?,?,?,?,?,?)";
+                $arrData = array($name, $type, $status, $country, $divition, $idParent);
+                $reqInsert = $this->insert($q, $arrData);
+                $return = $reqInsert;
+            } else {
+                $return = "exist";
+            }
+            return $return;
+            
+        }
+        
+        public function insertMultipleLocation(array $nombre, string $type, string $status, string $country, string $divition, string $idParent) {
+            $return = '';
+            $rows = array();
+            $reqSelect = [];
+            $arrValidation = [];
+            for ($i = 0; $i < count($nombre); $i++) {
+                $sql = "SELECT * FROM localizaciones WHERE nombre = '{$nombre[$i]}'";
+                $reqSelect[] = $this->selectAll($sql);
+            } 
+            for ($i = 0; $i < count($nombre); $i++) {
+                $rows[] = array($nombre[$i], $type, $status, $country, $divition, $idParent); 
+            }
+            foreach ($reqSelect as $x) {
+                if (empty($x)) {
+                    $arrValidation[] = 'go';
+                } else {
+                    $arrValidation[] = 'notGo';
+                }
+            }
+            $l = array_search('notGo', $arrValidation);
+            if(in_array("notGo", $arrValidation)){
+                $return = ['exist', $reqSelect];
+            } else {
+                $sql = "INSERT INTO localizaciones (nombre, tipo, estado, pais, division, idParent) VALUES (?,?,?,?,?,?)";
+                $req = array();
+                for ($i = 0; $i < count($rows); $i++) {
+                    $req[] = $this->insert($sql, $rows[$i]);
+                }
+                $return = ['insert', $req];
+            }
+
+            return $return;
+
+        }
+        public function getCountrys() {
+            $sql = "SELECT * FROM localizaciones WHERE tipo = 'pais'";
+            $res = $this->selectAll($sql);
+            return $res;
+        }
+        public function selectLocationParent() {
+            $sql = "SELECT * FROM localizaciones WHERE idParent = 'base'";
+            $req = $this->selectAll($sql);
+            $locations = array();
+	
+            foreach($req as $row) {
+                $locations[] = array(
+                    'id' => $row['id'],
+                    'idParent' => $row['idParent'],
+                    'nombre' => $row['nombre'],
+                    'tipo' => $row['tipo'],
+                    'estado' => $row['estado'],
+                    'subLocation' => $this->subLocations($row['id'])
+                );
+            }
+            return $locations;
+        }
+        public function subLocations($id) {
+            $sql = "SELECT * FROM localizaciones WHERE idParent = $id";
+            $req = $this->selectAll($sql);
+            $locations = array();
+	
+            foreach($req as $row) {
+                $locations[] = array(
+                    'id' => $row['id'],
+                    'idParent' => $row['idParent'],
+                    'nombre' => $row['nombre'],
+                    'estado' => $row['estado'],
+                    'pais' => $row['pais'],
+                    'division' => $row['division'],
+                    'subLocation' => $this->subLocations($row['id'])
+                );
+            }
+            return $locations;
+        }
+
     }

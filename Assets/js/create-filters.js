@@ -128,25 +128,23 @@ function addFilters() {
             }
             
         }
-
-
-
-
-
-
-
     } else if (document.querySelector('.typeFilter-2').classList.contains('option-active-gj8')) {
         console.log('Enviando localizaciones')
+
         let typeUploadFilter = '';
-        let typeCategoryFilter = '';
+        let typeLocation = '';
         let statusFilter = '';
         let mapCategories = 'base'
+        let country = ''
+        let divition = ''
         let valueUnique = document.querySelector('.create-filters .radio-content.locations.type-unique input')
-        // let typeLocation = document.querySelector('.create-filters .radio-content.type-country input')
-        let valueList = document.querySelector('.create-filters .radio-content.type-list textarea')
-        if (document.querySelector('.create-filters .typeUpload-1').classList.contains('option-active-gj8')) {
+        let valueList = document.querySelector('.create-filters .radio-content.type-list.location textarea')
+        let countryEl = document.querySelector('.create-filters .radio-content.type-country input')
+        let countrySelect = document.querySelector('#select_country_current')
+        let divitionSelect = document.querySelector('#select_divition_current')
+        if (document.querySelector('.create-filters .typeUploadLocations-1').classList.contains('option-active-gj8')) {
             typeUploadFilter = valueUnique.value.trim()
-        } else if (document.querySelector('.create-filters .typeUpload-2').classList.contains('option-active-gj8')) {
+        } else if (document.querySelector('.create-filters .typeUploadLocations-2').classList.contains('option-active-gj8')) {
             typeUploadFilter = valueList.value.trim()
             let lines = valueList.value.split('\n');
             let arrTypeUploadFilter = [];
@@ -157,7 +155,80 @@ function addFilters() {
             }
             typeUploadFilter = arrTypeUploadFilter
         }
-        console.log(typeUploadFilter)
+        if (document.querySelector('.create-filters .typeLocation-1').classList.contains('option-active-gj8')) {
+            typeLocation = 'pais'
+            country = countryEl.value.trim()
+            divition = 'NULL'
+        } else if (document.querySelector('.create-filters .typeLocation-2').classList.contains('option-active-gj8')) {
+            typeLocation = 'division'
+            country = countrySelect.textContent.trim();
+            divition = divitionSelect.textContent.trim();
+            mapCategories = [...document.querySelectorAll('.create-filters .chevrondown-gj8#locations-tree-main .chevrondown-radio-button')].filter(btn => btn.classList.contains('active'))
+        }
+        if (document.querySelector('.create-filters .switch-gj8').classList.contains('off')) {
+            statusFilter = 'inactive'
+        } else {
+            statusFilter = 'active'
+        }
+        if (mapCategories != 'base') {
+            // console.log(message)
+            if (mapCategories[0].attributes) {
+                mapCategories = mapCategories[0].attributes[1].textContent.trim()
+            }
+        }
+
+        let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+            let url = BASE_URL + 'Filter/setLocation'
+            req.open("POST", url, true);
+            function datosFormulario() {
+                let datos = '';
+                datos += 'name=' + (Array.isArray(typeUploadFilter) ? JSON.stringify(typeUploadFilter) : typeUploadFilter);
+                datos += '&type=' + typeLocation;
+                datos += '&status=' + statusFilter;
+                datos += '&country=' + country;
+                datos += '&divition=' + divition;
+                datos += '&idParent=' + mapCategories;
+                return datos;
+            }
+            console.log(datosFormulario())
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send(datosFormulario())
+            req.onreadystatechange = (e) => {
+                if (req.readyState == 4 && req.status == 200) {
+                    console.log(req.response)
+                    let data = JSON.parse(req.responseText)
+
+
+                    // Solo queda es colocar el mapa de localizaciones para poder agregar la localización. Pero antes agregar localizaciones mediantes las listas. Y también por divisiones
+                    if (data.status) {
+                        createToast('success', data.msg)
+                        valueUnique.value = ''
+                        valueList.value = '';
+                        countryEl.value = '';
+                        countrySelect.textContent = 'seleccione un país:'
+                        divitionSelect.textContent = 'seleccione una opcion:'
+
+                        // [...document.querySelectorAll('.breadcumb.breadcumb-categories .links .d-flex.fadeInLeft')].map(item => {
+                        //     item.remove()
+                        // });
+
+                        // loadDataFilter();
+                        loadLocationsTree();
+                        
+                    } else {
+                        createToast('warning', data.msg)
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
 
     }
 }
