@@ -72,6 +72,8 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     text-align: center;
     padding: 20px;
+    width: 45em;
+    min-width: auto;
 }
 .main-container-edit-personal-information .container-personal-data .personal-data h2 {
     font-size: 2.8em;

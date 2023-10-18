@@ -17,12 +17,14 @@
             <?php require 'Views/Components/CreateFilters.php'; ?>
         </div>
         <div class="tab-content-subtabs-gj8">
-            <?php require 'Views/Components/UpdateCategorie.php'; ?>
             <?php require 'Views/Components/BreadcumbCategories.php'; ?>
             <?php require 'Views/Components/TableAdminCategories.php'; ?>
         </div>
         <div class="tab-content-subtabs-gj8">
+            <?php require 'Views/Components/BreadcumbLocations.php'; ?>
             <?php require 'Views/Components/TableAdminLocations.php'; ?>
         </div>
     </div>
 </div>
+<?php require 'Views/Components/UpdateCategorie.php'; ?>
+<?php require 'Views/Components/UpdateLocation.php'; ?>

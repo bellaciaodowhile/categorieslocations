@@ -115,7 +115,7 @@
         <div class="radio-content categories" isActive>
             <div class="radio-content subcategories">
                 <h4 class="subtitle normal mt-4"><strong>Mapa de categorías</strong></h4>
-                <div class="main-chevrondown-gj8 mt-2">
+                <div class="main-chevrondown-gj8 mt-2" id="categories-tree-main">
                     <div class="d-flex jcsb aic size-normal pt-1 mb-05">
                         <div class="d-flex expand-less-gj8">
                             <i class="material-icons-outlined">expand_less</i>
@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <div class="col radio-content locations" isActive>
-                    <div class="radio-content type-country" isActive>
+                    <div class="radio-content type-unique-country" isActive>
                         <h4 class="subtitle normal mt-4"><strong>Nombre</strong></h4>
                         <div class="input-form user-data normal-my fadeInLeft">
                             <label class="txt-field icon-right">
@@ -171,7 +171,7 @@
                     </div>
                     
                 </div>
-                <div class="col radio-content-locations" isActive>
+                <div class="col radio-content locations" isActive>
                     <div class="radio-content type-division" notActive>
                         <h4 class="subtitle normal mt-4 mb-1"><strong>País</strong></h4>
                         <div class="select-gj8 fadeInLeft select-country">
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col radio-content-locations" isActive>
+                <div class="col radio-content locations" isActive>
                     <div class="radio-content type-division" notActive>
                         <div class="select-gj8 select-gj8--edit fadeInLeft mt-4">
                             <div class="select-gj8__label">
@@ -226,9 +226,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col radio-content-locations" isActive>
+                <div class="col radio-content locations" isActive>
                     <!-- Locations type-unique -->
-                    <div class="radio-content type-unique locations">
+                    <div class="radio-content type-unique">
                         <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
                         <div class="input-form user-data normal-my fadeInLeft">
                             <label class="txt-field icon-right">
@@ -245,9 +245,9 @@
             </div>
         </div>
 
-        <!-- Locations type-list-->
+        <!-- Locations type-list Country-->
         <div class="radio-content locations">
-            <div class="radio-content type-list location" notActive>
+            <div class="radio-content type-list-country" notActive>
                 <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
                 <div class="categories-repeat">
                     <h4 class="subtitle normal mt-4"><strong>Localizaciones repetidas (pulse para eliminar la

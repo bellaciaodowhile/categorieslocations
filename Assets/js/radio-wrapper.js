@@ -32,7 +32,11 @@ radiosOptions.map((option, index) => {
                 } else if (content.classList.contains('locations')) {
                     content.style.display = 'none'
                 }
-            })
+            });
+            let categoriesTreeMain = document.querySelector('#categories-tree-main');
+            [...categoriesTreeMain.querySelectorAll('.chevrondown-radio-button')].map(x => x.classList.remove('active'))
+            categoriesTreeMain.querySelector('.chevrondown-radio-button.not').classList.add('active')
+            console.log(document.querySelector('#categories-tree-main .chevrondown-radio-button.not'))
         }
         if (itemOption == 'localizaciones') {
             radiosContents.map(content => {
@@ -42,6 +46,11 @@ radiosOptions.map((option, index) => {
                     content.style.display = 'none'
                 }
             })
+            let locationsTreeMain = document.querySelector('#locations-tree-main');
+            [...locationsTreeMain.querySelectorAll('.chevrondown-radio-button')].map(x => x.classList.remove('active'))
+            locationsTreeMain.querySelector('.chevrondown-radio-button.not').classList.add('active')
+            // document.querySelector('#locations-tree-main .chevrondown-radio-button.not').classList.add('active')
+            console.log(document.querySelector('#locations-tree-main .chevrondown-radio-button.not'))
         }
 
         // Type categories
@@ -111,17 +120,36 @@ radiosOptions.map((option, index) => {
             }
 
             // Locations features
+
+            let country = document.querySelector('.typeLocation-1');
+            let administrativeDivition = document.querySelector('.typeLocation-2');
             if (itemOption == 'unico' && option.closest('.radio-content').classList.contains('locations')) {
                 // alert('Mostrar tipo único de locations')
+                console.log(administrativeDivition)
                 radiosContents.map(content => {
                     if (content.classList.contains('locations')) {
-                        if (content.classList.contains('type-unique')) {
-                            // console.log(content, ' Unico')
-                            content.style.display = 'block'
+                        // Valor único y múltiple del país
+                        if (administrativeDivition.classList.contains('option-active-gj8')) {
+                            console.log('Division administrativa')
+                            if (content.classList.contains('type-unique-country')) {
+                                content.style.display = 'none'
+                            }
+                            // if (content.querySelector('.type-list-country') != null) {
+                            //     content.querySelector('.type-list-country').style.display = 'none'
+                            // }
                         }
-                        if (content.querySelector('.type-list') != null) {
-                            content.querySelector('.type-list').style.display = 'none'
+                        if (country.classList.contains('option-active-gj8')) {
+                            console.log('Países')
+                            if (content.querySelector('.type-unique-country') != null) {
+                                console.log(content.querySelector('.type-unique-country'))
+                                content.querySelector('.type-unique-country').style.display = 'block'
+                            }
+                            if (content.querySelector('.type-list-country') != null) {
+                                content.querySelector('.type-list-country').style.display = 'none'
+                            }
+                            console.log(content)
                         }
+                        
                     }
                 });
             }
@@ -129,22 +157,40 @@ radiosOptions.map((option, index) => {
                 // alert('Mostrar tipo lista de locations')
                 radiosContents.map(content => {
                     if (content.classList.contains('locations')) {
-                        if (content.classList.contains('type-unique')) {
-                            // console.log(content, ' Unico')
-                            content.style.display = 'none'
+                        // if (content.classList.contains('type-unique')) {
+                        //     // console.log(content, ' Unico')
+                        //     content.style.display = 'none'
+                        // }
+                        // if (content.querySelector('.type-list') != null) {
+                        //     content.querySelector('.type-list').style.display = 'block'
+                        // }
+                        if (administrativeDivition.classList.contains('option-active-gj8')) {
+                            console.log('Division administrativa')
+                            if (content.querySelector('.type-list-country') != null) {
+                                content.querySelector('.type-list-country').style.display = 'none'
+                            }
                         }
-                        if (content.querySelector('.type-list') != null) {
-                            content.querySelector('.type-list').style.display = 'block'
+                        if (country.classList.contains('option-active-gj8')) {
+                            // console.log('Países')
+                            if (content.querySelector('.type-list-country') != null) {
+                                content.querySelector('.type-list-country').style.display = 'block'
+                            }
+                            if (content.querySelector('.type-unique-country') != null) {
+                                console.log(content.querySelector('.type-unique-country'))
+                                content.querySelector('.type-unique-country').style.display = 'none'
+                            }
+                            // console.log(content.querySelector('.type-list-country'))
                         }
                     }
                 });
             }
+            // País
             if (itemOption == 'pais' && option.closest('.radio-content').classList.contains('locations')) {
                 radiosContents.map(content => {
                     if (content.classList.contains('type-division')) {
                         content.style.display = 'none'
                     }
-                    if (content.classList.contains('type-country')) {
+                    if (content.classList.contains('type-unique-country')) {
                         content.style.display = 'block'
                     }
                     if (content.classList.contains('administrative-divition')) {
@@ -152,10 +198,14 @@ radiosOptions.map((option, index) => {
                     }
                 });
             }
+            // Division administrativa
             if (itemOption == 'division administrativa' && option.closest('.radio-content').classList.contains('locations')) {
                 radiosContents.map(content => {
-                    if (content.classList.contains('type-country')) {
+                    if (content.classList.contains('type-unique-country')) {
                         content.style.display = 'none'
+                    }
+                    if (content.querySelector('.type-list-country') != null) {
+                        content.querySelector('.type-list-country').style.display = 'none'
                     }
                     if (content.classList.contains('type-division')) {
                         content.style.display = 'block'

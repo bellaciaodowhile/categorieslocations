@@ -613,7 +613,12 @@
     .container-articles .section-mt-articles {
         margin-top: 252px;
     }
-
+    .main-container-edit-personal-information .container-personal-data .wrap-form {
+        padding: 4em 1em;
+    }
+    .main-container-edit-personal-information .container-personal-data .personal-data {
+        width: 100%;
+    }   
 
 }
 

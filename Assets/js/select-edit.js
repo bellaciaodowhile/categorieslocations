@@ -22,6 +22,7 @@ function selectsGj8() {
         options.map((option, iOption) => {
             option.onclick = (e) => {
                 e.preventDefault();
+                console.log('Hola')
                 let name = select.classList.contains('select-gj8--edit') ? option.querySelector('.select-gj8__option__name__current').textContent.trim() : option.textContent.trim()
                 // Condicional en caso de usar el select 'edit'
                 if (!content.classList.contains('select-gj8__content--editing')) {
@@ -304,28 +305,45 @@ fetchFilterJSONDivition().then(divitions => {
     selectsGj8();
 });
 // Listado de países
-let boxCountrys = document.querySelector('#select-gj8__countrys')
-async function fetchFilterJSONCountrys() {
-    const response = await fetch(BASE_URL + 'Filter/getCountrys');
-    const countrys = await response.json();
-    return countrys;
-}
-fetchFilterJSONCountrys().then(countrys => {
-    console.log(countrys)
-    boxCountrys.innerHTML = '';
-    // function eliminarRepetidos(array) {
-    //     return Array.from(new Set(array));
-    // }
-    let arrCountrys = []
-    countrys.map(country => {
-        arrCountrys.push(country.pais)
-    })
-    function deleteRepeat(arr) {
-        return Array.from(new Set(arr));
+function getCountryList() {
+    console.log('getCountryList')
+    let boxCountrys = document.querySelector('#select-gj8__countrys')
+    async function fetchFilterJSONCountrys() {
+        const response = await fetch(BASE_URL + 'Filter/getCountrys');
+        const countrys = await response.json();
+        return countrys;
     }
-    let data = deleteRepeat(arrCountrys);
-    data.map(item => {
-        boxCountrys.innerHTML += /* html */`
-        <div class="select-gj8__option">${ item }</div>`
+    fetchFilterJSONCountrys().then(countrys => {
+        console.log(countrys)
+        boxCountrys.innerHTML = '';
+        // function eliminarRepetidos(array) {
+        //     return Array.from(new Set(array));
+        // }
+        // let arrCountrys = []
+        // countrys.map(country => {
+        //     arrCountrys.push(country.pais)
+        // })
+        // function deleteRepeat(arr) {
+        //     return Array.from(new Set(arr));
+        // }
+        // let data = deleteRepeat(arrCountrys);
+        countrys.map(item => {
+            boxCountrys.innerHTML += /* html */`
+            <div class="select-gj8__option">${ item.country }</div>`
+        })
     })
-})
+    selectsGj8();
+}
+getCountryList();
+
+
+
+
+// Niveles
+/*
+    - id
+    - IdCountry
+    - nivel
+    - Division
+
+*/
