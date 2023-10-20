@@ -49,6 +49,9 @@
                             display: block;
                         }
                     }
+                    &__drag__indicator {
+                        cursor: move;
+                    }
                 }
             }
             top: 100px;

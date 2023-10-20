@@ -157,13 +157,21 @@
         
             return $ancestros;
         }
-        public function setAdministrativeDivition($divition) {
+        public function setAdministrativeDivition($divition, $idCountry) {
             $sql = "SELECT * FROM divisiones WHERE division = '$divition'";
             $arrValidation = $this->selectAll($sql);
             $return;
             if (empty($arrValidation)) {
-                $insert = "INSERT INTO divisiones (division) VALUES (?)";
-                $arrValues = array($divition);
+                $sql = "SELECT * FROM divisiones WHERE idCountry = '$idCountry'";
+                $reqSelect = $this->selectAll($sql);
+                $level;
+                if (count($reqSelect) > 0) {
+                    $level = count($reqSelect) + 1;
+                } else {
+                    $level = 1;
+                }
+                $insert = "INSERT INTO divisiones (division, idCountry, level) VALUES (?,?,?)";
+                $arrValues = array($divition, $idCountry, $level);
                 $reqInsert = $this->insert($insert, $arrValues);
                 $return = $reqInsert;
             } else {
@@ -171,8 +179,8 @@
             }
             return $return;
         }
-        public function getDivitions() {
-            $sql = "SELECT * FROM divisiones";
+        public function getDivitions($idCountry) {
+            $sql = "SELECT * FROM divisiones WHERE idCountry = '$idCountry'";
             $res = $this->selectAll($sql);
             return $res;
         }

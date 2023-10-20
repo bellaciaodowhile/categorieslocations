@@ -87,8 +87,9 @@
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
         public function setAdministrativeDivition() {
+            $idCountry = $_POST['idCountry'];
             $administrativeDivition = $_POST['administrativeDivition'];
-            $arrData = $this->model->setAdministrativeDivition($administrativeDivition);
+            $arrData = $this->model->setAdministrativeDivition($administrativeDivition, $idCountry);
             if ($arrData == 'exist') {
                 $arrResponse = array('status' => false, 'msg' => 'Este registro ya existe');
             } else {
@@ -96,8 +97,8 @@
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE); 
         }
-        public function getAdministrativeDivition() {
-            $arrData = $this->model->getDivitions();
+        public function getAdministrativeDivition($idCountry) {
+            $arrData = $this->model->getDivitions($idCountry);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
         public function delAdministrativeDivition($id) {

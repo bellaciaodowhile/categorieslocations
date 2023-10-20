@@ -1,8 +1,33 @@
 console.log('Select Edit JS')
+// Listado de países
+function getCountryList() {
+    console.log('getCountryList')
+    let boxCountrys = document.querySelector('#select-gj8__countrys')
+    async function fetchFilterJSONCountrys() {
+        const response = await fetch(BASE_URL + 'Filter/getCountrys');
+        const countrys = await response.json();
+        return countrys;
+    }
+    fetchFilterJSONCountrys().then(countrys => {
+        console.log(countrys)
+        boxCountrys.innerHTML = '';
+        countrys.map(item => {
+            boxCountrys.innerHTML += /* html */`
+            <div class="select-gj8__option" item="${ item.id }">${ item.country }</div>`
+        })
+    })
+    setTimeout(() => {
+        selectsGj8();
+    }, 500);
+
+}
+getCountryList();
 function selectsGj8() {
     'use strict';
 
     const selects = [...document.querySelectorAll('.select-gj8')];
+    console.log('Select GJ8')
+    console.log(selects)
     selects.map((select, index) => {
         let title = select.querySelector('.select-gj8__title')
         let titleCurrent = title.querySelector('.select-gj8__title__current')
@@ -33,8 +58,11 @@ function selectsGj8() {
                     option.classList.add('select-gj8__option--active');
                 }
                 if (select.classList.contains('select-country')) {
-                    let countryCurrent = document.querySelector('.select-gj8__content__subtitle__current')
+                    let countryCurrent = document.querySelector('.select-gj8__content__subtitle__current');
+                    let idCountry = option.attributes[1].textContent;
                     countryCurrent.textContent = name
+                    countryCurrent.setAttribute('item', idCountry)
+                    getAdministrativeDivition(idCountry)
                 }
             };
         });
@@ -174,6 +202,8 @@ function selectsGj8() {
                 let input = content.querySelector('.select-gj8__content__add__input')
                 let btnAdd = formAdd.querySelector('.select-gj8__btn--add')
                 let boxOptions = content.querySelector('.select-gj8__content__options')
+                let idCountryCurrent = content.querySelector('.select-gj8__content__subtitle__current')
+                    console.log(idCountryCurrent.attributes[1].textContent)
                 if (!content.classList.contains('select-gj8__content--active')) {
                     content.classList.add('select-gj8__content--active')
                 }
@@ -210,10 +240,11 @@ function selectsGj8() {
                             let url = BASE_URL + 'Filter/setAdministrativeDivition'
                             req.open("POST", url, true);
                             function datosFormulario() {
-                                let datos = '';
+                                let datos = 'idCountry=' + idCountryCurrent.attributes[1].textContent;
                                 datos += '&administrativeDivition=' + input.value.trim();
                                 return datos;
                             }
+                            // console.log(datosFormulario())
                             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                             req.send(datosFormulario())
                             req.onreadystatechange = (e) => {
@@ -249,6 +280,7 @@ function selectsGj8() {
                                         selectsGj8()
                                         selectEditItem()
                                         createToast('success', data.msg)
+                                        getAdministrativeDivition(idCountryCurrent.attributes[1].textContent)
                                     } else {
                                         createToast('warning', data.msg)
                                     }
@@ -266,84 +298,64 @@ function selectsGj8() {
 }
 selectsGj8()
 // Listado de divisiones
-let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition'
-let boxOptions = document.querySelector('#select-gj8__administrative_divition')
-async function fetchFilterJSONDivition() {
-    const response = await fetch(urlGetDivition);
-    const divitions = await response.json();
-    return divitions;
-}
-fetchFilterJSONDivition().then(divitions => {
-    console.log(divitions)
-    boxOptions.innerHTML = ``
-    divitions.map(divition => {
-        boxOptions.innerHTML += /*html*/ `
-        <div class="select-gj8__option">
-            <div class="select-gj8__option__edit">
-                <div class="select-gj8__option__name">
-                    <i class="material-icons">drag_indicator</i>
-                    <div class="select-gj8__option__name__current">${divition.division}</div>
-                    <input type="text" disabled class="select-gj8__option__name__input"
-                        value="${divition.division}" required>
-                </div>
-                <i class="material-icons select-gj8__option__trigger">more_vert</i>
-                <button class="select-gj8__btn select-gj8__btn--option">
-                    <i class="material-icons-outlined">done</i>
-                </button>
-            </div>
-
-            <div class="select-gj8__option__settings">
-                <div class="select-gj8__option__settings__item" item="${divition.id}">
-                    <i class="material-icons-outlined">drive_file_rename_outline</i>
-                </div>
-                <div class="select-gj8__option__settings__item" item="${divition.id}">
-                    <i class="material-icons-outlined">delete</i>
-                </div>
-            </div>
-        </div>`
-    })
-    selectsGj8();
-});
-// Listado de países
-function getCountryList() {
-    console.log('getCountryList')
-    let boxCountrys = document.querySelector('#select-gj8__countrys')
-    async function fetchFilterJSONCountrys() {
-        const response = await fetch(BASE_URL + 'Filter/getCountrys');
-        const countrys = await response.json();
-        return countrys;
+function getAdministrativeDivition(id = '6') {
+    let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition/' + id;
+    let boxOptions = document.querySelector('#select-gj8__administrative_divition')
+    async function fetchFilterJSONDivition() {
+        const response = await fetch(urlGetDivition);
+        const divitions = await response.json();
+        return divitions;
     }
-    fetchFilterJSONCountrys().then(countrys => {
-        console.log(countrys)
-        boxCountrys.innerHTML = '';
-        // function eliminarRepetidos(array) {
-        //     return Array.from(new Set(array));
-        // }
-        // let arrCountrys = []
-        // countrys.map(country => {
-        //     arrCountrys.push(country.pais)
-        // })
-        // function deleteRepeat(arr) {
-        //     return Array.from(new Set(arr));
-        // }
-        // let data = deleteRepeat(arrCountrys);
-        countrys.map(item => {
-            boxCountrys.innerHTML += /* html */`
-            <div class="select-gj8__option">${ item.country }</div>`
+    fetchFilterJSONDivition().then(divitions => {
+        console.log(divitions)
+        boxOptions.innerHTML = ``
+        divitions.map(divition => {
+            boxOptions.innerHTML += /*html*/ `
+            <div class="select-gj8__option">
+                <div class="select-gj8__option__edit">
+                    <div class="select-gj8__option__name">
+                        <i class="material-icons select-gj8__option__drag__indicator">drag_indicator</i>
+                        <div class="select-gj8__option__name__current">${ divition.division }</div>
+                        <input type="text" disabled class="select-gj8__option__name__input"
+                            value="${ divition.division }" required>
+                    </div>
+                    <i class="material-icons select-gj8__option__trigger">more_vert</i>
+                    <button class="select-gj8__btn select-gj8__btn--option">
+                        <i class="material-icons-outlined">done</i>
+                    </button>
+                </div>
+                <div class="select-gj8__option__settings">
+                    <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                        <i class="material-icons-outlined">drive_file_rename_outline</i>
+                    </div>
+                    <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                        <i class="material-icons-outlined">delete</i>
+                    </div>
+                </div>
+            </div>`
         })
-    })
-    selectsGj8();
+        selectsGj8();
+        let selectAdministrativeDivition = document.getElementById('select-gj8__administrative_divition')
+        new Sortable(selectAdministrativeDivition, {
+            animation: 150,
+            ghostClass: 'blue-background-class',
+            handle: '.select-gj8__option__drag__indicator', // handle's class
+            onStart: function (/**Event*/evt) {
+                console.log(evt.oldIndex,'- Primero');  // element index within parent
+            },
+            onEnd: function (/**Event*/evt) {
+                var itemEl = evt.item;  // dragged HTMLElement
+                evt.to;    // target list
+                evt.from;  // previous list
+                evt.oldIndex;  // element's old index within old parent
+                evt.newIndex;  // element's new index within new parent
+                evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
+                evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
+                evt.clone // the clone element
+                evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
+                console.log(evt.newIndex,'- Ultimo')
+            },
+        });
+    });
 }
-getCountryList();
 
-
-
-
-// Niveles
-/*
-    - id
-    - IdCountry
-    - nivel
-    - Division
-
-*/

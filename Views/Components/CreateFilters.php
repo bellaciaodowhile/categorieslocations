@@ -179,15 +179,7 @@
                                 <div class="select-gj8__title__current" id="select_country_current">españa</div>
                                 <i class="material-icons select-gj8__title__arrow">expand_more</i>
                             </div>
-                            <div class="select-gj8__content" id="select-gj8__countrys">
-                                <div class="select-gj8__option">Blanco</div>
-                                <div class="select-gj8__option">Azul</div>
-                                <div class="select-gj8__option">Amarillo</div>
-                                <div class="select-gj8__option">Verde</div>
-                                <div class="select-gj8__option">Morado</div>
-                                <div class="select-gj8__option">Negro</div>
-                                <div class="select-gj8__option">Rojo</div>
-                            </div>
+                            <div class="select-gj8__content" id="select-gj8__countrys"></div>
                         </div>
                     </div>
                 </div>
@@ -210,7 +202,7 @@
                             <div class="select-gj8__content">
                                 <div class="select-gj8__content__subtitle">
                                     divisiones administrativas: <span
-                                        class="select-gj8__content__subtitle__current">españa</span>
+                                        class="select-gj8__content__subtitle__current" item="6">españa</span>
                                 </div>
                                 <div class="select-gj8__content__add">
                                     <div class="select-gj8__content__add__form">
