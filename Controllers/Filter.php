@@ -117,10 +117,10 @@
             $type =  $_POST['type'];
             $status =  $_POST['status'];
             $country =  $_POST['country'];
-            $divition =  $_POST['divition'];
+            // $divition =  $_POST['divition'];
             $idParent =  $_POST['idParent'];
 
-            if ($name == '' || $type == '' || $status == '' || $country == 'Seleccione un país:' || $divition == 'Seleccione una opción:' || $idParent == '') {
+            if ($name == '' || $type == '' || $status == '' || $country == '' ||  $idParent == '') {
                 $arrResponse = array('status' => false, 'msg' => 'Debe llenar todos los campos.');
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 die();
@@ -128,7 +128,7 @@
                 if (is_array(json_decode($name))) {
                     $arrNombres = json_decode($name);
                     
-                    $req = $this->model->insertMultipleLocation($arrNombres, $type, $status, $country, $divition, $idParent);
+                    $req = $this->model->insertMultipleLocation($arrNombres, $type, $status, $country, $idParent);
                     if ($req[0] == 'insert') {
                         $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
                     }
@@ -140,7 +140,7 @@
     
     
                 } else {
-                    $req = $this->model->insertLocation($name, $type, $status, $country, $divition, $idParent);
+                    $req = $this->model->insertLocation($name, $type, $status, $country, $idParent);
                     if ($req > 0) {
                         $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
                     }
@@ -216,5 +216,10 @@
     
                 }
             }
+        }
+        public function updateOrderDivitions() {
+            $newOrder = json_decode($_POST['newOrder']);
+            $arrData = $this->model->updateOrderDivitions($newOrder);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
     }

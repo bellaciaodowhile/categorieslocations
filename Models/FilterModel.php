@@ -164,14 +164,14 @@
             if (empty($arrValidation)) {
                 $sql = "SELECT * FROM divisiones WHERE idCountry = '$idCountry'";
                 $reqSelect = $this->selectAll($sql);
-                $level;
+                $order;
                 if (count($reqSelect) > 0) {
-                    $level = count($reqSelect) + 1;
+                    $order = count($reqSelect) + 1;
                 } else {
-                    $level = 1;
+                    $order = 1;
                 }
-                $insert = "INSERT INTO divisiones (division, idCountry, level) VALUES (?,?,?)";
-                $arrValues = array($divition, $idCountry, $level);
+                $insert = "INSERT INTO divisiones (division, idCountry, order) VALUES (?,?,?)";
+                $arrValues = array($divition, $idCountry, $order);
                 $reqInsert = $this->insert($insert, $arrValues);
                 $return = $reqInsert;
             } else {
@@ -182,6 +182,10 @@
         public function getDivitions($idCountry) {
             $sql = "SELECT * FROM divisiones WHERE idCountry = '$idCountry'";
             $res = $this->selectAll($sql);
+            function order($a, $b) {
+                return $a['order'] - $b['order'];
+            }
+            usort($res, 'order');
             return $res;
         }
         public function delRegister($table, $id) {
@@ -199,14 +203,14 @@
             }
             return $res;
         }
-        public function insertLocation(string $name, string $type, string $status, string $country, string $divition, string $idParent) {
+        public function insertLocation(string $name, string $type, string $status, string $country, string $idParent) {
             $return = "";
 
             $sql = "SELECT * FROM localizaciones WHERE nombre = '$name'";
             $req = $this->selectAll($sql);
             if (empty($req)) {
-                $q = "INSERT INTO localizaciones (nombre, tipo, estado, pais, division, idParent ) VALUES (?,?,?,?,?,?)";
-                $arrData = array($name, $type, $status, $country, $divition, $idParent);
+                $q = "INSERT INTO localizaciones (nombre, tipo, estado, pais, idParent ) VALUES (?,?,?,?,?)";
+                $arrData = array($name, $type, $status, $country, $idParent);
                 $reqInsert = $this->insert($q, $arrData);
                 $return = $reqInsert;
             } else {
@@ -216,7 +220,7 @@
             
         }
         
-        public function insertMultipleLocation(array $nombre, string $type, string $status, string $country, string $divition, string $idParent) {
+        public function insertMultipleLocation(array $nombre, string $type, string $status, string $country, string $idParent) {
             $return = '';
             $rows = array();
             $reqSelect = [];
@@ -226,7 +230,7 @@
                 $reqSelect[] = $this->selectAll($sql);
             } 
             for ($i = 0; $i < count($nombre); $i++) {
-                $rows[] = array($nombre[$i], $type, $status, $country, $divition, $idParent); 
+                $rows[] = array($nombre[$i], $type, $status, $country, $idParent); 
             }
             foreach ($reqSelect as $x) {
                 if (empty($x)) {
@@ -239,7 +243,7 @@
             if(in_array("notGo", $arrValidation)){
                 $return = ['exist', $reqSelect];
             } else {
-                $sql = "INSERT INTO localizaciones (nombre, tipo, estado, pais, division, idParent) VALUES (?,?,?,?,?,?)";
+                $sql = "INSERT INTO localizaciones (nombre, tipo, estado, pais, idParent) VALUES (?,?,?,?,?)";
                 $req = array();
                 for ($i = 0; $i < count($rows); $i++) {
                     $req[] = $this->insert($sql, $rows[$i]);
@@ -365,5 +369,24 @@
                 $return = ['insert', $req];
             }
             return $return;
+        }
+        public function updateOrderDivitions($newOrder) {
+            
+            $arr = array();
+            for ($i = 0; $i < count($newOrder); $i++) {
+                $arr[] = array("id" => $newOrder[$i]->id, "order" => $newOrder[$i]->order);
+            }
+
+            foreach ($arr as $key) {
+                if ($key != null) {
+                    // * * El error se solucionó usando las backticks en el nombre de la columna `order` ya que order es una propiedad de MySql, había un choque
+                    $sql = "UPDATE divisiones SET `order` = ? WHERE id = '{$key["id"]}'";
+                    $data = array($key["order"]);
+                    $res = $this->update($sql, $data);
+                    // return $res; // ! Al colocar este return se estaba cancelando la iteración y por ende solamente tenía alcance a un solo elemento del arreglo
+                    
+                }
+            }
+
         }
     }

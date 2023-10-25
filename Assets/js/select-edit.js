@@ -11,15 +11,18 @@ function getCountryList() {
     fetchFilterJSONCountrys().then(countrys => {
         console.log(countrys)
         boxCountrys.innerHTML = '';
-        countrys.map(item => {
-            boxCountrys.innerHTML += /* html */`
-            <div class="select-gj8__option" item="${ item.id }">${ item.country }</div>`
-        })
+        if (countrys.length > 0) {
+            countrys.map(item => {
+                boxCountrys.innerHTML += /* html */`
+                <div class="select-gj8__option" item="${ item.id }">${ item.country }</div>`
+            })
+        } else {
+            boxCountrys.innerHTML += /*html*/ `<strong class="p-1 block">No existen registros países registrados</strong>`
+        }
     })
     setTimeout(() => {
         selectsGj8();
     }, 500);
-
 }
 getCountryList();
 function selectsGj8() {
@@ -165,7 +168,7 @@ function selectsGj8() {
                                 }
                             }
                         }
-                        // Eliminando item
+                        // * Eliminando división administrativa
                         del.onclick = (e) => {
                             e.preventDefault();
                             if (confirm('¿Está seguro de eliminar este registro?')) {
@@ -181,10 +184,37 @@ function selectsGj8() {
                                     if (res) {
                                         itemOption.remove()
                                         createToast('success')
+                                        // * Actualizando orden de divisiones administrativas
+                                        let items = document.getElementById('select-gj8__administrative_divition')
+                                        let newOrder = [];
+                                        for(let index = 0; index < items.childElementCount; index++) {
+                                            newOrder.push({
+                                                id: items.children[index].getAttribute('data-id'),
+                                                order: (index + 1)
+                                            })
+                                        }
+                                    
+                                        let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+                                        let url = BASE_URL + 'Filter/updateOrderDivitions'
+                                        req.open("POST", url, true);
+                                        function datosFormulario() {
+                                            let datos = '';
+                                            datos += 'newOrder=' +  JSON.stringify(newOrder);
+                                            return datos;
+                                        }
+                                        console.log(newOrder)
+                                        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                        req.send(datosFormulario())
+                                        req.onreadystatechange = (e) => {
+                                            if (req.readyState == 4 && req.status == 200) { /* console.log(req.response) */ }
+                                        }
                                     } else {
                                         createToast('warning','Ha ocurrido un error. . .')
                                     }
-                                })
+                                });
+                                
+
+
                             }
                         }
                     }
@@ -214,7 +244,7 @@ function selectsGj8() {
                 } else {
                     optionEdit.textContent = optionEdit.textContent.toLowerCase().replace('cerrar', 'Editar')
                     iconEdit.textContent = 'drive_file_rename_outline'
-                    titleCurrent.textContent = 'Seleccione una opción:'
+                    titleCurrent.textContent = 'País'
                 }
                 contentEditing.classList.toggle('select-gj8__content--editing')
                 // Acción de agregar registro
@@ -227,6 +257,7 @@ function selectsGj8() {
                     e.preventDefault();
                     addDivition();
                 }
+                // * Agregando división administrativa
                 function addDivition() {
                     if (validationFields(input.value)) {
                         createToast('warning','Se requiere llenar los campos')
@@ -298,6 +329,7 @@ function selectsGj8() {
 }
 selectsGj8()
 // Listado de divisiones
+getAdministrativeDivition()
 function getAdministrativeDivition(id = '6') {
     let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition/' + id;
     let boxOptions = document.querySelector('#select-gj8__administrative_divition')
@@ -309,51 +341,71 @@ function getAdministrativeDivition(id = '6') {
     fetchFilterJSONDivition().then(divitions => {
         console.log(divitions)
         boxOptions.innerHTML = ``
-        divitions.map(divition => {
-            boxOptions.innerHTML += /*html*/ `
-            <div class="select-gj8__option">
-                <div class="select-gj8__option__edit">
-                    <div class="select-gj8__option__name">
-                        <i class="material-icons select-gj8__option__drag__indicator">drag_indicator</i>
-                        <div class="select-gj8__option__name__current">${ divition.division }</div>
-                        <input type="text" disabled class="select-gj8__option__name__input"
-                            value="${ divition.division }" required>
+        
+        if (divitions.length > 0) {
+            divitions.map(divition => {
+                boxOptions.innerHTML += /*html*/ `
+                <div class="select-gj8__option" data-id="${divition.id}">
+                    <div class="select-gj8__option__edit">
+                        <div class="select-gj8__option__name">
+                            <i class="material-icons select-gj8__option__drag__indicator">drag_indicator</i>
+                            <div class="select-gj8__option__name__current">${ divition.division }</div>
+                            <input type="text" disabled class="select-gj8__option__name__input"
+                                value="${ divition.division }" required>
+                        </div>
+                        <i class="material-icons select-gj8__option__trigger">more_vert</i>
+                        <button class="select-gj8__btn select-gj8__btn--option">
+                            <i class="material-icons-outlined">done</i>
+                        </button>
                     </div>
-                    <i class="material-icons select-gj8__option__trigger">more_vert</i>
-                    <button class="select-gj8__btn select-gj8__btn--option">
-                        <i class="material-icons-outlined">done</i>
-                    </button>
-                </div>
-                <div class="select-gj8__option__settings">
-                    <div class="select-gj8__option__settings__item" item="${ divition.id }">
-                        <i class="material-icons-outlined">drive_file_rename_outline</i>
+                    <div class="select-gj8__option__settings">
+                        <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                            <i class="material-icons-outlined">drive_file_rename_outline</i>
+                        </div>
+                        <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                            <i class="material-icons-outlined">delete</i>
+                        </div>
                     </div>
-                    <div class="select-gj8__option__settings__item" item="${ divition.id }">
-                        <i class="material-icons-outlined">delete</i>
-                    </div>
-                </div>
-            </div>`
-        })
+                </div>`
+            })
+        } else {
+            document.querySelector('#select_divition_current').textContent = 'País'
+            boxOptions.innerHTML = /*html*/ `<strong class="p-1 block">No existen registros para este país</strong>`
+        }
+        
         selectsGj8();
         let selectAdministrativeDivition = document.getElementById('select-gj8__administrative_divition')
         new Sortable(selectAdministrativeDivition, {
             animation: 150,
             ghostClass: 'blue-background-class',
             handle: '.select-gj8__option__drag__indicator', // handle's class
-            onStart: function (/**Event*/evt) {
-                console.log(evt.oldIndex,'- Primero');  // element index within parent
-            },
-            onEnd: function (/**Event*/evt) {
-                var itemEl = evt.item;  // dragged HTMLElement
-                evt.to;    // target list
-                evt.from;  // previous list
-                evt.oldIndex;  // element's old index within old parent
-                evt.newIndex;  // element's new index within new parent
-                evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
-                evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
-                evt.clone // the clone element
-                evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
-                console.log(evt.newIndex,'- Ultimo')
+            onEnd: function () {
+                
+                // * Esta listo - Actualizando orden - Divisiones Administrativas
+                let items = selectAdministrativeDivition
+                let newOrder = [];
+                for(let index = 0; index < items.childElementCount; index++) {
+                    newOrder.push({
+                        id: items.children[index].getAttribute('data-id'),
+                        order: (index + 1)
+                    })
+                }
+            
+                let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+                let url = BASE_URL + 'Filter/updateOrderDivitions'
+                req.open("POST", url, true);
+                function datosFormulario() {
+                    let datos = '';
+                    datos += 'newOrder=' +  JSON.stringify(newOrder);
+                    return datos;
+                }
+                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                req.send(datosFormulario())
+                req.onreadystatechange = (e) => {
+                    if (req.readyState == 4 && req.status == 200) { /* console.log(req.response) */ }
+                }
+
+                // console.log(newOrder) 
             },
         });
     });

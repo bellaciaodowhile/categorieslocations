@@ -1,6 +1,7 @@
 console.log('Radio Wrapper')
 const radiosOptions = [...document.querySelectorAll('.radio-trigger-gj8')]
 let inputCurrent = 'Categoría';
+
 radiosOptions.map((option, index) => {
     option.addEventListener('click', (e) => {
         e.preventDefault();
@@ -123,6 +124,8 @@ radiosOptions.map((option, index) => {
 
             let country = document.querySelector('.typeLocation-1');
             let administrativeDivition = document.querySelector('.typeLocation-2');
+            let unique = document.querySelector('.typeUploadLocations-1')
+            let list = document.querySelector('.typeUploadLocations-2')
             if (itemOption == 'unico' && option.closest('.radio-content').classList.contains('locations')) {
                 // alert('Mostrar tipo único de locations')
                 console.log(administrativeDivition)
@@ -130,24 +133,27 @@ radiosOptions.map((option, index) => {
                     if (content.classList.contains('locations')) {
                         // Valor único y múltiple del país
                         if (administrativeDivition.classList.contains('option-active-gj8')) {
-                            console.log('Division administrativa')
                             if (content.classList.contains('type-unique-country')) {
                                 content.style.display = 'none'
                             }
-                            // if (content.querySelector('.type-list-country') != null) {
-                            //     content.querySelector('.type-list-country').style.display = 'none'
-                            // }
                         }
+                        // Countrys type unique
                         if (country.classList.contains('option-active-gj8')) {
-                            console.log('Países')
                             if (content.querySelector('.type-unique-country') != null) {
-                                console.log(content.querySelector('.type-unique-country'))
                                 content.querySelector('.type-unique-country').style.display = 'block'
                             }
                             if (content.querySelector('.type-list-country') != null) {
                                 content.querySelector('.type-list-country').style.display = 'none'
                             }
-                            console.log(content)
+                        }
+                        // Locations type unique
+                        if (administrativeDivition.classList.contains('option-active-gj8')) {
+                            if (content.querySelector('.type-unique-location') != null) {
+                                content.querySelector('.type-unique-location').style.display = 'block'
+                            }
+                            if (content.querySelector('.type-list-location') != null) {
+                                content.querySelector('.type-list-location').style.display = 'none'
+                            }
                         }
                         
                     }
@@ -157,21 +163,14 @@ radiosOptions.map((option, index) => {
                 // alert('Mostrar tipo lista de locations')
                 radiosContents.map(content => {
                     if (content.classList.contains('locations')) {
-                        // if (content.classList.contains('type-unique')) {
-                        //     // console.log(content, ' Unico')
-                        //     content.style.display = 'none'
-                        // }
-                        // if (content.querySelector('.type-list') != null) {
-                        //     content.querySelector('.type-list').style.display = 'block'
-                        // }
                         if (administrativeDivition.classList.contains('option-active-gj8')) {
                             console.log('Division administrativa')
                             if (content.querySelector('.type-list-country') != null) {
                                 content.querySelector('.type-list-country').style.display = 'none'
                             }
                         }
+                        // Countrys type list
                         if (country.classList.contains('option-active-gj8')) {
-                            // console.log('Países')
                             if (content.querySelector('.type-list-country') != null) {
                                 content.querySelector('.type-list-country').style.display = 'block'
                             }
@@ -179,7 +178,16 @@ radiosOptions.map((option, index) => {
                                 console.log(content.querySelector('.type-unique-country'))
                                 content.querySelector('.type-unique-country').style.display = 'none'
                             }
-                            // console.log(content.querySelector('.type-list-country'))
+                        }
+                        // Locations type list
+                        if (administrativeDivition.classList.contains('option-active-gj8')) {
+                            if (content.querySelector('.type-list-location') != null) {
+                                content.querySelector('.type-list-location').style.display = 'block'
+                            }
+                            if (content.querySelector('.type-unique-location') != null) {
+                                console.log(content.querySelector('.type-unique-location'))
+                                content.querySelector('.type-unique-location').style.display = 'none'
+                            }
                         }
                     }
                 });
@@ -190,12 +198,30 @@ radiosOptions.map((option, index) => {
                     if (content.classList.contains('type-division')) {
                         content.style.display = 'none'
                     }
+                    // type unique country
                     if (content.classList.contains('type-unique-country')) {
-                        content.style.display = 'block'
+                        if (unique.classList.contains('option-active-gj8')) {
+                            content.style.display = 'block'
+                        }
+                    }
+                    // type list country
+                    if (content.classList.contains('type-list-country')) {
+                        if (list.classList.contains('option-active-gj8')) {
+                            content.style.display = 'block'
+                        }
                     }
                     if (content.classList.contains('administrative-divition')) {
                         content.style.display = 'none'
                     }
+                    // Input Location Unique
+                    if (content.classList.contains('type-unique-location')) {
+                        content.style.display = 'none'
+                    }
+                    // Input Location List
+                    if (content.classList.contains('type-list-location')) {
+                        content.style.display = 'none'
+                    }
+
                 });
             }
             // Division administrativa
@@ -207,13 +233,28 @@ radiosOptions.map((option, index) => {
                     if (content.querySelector('.type-list-country') != null) {
                         content.querySelector('.type-list-country').style.display = 'none'
                     }
+                    // 
                     if (content.classList.contains('type-division')) {
                         content.style.display = 'block'
                     }
+                    // Select administrative divition
                     if (content.classList.contains('administrative-divition')) {
                         content.style.display = 'block'
                     }
+                    // type unique locations
+                    if (content.classList.contains('type-unique-location')) {
+                        if (unique.classList.contains('option-active-gj8')) {
+                            content.style.display = 'block'
+                        }
+                    }
+                    // type list locations
+                    if (content.classList.contains('type-list-location')) {
+                        if (list.classList.contains('option-active-gj8')) {
+                            content.style.display = 'block'
+                        }
+                    }
                 });
+                console.log('División administrativa')
             }
             // console.log(itemOption)
         }

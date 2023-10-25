@@ -192,14 +192,14 @@ function addFilters() {
             // División administrativa
             console.log('Registrando división administrativa')
             let typeUploadFilter = '';
-            let typeLocation = '';
+            let typeLocation = 'pais';
             let statusFilter = '';
             let mapCategories = 'base'
             let country = ''
             let divition = ''
-            let valueUnique = document.querySelector('.create-filters .radio-content.locations.type-unique input')
-            let valueList = document.querySelector('.create-filters .radio-content.type-list.location textarea')
-            let countryEl = document.querySelector('.create-filters .radio-content.type-country input')
+            let valueUnique = document.querySelector('.create-filters .radio-content.locations .type-unique-location input')
+            let valueList = document.querySelector('.create-filters .radio-content.type-list-location textarea')
+            // let countryEl = document.querySelector('.create-filters .radio-content.type-country input')
             let countrySelect = document.querySelector('#select_country_current')
             let divitionSelect = document.querySelector('#select_divition_current')
             if (document.querySelector('.create-filters .typeUploadLocations-1').classList.contains('option-active-gj8')) {
@@ -215,27 +215,32 @@ function addFilters() {
                 }
                 typeUploadFilter = arrTypeUploadFilter
             }
-            if (document.querySelector('.create-filters .typeLocation-1').classList.contains('option-active-gj8')) {
-                typeLocation = 'pais'
-                country = countryEl.value.trim()
-                divition = 'NULL'
-            } else if (document.querySelector('.create-filters .typeLocation-2').classList.contains('option-active-gj8')) {
-                typeLocation = 'division'
-                country = countrySelect.textContent.trim();
-                divition = divitionSelect.textContent.trim();
-                mapCategories = [...document.querySelectorAll('.create-filters .chevrondown-gj8#locations-tree-main .chevrondown-radio-button')].filter(btn => btn.classList.contains('active'))
+            if (divitionSelect.textContent.toLowerCase().trim() != 'país') {
+                typeLocation = divitionSelect.textContent.toLowerCase().trim()
             }
+            // if (document.querySelector('.create-filters .typeLocation-1').classList.contains('option-active-gj8')) {
+            //     typeLocation = 'pais'
+            //     country = countryEl.value.trim()
+            //     divition = 'NULL'
+            // } else if (document.querySelector('.create-filters .typeLocation-2').classList.contains('option-active-gj8')) {
+            //     typeLocation = 'division'
+            //     country = countrySelect.textContent.trim();
+            //     divition = divitionSelect.textContent.trim();
+            //     mapCategories = [...document.querySelectorAll('.create-filters .chevrondown-gj8#locations-tree-main .chevrondown-radio-button')].filter(btn => btn.classList.contains('active'))
+            // }
             if (document.querySelector('.create-filters .switch-gj8').classList.contains('off')) {
                 statusFilter = 'inactive'
             } else {
                 statusFilter = 'active'
             }
+            mapCategories = [...document.querySelectorAll('.create-filters .chevrondown-gj8#locations-tree-main .chevrondown-radio-button')].filter(btn => btn.classList.contains('active'))
+            if (mapCategories[0].attributes) {
+                mapCategories = mapCategories[0].attributes[1].textContent.trim()
+            } else {
+                mapCategories = ''
+            }
             if (mapCategories != 'base') {
-                if (mapCategories[0].attributes) {
-                    mapCategories = mapCategories[0].attributes[1].textContent.trim()
-                } else {
-                    mapCategories = ''
-                }
+                
             }
     
             let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
@@ -246,8 +251,8 @@ function addFilters() {
                 datos += 'name=' + (Array.isArray(typeUploadFilter) ? JSON.stringify(typeUploadFilter) : typeUploadFilter);
                 datos += '&type=' + typeLocation;
                 datos += '&status=' + statusFilter;
-                datos += '&country=' + country;
-                datos += '&divition=' + divition;
+                datos += '&country=' + countrySelect.textContent.trim();
+                // datos += '&divition=' + divitionSelect.textContent.trim();
                 datos += '&idParent=' + mapCategories;
                 return datos;
             }
@@ -262,11 +267,10 @@ function addFilters() {
                         createToast('success', data.msg)
                         valueUnique.value = ''
                         valueList.value = '';
-                        countryEl.value = '';
-                        countrySelect.textContent = 'seleccione un país:'
-                        divitionSelect.textContent = 'seleccione una opcion:';
+                        countrySelect.textContent = 'País'
+                        divitionSelect.textContent = 'España';
                         [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')].map(item => {
-                            item.remove()
+                            item.remove();
                         });
                         loadLocationsData();
                         loadLocationsTree();

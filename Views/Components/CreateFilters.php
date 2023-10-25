@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="select-gj8__title">
-                                <div class="select-gj8__title__current" id="select_divition_current">Seleccione una opción:</div>
+                                <div class="select-gj8__title__current" id="select_divition_current">País</div>
                                 <i class="material-icons select-gj8__title__arrow">expand_more</i>
                             </div>
                             <div class="select-gj8__content">
@@ -220,7 +220,7 @@
                 </div>
                 <div class="col radio-content locations" isActive>
                     <!-- Locations type-unique -->
-                    <div class="radio-content type-unique">
+                    <div class="radio-content type-unique-location">
                         <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
                         <div class="input-form user-data normal-my fadeInLeft">
                             <label class="txt-field icon-right">
@@ -230,6 +230,7 @@
                         </div>
                     </div>
                 </div>
+                
 
 
 
@@ -250,6 +251,23 @@
                     <label class="txt-field">
                         <textarea name="description" cols="30" rows="10"
                             placeholder="Especifica el Nombre para cada País por fila"></textarea>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Locations type-list-locations -->
+        <div class="radio-content locations">
+            <div class="radio-content type-list-location" notActive>
+                <h4 class="subtitle normal mt-2"><strong>Nombre</strong></h4>
+                <div class="categories-repeat">
+                    <h4 class="subtitle normal mt-4"><strong>Localizaciones repetidas (pulse para eliminar la
+                            repetida)</strong></h4>
+                    <div class="d-flex"></div>
+                </div>
+                <div class="input-form user-data mt-2 fadeInLeft">
+                    <label class="txt-field">
+                        <textarea name="description" cols="30" rows="10"
+                            placeholder="Especifica el Nombre para cada Localización por fila"></textarea>
                     </label>
                 </div>
             </div>
