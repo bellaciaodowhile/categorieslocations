@@ -218,16 +218,6 @@ function addFilters() {
             if (divitionSelect.textContent.toLowerCase().trim() != 'país') {
                 typeLocation = divitionSelect.textContent.toLowerCase().trim()
             }
-            // if (document.querySelector('.create-filters .typeLocation-1').classList.contains('option-active-gj8')) {
-            //     typeLocation = 'pais'
-            //     country = countryEl.value.trim()
-            //     divition = 'NULL'
-            // } else if (document.querySelector('.create-filters .typeLocation-2').classList.contains('option-active-gj8')) {
-            //     typeLocation = 'division'
-            //     country = countrySelect.textContent.trim();
-            //     divition = divitionSelect.textContent.trim();
-            //     mapCategories = [...document.querySelectorAll('.create-filters .chevrondown-gj8#locations-tree-main .chevrondown-radio-button')].filter(btn => btn.classList.contains('active'))
-            // }
             if (document.querySelector('.create-filters .switch-gj8').classList.contains('off')) {
                 statusFilter = 'inactive'
             } else {
@@ -244,31 +234,31 @@ function addFilters() {
             }
     
             let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
-            let url = BASE_URL + 'Filter/setLocation'
+            let url = BASE_URL + 'Filter/setLocations';
             req.open("POST", url, true);
-            function datosFormulario() {
+            function dataSetLocation() {
                 let datos = '';
                 datos += 'name=' + (Array.isArray(typeUploadFilter) ? JSON.stringify(typeUploadFilter) : typeUploadFilter);
                 datos += '&type=' + typeLocation;
                 datos += '&status=' + statusFilter;
                 datos += '&country=' + countrySelect.textContent.trim();
-                // datos += '&divition=' + divitionSelect.textContent.trim();
+                datos += '&divition=' + divitionSelect.textContent.trim();
                 datos += '&idParent=' + mapCategories;
                 return datos;
             }
-            console.log(datosFormulario())
+            console.log(dataSetLocation())
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            req.send(datosFormulario())
+            req.send(dataSetLocation())
             req.onreadystatechange = (e) => {
                 if (req.readyState == 4 && req.status == 200) {
-                    console.log(req.response)
+                    console.log(req.response) 
                     let data = JSON.parse(req.responseText)
                     if (data.status) {
                         createToast('success', data.msg)
                         valueUnique.value = ''
                         valueList.value = '';
-                        countrySelect.textContent = 'País'
-                        divitionSelect.textContent = 'España';
+                        countrySelect.textContent = countrySelect.textContent.trim()
+                        divitionSelect.textContent = divitionSelect.textContent.trim();
                         [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')].map(item => {
                             item.remove();
                         });

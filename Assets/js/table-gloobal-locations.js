@@ -617,24 +617,15 @@ function loadLocationsData(idParentCurrent = 'base') {
                 headerMenu: headerMenu,
                 headerFilter: "input"
             },
-            {
-                title: "País",
-                field: "pais",
-                hozAlign: "left",
-                minWidth: 120,
-                resizable: true,
-                headerMenu: headerMenu,
-                headerFilter: "input"
-            },
-            {
-                title: "División",
-                field: "division",
-                hozAlign: "left",
-                minWidth: 120,
-                resizable: true,
-                headerMenu: headerMenu,
-                headerFilter: "input"
-            },
+            // {
+            //     title: "País",
+            //     field: "pais",
+            //     hozAlign: "left",
+            //     minWidth: 120,
+            //     resizable: true,
+            //     headerMenu: headerMenu,
+            //     headerFilter: "input"
+            // },
             {
                 title: "Actions",
                 field: "actions",
@@ -873,8 +864,8 @@ loadLocationsData();
 
 
 // Desde aquí para abajo
-function loadLocationsTree() {
-    let urlAllLocationsParent = BASE_URL + 'Filter/getLocationParent'
+function loadLocationsTree(id = 'base', country = 'españa') {
+    let urlAllLocationsParent = BASE_URL + 'Filter/getLocationParent/' + JSON.stringify([id, country]) 
     let arrX = [];
     let locationsTree = document.querySelector('#locations-tree');
     locationsTree.innerHTML = '';

@@ -230,11 +230,6 @@
                         </div>
                     </div>
                 </div>
-                
-
-
-
-
             </div>
         </div>
 
@@ -293,7 +288,7 @@
                             <div class="chevrondown-head-gj8">
                                 <i class="material-icons">chevron_right</i>
                                 <span class="chevrondown-radio-button not active" item="base"></span>
-                                Todas las localizaciones
+                                <span class="current__country">ESPAÑA</span>
                             </div>
                             <div class="chevrondown-content-gj8 not" id="locations-tree"></div>
                         </div>
@@ -301,7 +296,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Active / Inactive -->
         <h4 class="subtitle normal mt-4"><strong>Seleccionar un estado para el filtro</strong></h4>

@@ -52,7 +52,7 @@ function selectsGj8() {
                 e.preventDefault();
                 console.log('Hola')
                 let name = select.classList.contains('select-gj8--edit') ? option.querySelector('.select-gj8__option__name__current').textContent.trim() : option.textContent.trim()
-                // Condicional en caso de usar el select 'edit'
+                // * Condicional en caso de usar el select 'edit'
                 if (!content.classList.contains('select-gj8__content--editing')) {
                     titleCurrent.textContent = name
                     content.classList.remove('select-gj8__content--active')
@@ -60,12 +60,19 @@ function selectsGj8() {
                     reloadOptions()
                     option.classList.add('select-gj8__option--active');
                 }
+                // * Select Country
                 if (select.classList.contains('select-country')) {
                     let countryCurrent = document.querySelector('.select-gj8__content__subtitle__current');
                     let idCountry = option.attributes[1].textContent;
                     countryCurrent.textContent = name
                     countryCurrent.setAttribute('item', idCountry)
                     getAdministrativeDivition(idCountry)
+
+                    console.log(name)
+                    let currentCountryLocationsTree = document.querySelector('.current__country')
+                    currentCountryLocationsTree.textContent = name.toUpperCase()
+                    loadLocationsTree('base', name);
+
                 }
             };
         });
@@ -369,7 +376,7 @@ function getAdministrativeDivition(id = '6') {
                 </div>`
             })
         } else {
-            document.querySelector('#select_divition_current').textContent = 'País'
+            document.querySelector('#select_divition_current').textContent = 'Seleccione una opción:'
             boxOptions.innerHTML = /*html*/ `<strong class="p-1 block">No existen registros para este país</strong>`
         }
         
