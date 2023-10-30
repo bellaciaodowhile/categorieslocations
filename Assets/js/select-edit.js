@@ -14,7 +14,7 @@ function getCountryList() {
         if (countrys.length > 0) {
             countrys.map(item => {
                 boxCountrys.innerHTML += /* html */`
-                <div class="select-gj8__option" item="${ item.id }">${ item.country }</div>`
+                <div class="select-gj8__option" item="${ item.idCountry }" location="${ item.idLocation }">${ item.country }</div>`
             })
         } else {
             boxCountrys.innerHTML += /*html*/ `<strong class="p-1 block">No existen registros países registrados</strong>`
@@ -64,14 +64,19 @@ function selectsGj8() {
                 if (select.classList.contains('select-country')) {
                     let countryCurrent = document.querySelector('.select-gj8__content__subtitle__current');
                     let idCountry = option.attributes[1].textContent;
+                    let idLocation = option.attributes[2].textContent;
                     countryCurrent.textContent = name
                     countryCurrent.setAttribute('item', idCountry)
                     getAdministrativeDivition(idCountry)
-
-                    console.log(name)
+                    // * Función para usar el arbol del país recurrente
+                    // console.log(name,':',idLocation)
+                    // console.log(option.attributes)
                     let currentCountryLocationsTree = document.querySelector('.current__country')
+                    let idParentCurrent = document.querySelector('#locations-tree-main .chevrondown-radio-button.not.active')
                     currentCountryLocationsTree.textContent = name.toUpperCase()
-                    loadLocationsTree('base', name);
+                    idParentCurrent.setAttribute('item', idLocation)
+                    loadLocationsTree(idLocation, name);
+
 
                 }
             };

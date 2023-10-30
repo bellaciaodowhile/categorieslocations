@@ -213,6 +213,7 @@
                 $arrData = array($name, $type, $status, $country, $divition, $idParent);
                 $reqInsert = $this->insert($q, $arrData);
                 $return = $reqInsert;
+                
             } else {
                 $return = "exist";
             }
@@ -257,10 +258,27 @@
         public function getCountrys() {
             $sql = "SELECT * FROM countrys";
             $res = $this->selectAll($sql);
+            $arrCountries = [];
+            foreach ($res as $row) {
+                $s = "SELECT * FROM localizaciones WHERE nombre = '{$row["country"]}'";
+                $sq = $this->selectAll($s);
+                $arrCountries[] = array(
+                    "idCountry" => $row["id"],
+                    "country" => $row["country"],
+                    "idLocation" => $sq[0]["id"]);
+            }
+            return $arrCountries;
+
+
+
             return $res;
         }
+        // * Acá tenemos que hacer un método que me traiga los países
+
+
+
         public function selectLocationParent($id, $country) {
-            $sql = "SELECT * FROM localizaciones WHERE idParent = '$id' AND pais = '$country'";
+            $sql = "SELECT * FROM localizaciones WHERE idParent = '$id'";
             $req = $this->selectAll($sql);
             $locations = array();
 	
@@ -295,7 +313,7 @@
             return $locations;
         }
         public function selectLocations($idParent) {
-            $sql = "SELECT * FROM localizaciones WHERE idParent = '$idParent'";
+            $sql = "SELECT * FROM localizaciones WHERE idParent = '$idParent' and tipo = 'pais'";
             $req = $this->selectAll($sql);
             $locations = array();
 	
@@ -333,6 +351,12 @@
                 $arrData = array($country, $status);
                 $reqInsert = $this->insert($q, $arrData);
                 $return = $reqInsert;
+
+                // * Insertar país como base en las localizaciones para tener la base lista para las demás localizaciones
+                $qCountry = "INSERT INTO localizaciones (nombre, tipo, estado, pais, division, idParent) VALUES (?,?,?,?,?,?)";
+                $arrDataCountry = array($country, 'pais', $status, 'NULL', 'pais', 'base');
+                $reqInsertCountry = $this->insert($qCountry, $arrDataCountry);
+
             } else {
                 $return = "exist";
             }

@@ -1,5 +1,6 @@
 function loadLocationsData(idParentCurrent = 'base') {
     let urlAllFilter = BASE_URL + 'Filter/getLocations/' + idParentCurrent
+    
     console.log(idParentCurrent)
 
     async function fetchFilterJSON() {

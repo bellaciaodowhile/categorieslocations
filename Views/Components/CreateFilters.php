@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="select-gj8__title">
-                                <div class="select-gj8__title__current" id="select_divition_current">País</div>
+                                <div class="select-gj8__title__current" id="select_divition_current">Seleccione una opción:</div>
                                 <i class="material-icons select-gj8__title__arrow">expand_more</i>
                             </div>
                             <div class="select-gj8__content">
