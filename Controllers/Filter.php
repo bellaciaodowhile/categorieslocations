@@ -61,6 +61,10 @@
             $arrData = $this->model->selectFilter($idParent);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
+        public function getFilterLocation($idParent) {
+            $arrData = $this->model->selectLocationParent($idParent);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
         public function getFilterParent() {
             $arrData = $this->model->selectFilterParent();
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
@@ -236,11 +240,19 @@
         }
         public function updateCountryLocation($data) {
             $data = json_decode($data, true);
-            $arrData = $this->model->updateCountryLocation($data[0], $data[1], $data[2], $data[3]);
+            $arrData = $this->model->updateCountryLocation($data[0], $data[1], $data[2], $data[3], $data[4]);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
         public function getLocationUpdate($id) {
             $arrData = $this->model->getLocationUpdate($id);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function updateLocations($data) {
+            $arrData = $this->model->updateLocations($data);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function treeLocations($id) {
+            $arrData = $this->model->treeLocations($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
     }

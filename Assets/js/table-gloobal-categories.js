@@ -342,7 +342,7 @@ function loadDataFilter(idParentCurrent = 'base') {
                                             breadcumbLinks.map(x => {
                                                 x.remove()
                                             })
-                                            console.log('Nombre Papa categoria: ',nameParent,'------- IdPapa: ',parent)
+                                            // console.log('Nombre Papa categoria: ',nameParent,'------- IdPapa: ',parent)
                                             addLinkBreadCumb(nameParent, parent)
                                         } else if (categoryParent == 'subcategoria') {
                                             console.log('Nombre Papa subcategoria: ',nameParent,'------- IdPapa: ',parent)
@@ -361,10 +361,7 @@ function loadDataFilter(idParentCurrent = 'base') {
                                                     if (item) {
                                                         // console.log(item)
                                                         addLinkBreadCumb(item.nombre, item.id)
-                                                        // No se tiene que ejecutar de nuevo el loadDataFilter() tu veras como hacer para hacer que todo salga bien
                                                         // console.log(tableCategories)
-
-                                                        
                                                     }
                                                 })
                                             })

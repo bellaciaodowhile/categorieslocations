@@ -292,7 +292,7 @@
 
 
 
-        public function selectLocationParent($id, $country) {
+        public function selectLocationParent($id) {
             $sql = "SELECT * FROM localizaciones WHERE idParent = '$id'";
             $req = $this->selectAll($sql);
             $locations = array();
@@ -341,7 +341,7 @@
                     'estado' => $row['estado'],
                     'pais' => $row['pais'],
                     'division' => $row['division'],
-                    'subcategory' => $this->subLocations($row['id'])
+                    'subLocation' => $this->subLocations($row['id'])
                 );
             }
             return $locations;
@@ -432,7 +432,7 @@
             }
 
         }
-        public function updateCountryLocation($idCountry, $idLocation, $status, $country) {
+        public function updateCountryLocation($idCountry, $idLocation, $status, $country, $countryCurrent) {
             $sql = "UPDATE countrys SET country = ? WHERE id = {$idCountry}";
             $arrData = array($country);
             $req = $this->update($sql, $arrData);
@@ -440,23 +440,49 @@
                 $s = "UPDATE localizaciones SET nombre = ?, estado = ? WHERE id = {$idLocation}";
                 $arr = array($country, $status);
                 $reqLocation = $this->update($s, $arr);
-                return $reqLocation;
+                $sCountrys = "UPDATE localizaciones SET pais = ? WHERE pais = '{$countryCurrent}' and idParent != 'base'";
+                $arrCountrys = array($country);
+                $reqCountrys = $this->update($sCountrys, $arrCountrys);
+                return $reqCountrys;
             }
         }
         public function getLocationUpdate($id) {
             $sql = "SELECT * FROM localizaciones WHERE id = {$id}";
             $req = $this->selectAll($sql);
-            // $arrData = array();
             if ($req != '') {
                 $s = "SELECT * FROM countrys WHERE country = '{$req[0]['pais']}'";
                 $q = $this->selectAll($s);
-                $req[0]["idCountry"] = $q[0]['id'];
+                $req[0]["idCountry"] = $q[0]["id"];
                 $x = "SELECT * FROM localizaciones WHERE nombre = '{$req[0]['pais']}'";
                 $y = $this->selectAll($x);
                 $req[0]["idLocation"] = $y[0]["id"];
             }
             return $req;
-
-
+        }
+        public function updateLocations($data) {
+            $data = json_decode($data);
+            $sql = "UPDATE localizaciones SET nombre = ?, estado = ?,  division = ?, idParent = ?, tipo = ? WHERE id = '{$data[0][0]}'";
+            $arrData = array($data[0][1], $data[0][2], $data[0][3], $data[0][4], $data[0][3]);
+            $req = $this->update($sql, $arrData);
+            return $req;
+        }
+        public function treeLocations($idParent) {
+            $ancestros = array();
+        
+            // Obtener el registro actual
+            $sql = "SELECT * FROM localizaciones WHERE id = '$idParent'";
+            $req = $this->select($sql);
+        
+            // Obtener los ancestros recursivamente
+            if ($req) {
+                if ($req['idParent'] != null) {
+                    $ancestros = $this->treeLocations($req['idParent']);
+                }
+            }
+        
+            // Agregar el registro actual a la lista de ancestros
+            $ancestros[] = $req;
+        
+            return $ancestros;
         }
     }

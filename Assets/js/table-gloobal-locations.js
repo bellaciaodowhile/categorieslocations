@@ -229,10 +229,9 @@ function loadLocationsData(idParentCurrent = 'base') {
             let containerPersonalData = modal.querySelector('.container-personal-data');
             let close = modal.querySelector('.close-modal-form');
             let subcategoriesHTML = modal.querySelector('.chevrondown-gj8 .chevrondown-content-gj8.not')
-            let name = modal.querySelector('.input-name');
-            let type = modal.querySelector('.input-type');
+            // let type = modal.querySelector('.input-type');
             let status = modal.querySelector('.switch-gj8');
-            let send = modal.querySelector('.send-update')
+            let sendUpdate = modal.querySelector('.send-update')
 
             updateFilterBtn.onclick = () => {
                 // Star update
@@ -263,7 +262,8 @@ function loadLocationsData(idParentCurrent = 'base') {
                                     res[0].idCountry, 
                                     res[0].idLocation, 
                                     (statusCountry.classList.contains('off') ? 'inactive' : 'active'),
-                                    inputCountry.value.trim()
+                                    inputCountry.value.trim(),
+                                    res[0].country
                                 ]
                                 console.log(dataNew)
                                 async function fetchFilterParentJSON() {
@@ -278,6 +278,7 @@ function loadLocationsData(idParentCurrent = 'base') {
                                         getCountryList()
                                         loadLocationsTree()
                                         locationsTable.updateData([{id: row._row.data.id, nombre: dataNew[3], estado: dataNew[2].toUpperCase()}])
+                                        modalCountry.style.display = 'none'
                                     } else {
                                         createToast('warning','Ha ocurrido un error')
                                     }
@@ -315,21 +316,27 @@ function loadLocationsData(idParentCurrent = 'base') {
 
                     fetchFilterParentJSON().then(res => {
                         // ! De aquí para abajo estamos trabajando 
-                        res = res[0]
                         console.log(res)
+                        res = res[0]
+                        let nameCurrentUpdate = modal.querySelector('.input-name')
                         let administrativeDivition = res.tipo
-                        let currentSelectDivitionUpdate = document.querySelector('#select__administrative__divition__update .select-gj8__title__current')
+                        let currentCountryTreeUpdate = modal.querySelector('#current__country__tree__update');
+                        let currentSelectDivitionUpdate = modal.querySelector('#select__administrative__divition__update .select-gj8__title__current');
+                        let inputName = res.nombre;
+                        let idUpdateLocation = res.id 
+                        let idParentCountry = res.idParent
+                        let statusCurrent = res.estado
                         getAdministrativeDivition(res.idCountry, 'normal')
-                        currentSelectDivitionUpdate.textContent = res.tipo
+                        currentSelectDivitionUpdate.textContent = administrativeDivition
+                        currentCountryTreeUpdate.innerHTML = `<strong>${ res.pais.toUpperCase() }</strong>`
+                        nameCurrentUpdate.focus()
+                        nameCurrentUpdate.value = res.nombre
+                        console.log('ID LOCATION: ', res.idLocation)
+                        modal.querySelector('.chevrondown-radio-button.not').setAttribute('item', res.idLocation)
+                        subcategoriesHTML.innerHTML = ''
 
+                        
 
-                        //  ! Hasta aquí estamos trabajando
-
-
-
-
-
-            
                         // async function fetchFilterUpdateJSON() {
                         //     const response = await fetch(BASE_URL + 'Filter/selectOnlyLocation/'+row._row.data.id);
                         //     const data = await response.json();
@@ -476,140 +483,229 @@ function loadLocationsData(idParentCurrent = 'base') {
             
                         // });
                         
-                    async function fetchFilterParentJSON() {
-                        const response = await fetch(BASE_URL + 'Filter/getLocations/' + res.idLocation);
-                        const data = await response.json();
-                        return data;
-                    }
+                        async function fetchFilterParentJSON() {
+                            const response = await fetch(BASE_URL + 'Filter/getLocations/' + res.idLocation);
+                            const data = await response.json();
+                            return data;
+                        }
 
-                    fetchFilterParentJSON().then(res => {
-                        console.log(res)
-                        res.map(item => {
-                            if (item.subcategory.length > 0) {
-                                subcategoriesHTML.innerHTML += /* html */ `
-                                <div class="chevrondown-item-gj8">
+                        fetchFilterParentJSON().then(res => {
+                            console.log(res)
+                            res.map(item => {
+                                if (item.subLocation.length > 0) {
+                                    subcategoriesHTML.innerHTML += /* html */ `
+                                    <div class="chevrondown-item-gj8">
+                                        <div class="chevrondown-head-gj8">
+                                            <i class="material-icons">chevron_right</i>
+                                            <span class="chevrondown-radio-button" item="${item.id}"></span>
+                                            <span class="chevrondown-editing"></span>
+                                            <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
+                                        </div>
+                                        <div class="chevrondown-content-gj8">
+                                            ${ viewSubCat(item.subLocation) }
+                                        </div>
+                                    </div>`
+                                } else {
+                                    subcategoriesHTML.innerHTML += /* html */ `
                                     <div class="chevrondown-head-gj8">
-                                        <i class="material-icons">chevron_right</i>
+                                        <div class="sp"></div>
                                         <span class="chevrondown-radio-button" item="${item.id}"></span>
                                         <span class="chevrondown-editing"></span>
                                         <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
-                                    </div>
-                                    <div class="chevrondown-content-gj8">
-                                        ${ viewSubCat(item.subcategory) }
-                                    </div>
-                                </div>`
-                            } else {
-                                subcategoriesHTML.innerHTML += /* html */ `
-                                <div class="chevrondown-head-gj8">
-                                    <div class="sp"></div>
-                                    <span class="chevrondown-radio-button" item="${item.id}"></span>
-                                    <span class="chevrondown-editing"></span>
-                                    <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
-                                </div>`
-                            }
-                        });
-                    })
-
-
-
-                        
-                        
-            
-                        let chevrondownHead = [...modal.querySelectorAll('.chevrondown-head-gj8 i')];
-                        let radioBtns = [...modal.querySelectorAll('.chevrondown-gj8 .chevrondown-radio-button')];
-                        let chevrondownContents = [...modal.querySelectorAll('.chevrondown-content-gj8')];
-            
-                        chevrondownHead.map((item, index) => {
-                            const content = item.parentElement.parentElement.children[1]
-                            const arrow = item
-                            if (content != undefined && arrow != undefined) {
-                                item.addEventListener('click', (e) => {
-                                    // console.log(content)
-                                    e.preventDefault();
-                                    if (content.classList.contains('not')) {
+                                    </div>`
+                                }
+                            });
+                            // 
+                            let chevrondownHead = [...modal.querySelectorAll('.chevrondown-head-gj8 i')];
+                            let radioBtns = [...modal.querySelectorAll('.chevrondown-gj8 .chevrondown-radio-button')];
+                            let chevrondownContents = [...modal.querySelectorAll('.chevrondown-content-gj8')];
+                            
+                            radioBtns.map(btn => {
+                                btn.classList.remove('active')
+                                console.log(btn.classList)
+                            })
+                            radioBtns.map(btn => {
+                                console.log(btn)
+                                console.log(btn.attributes[1].textContent, '==', idParentCountry)
+                                if (btn.attributes[1].textContent == idParentCountry) {
+                                    btn.classList.add('active')
+                                }
+                            })
+                            chevrondownHead.map((item, index) => {
+                                const content = item.parentElement.parentElement.children[1]
+                                const arrow = item
+                                if (content != undefined && arrow != undefined) {
+                                    item.addEventListener('click', (e) => {
                                         // console.log(content)
-                                        content.style.display = 'block'
-                                        arrow.style.transform = 'rotate(90deg)'
-                                    } else {
-                                        if (content.style.display == '' || content.style.display == 'none') {
+                                        e.preventDefault();
+                                        if (content.classList.contains('not')) {
+                                            // console.log(content)
                                             content.style.display = 'block'
                                             arrow.style.transform = 'rotate(90deg)'
                                         } else {
-                                            content.style.display = 'none'
-                                            arrow.style.transform = 'rotate(0deg)'
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                        radioBtns.map(btn => {
-                            btn.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                let content = btn.parentElement.parentElement.children[1]
-                                let text = btn.parentElement
-                                let arrow = btn.parentElement.querySelector('i')
-            
-                                if (arrow != null) {
-                                    console.log(btn.attributes[1].nodeValue)
-                                    if (btn.attributes[1].nodeValue == 'base') {
-                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
-                                    } else {
-                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
-                                    }
-                                    radioBtns.map(_btn => {
-                                        if (_btn.classList.contains('active')) {
-                                            // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
-                                            // console.log(btn.closest('.chevrondown-item-gj8'))
-                                            _btn.classList.remove('active')
-            
-                                            if (_btn.classList.contains('not')) {
-                                                btn.classList.add('active')
+                                            if (content.style.display == '' || content.style.display == 'none') {
                                                 content.style.display = 'block'
                                                 arrow.style.transform = 'rotate(90deg)'
                                             } else {
-                                                btn.classList.add('active')
-                                                content.style.display = 'block'
-                                                arrow.style.transform = 'rotate(90deg)'
+                                                content.style.display = 'none'
+                                                arrow.style.transform = 'rotate(0deg)'
                                             }
                                         }
-                                    })
-                                } else {
-                                    if (btn.attributes[1].nodeValue == 'base') {
-                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
-                                    } else {
-                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
-                                    }
-                                    radioBtns.map(_btn => {
-                                        if (_btn.classList.contains('active')) {
-                                            // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
-            
-                                            if (_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').contains(e.target)) {
-                                                // console.log('Estoy dentro de ti content')
-                                            } else {
-                                                _btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').style.display = 'none'
-                                                _btn.closest('.chevrondown-item-gj8').querySelector('i.material-icons').style.transform = 'rotate(0deg)'
-                                                // console.log('Fuera del content')
-                                            }
-                                            _btn.classList.remove('active')
-                                            btn.classList.add('active')
-                                        }
-                                    })
+                                    });
                                 }
-            
-            
-            
-            
                             });
-                        });
-                        chevrondownContents.map(content => {
-                            content.style.display = 'block'
-                        });
-                        [...modal.querySelectorAll('.chevrondown-gj8 i')].map(i => {
-                            i.style.transform = 'rotate(90deg)'
-                        });
-                        //  Hasta aquí
-            
-            
+                            radioBtns.map(btn => {
+                                btn.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    let content = btn.parentElement.parentElement.children[1]
+                                    let text = btn.parentElement
+                                    let arrow = btn.parentElement.querySelector('i')
+                
+                                    if (arrow != null) {
+                                        console.log(btn.attributes[1].nodeValue)
+                                        radioBtns.map(_btn => {
+                                            if (_btn.classList.contains('active')) {
+                                                // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
+                                                // console.log(btn.closest('.chevrondown-item-gj8'))
+                                                _btn.classList.remove('active')
+                
+                                                if (_btn.classList.contains('not')) {
+                                                    btn.classList.add('active')
+                                                    content.style.display = 'block'
+                                                    arrow.style.transform = 'rotate(90deg)'
+                                                } else {
+                                                    btn.classList.add('active')
+                                                    content.style.display = 'block'
+                                                    arrow.style.transform = 'rotate(90deg)'
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        console.log(btn.attributes[1].nodeValue)
+                                        radioBtns.map(_btn => {
+                                            if (_btn.classList.contains('active')) {
+                                                // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
+                
+                                                if (_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').contains(e.target)) {
+                                                    // console.log('Estoy dentro de ti content')
+                                                } else {
+                                                    _btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').style.display = 'none'
+                                                    _btn.closest('.chevrondown-item-gj8').querySelector('i.material-icons').style.transform = 'rotate(0deg)'
+                                                    // console.log('Fuera del content')
+                                                }
+                                                _btn.classList.remove('active')
+                                                btn.classList.add('active')
+                                            }
+                                        })
+                                    }
+                
+                
+                
+                
+                                });
+                            });
+                            chevrondownContents.map(content => {
+                                content.style.display = 'block'
+                            });
+                            })
+                            function viewSubCat(categories) {
+                                let html = ''
+                                categories.map(x => {
+                                    if (x.subLocation.length > 0) {
+                                        html += /* html */ `
+                                    <div class="chevrondown-item-gj8">
+                                        <div class="chevrondown-head-gj8">
+                                            <i class="material-icons">chevron_right</i>
+                                            <span class="chevrondown-radio-button" item="${x.id}"></span>
+                                            <span class="chevrondown-editing"></span>
+                                            <span class="chevrondown-name">${ x.nombre }</span>
+                                        </div>
+                                        `
+                                        html += /* html */ `
+                                        <div class="chevrondown-content-gj8">
+                                            ${ viewSubCat(x.subLocation) }
+                                        </div>
+                                    </div>`
+                                    } else {
+                                        html += /* html */ `
+                                    <div class="chevrondown-head-gj8">
+                                        <div class="sp"></div>
+                                        <span class="chevrondown-radio-button" item="${x.id}"></span>
+                                        <span class="chevrondown-editing"></span>
+                                        <span class="chevrondown-name">${ x.nombre }</span>
+                                    </div>`
+                                    }
+                                })
+                                return html;
+                            }
+                            [...modal.querySelectorAll('.chevrondown-gj8 i')].map(i => {
+                                i.style.transform = 'rotate(90deg)'
+                            });
+
+                            // * Editando divisiones
+                            if (statusCurrent == 'active') {
+                                status.classList.remove('off')
+                            } else {
+                                status.classList.add('off')
+                            }
+                            sendUpdate.onclick = (e) => {
+                                e.preventDefault();
+                                let idParentCurrentUpdate; 
+                                let dataUpdate;
+                                setTimeout(() => {
+                                    idParentCurrentUpdate = [...modal.querySelectorAll('.chevrondown-gj8 .chevrondown-radio-button')].filter(x => x.classList.contains('active'))[0].attributes[1].textContent
+                                    console.log(status)
+                                    dataUpdate = [
+                                        idUpdateLocation, // * Id
+                                        nameCurrentUpdate.value, // * Nombre
+                                        status.classList.contains('off') ? 'inactive' : 'active', // * Estado
+                                        currentSelectDivitionUpdate.textContent, // * División
+                                        idParentCurrentUpdate // * IdParent
+                                    ];
+                                    async function updateLocation() {
+                                        const res = await fetch(BASE_URL + 'Filter/updateLocations/'+ JSON.stringify([dataUpdate]))
+                                        const data = await res.json();
+                                        return data;
+                                    }
+                                    updateLocation().then(res => {
+                                        console.log(res)
+                                        if (res) {
+                                            createToast('success', '¡Actualización exitosa!')
+                                            modal.style.display = 'none'
+                                            const breadcumbLinks = [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')] 
+                                            breadcumbLinks.map(x => {
+                                                x.remove()
+                                            });
+                                            console.log('Nombre Papa: ',nameCurrentUpdate.value,'------- IdPapa: ',idParentCurrentUpdate)
+                                            reloadTableFilter(idParentCurrentUpdate) // * Reload Table - New Data
+                                            async function fetchTreeLocations() {
+                                                const res = await fetch(BASE_URL + 'Filter/treeLocations/' + idParentCurrentUpdate)
+                                                const req = await res.json();
+                                                return req;
+                                            }
+                                            fetchTreeLocations().then(resTree => {
+                                                console.log(resTree)
+                                                resTree.map(option => {
+                                                    if (option) {
+                                                        addLinkBreadCumbLocations(option.nombre, option.id)
+                                                    }
+                                                })
+                                            })
+
+
+
+
+                                            // addLinkBreadCumbLocations(nameParent, parent)
+                                        } else {
+                                            createToast('warning','Ha ocurrido un error al actualizar. . .')
+                                        }
+                                    })
+                                    console.log('Comenzando actualización')
+                                }, 200);
+                            }
+
+                        // * Fin de edición
+                        //  ! Hasta aquí estamos trabajando
             
                     });
                     
@@ -624,71 +720,20 @@ function loadLocationsData(idParentCurrent = 'base') {
                         }
                     });
             
-                    function viewSubCat(categories) {
-                        let html = ''
-                        categories.map(x => {
-                            if (x.subLocation.length > 0) {
-                                html += /* html */ `
-                            <div class="chevrondown-item-gj8">
-                                <div class="chevrondown-head-gj8">
-                                    <i class="material-icons">chevron_right</i>
-                                    <span class="chevrondown-radio-button" item="${x.id}"></span>
-                                    <span class="chevrondown-editing"></span>
-                                    <span class="chevrondown-name">${ x.nombre }</span>
-                                </div>
-                                `
-                                html += /* html */ `
-                                <div class="chevrondown-content-gj8">
-                                    ${ viewSubCat(x.subLocation) }
-                                </div>
-                            </div>`
-                            } else {
-                                html += /* html */ `
-                            <div class="chevrondown-head-gj8">
-                                <div class="sp"></div>
-                                <span class="chevrondown-radio-button" item="${x.id}"></span>
-                                <span class="chevrondown-editing"></span>
-                                <span class="chevrondown-name">${ x.nombre }</span>
-                            </div>`
-                            }
-                        })
-                        return html;
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    
                 }
-
-
-
-
-
-
-
                 
                 // end update
             }
         
-            if (row._row.data.subcategory.length > 0) {
+            if (row._row.data.subLocation.length > 0) {
                 searchSubcategories.style.display = 'block'
                 searchSubcategories.onclick = () => {
-                    viewSubCatJson(row._row.data.subcategory[0].idParent)
+                    viewSubCatJson(row._row.data.subLocation[0].idParent)
                     let link = row._row.data.nombre
                     let id = row._row.data.id
-                    let subcategory = row._row.data.subcategory
-                    addLinkBreadCumbLocations(link, id, subcategory)
+                    let subLocation = row._row.data.subLocation
+                    addLinkBreadCumbLocations(link, id, subLocation)
                 }
             } else {
                 searchSubcategories.style.display = 'none'
@@ -795,14 +840,17 @@ function loadLocationsData(idParentCurrent = 'base') {
         }
         function reloadTableFilter(id) {
             async function fetchFilterJSON() {
-                const response = await fetch(BASE_URL + 'Filter/getFilter/' + id);
-                const categories = await response.json();
-                return categories;
+                const response = await fetch(BASE_URL + 'Filter/getFilterLocation/' + id);
+                const data = await response.json();
+                return data;
             }
         
             fetchFilterJSON().then(data => {
+                // console.log(data)
                 data.map((x, index) => {
                     x.index = index + 1
+                    x.tipo = x.tipo.toUpperCase()
+                    x.estado = x.estado.toUpperCase()
                 });
                 // console.log(data)
                 locationsTable.replaceData(data)
@@ -853,6 +901,8 @@ function loadLocationsData(idParentCurrent = 'base') {
                     fetchFilterJSON().then(data => {
                         data.map((x, index) => {
                             x.index = index + 1
+                            x.tipo = x.tipo.toUpperCase()
+                            x.estado = x.estado.toUpperCase()
                         });
                         console.log(data)
                         locationsTable.replaceData(data)

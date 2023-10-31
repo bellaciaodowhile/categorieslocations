@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2023 a las 22:54:15
+-- Tiempo de generación: 31-10-2023 a las 23:21:27
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -46,7 +46,7 @@ INSERT INTO `categorias` (`id`, `nombre`, `tipo`, `estado`, `idParent`) VALUES
 (103, 'Logita', 'subcategoria', 'inactive', '136'),
 (104, 'Bien y tu?', 'subcategoria', 'active', '106'),
 (106, 'Yopal', 'categoria', 'active', 'base'),
-(107, 'HIja de Inactivoa', 'subcategoria', 'active', '102'),
+(107, 'HIja de Inactivoa', 'subcategoria', 'inactive', '106'),
 (112, 'Prado del Este', 'categoria', 'active', 'base'),
 (114, 'Central bolívar', 'categoria', 'active', 'base'),
 (115, 'Nueva  república', 'categoria', 'active', 'base'),
@@ -62,7 +62,7 @@ INSERT INTO `categorias` (`id`, `nombre`, `tipo`, `estado`, `idParent`) VALUES
 (125, 'Subcategorias', 'subcategoria', 'active', '108'),
 (126, 'Madre de Logi ahora', 'subcategoria', 'active', '100'),
 (127, 'vass', 'subcategoria', 'active', '105'),
-(128, 'Pedrito', 'subcategoria', 'active', '100'),
+(128, 'Pedrito', 'subcategoria', 'active', '102'),
 (129, 'queso', 'subcategoria', 'active', '105'),
 (130, 'v.0.1.2', 'subcategoria', 'active', '100'),
 (131, 'Teclado', 'subcategoria', 'active', '100'),
@@ -89,27 +89,9 @@ CREATE TABLE `countrys` (
 --
 
 INSERT INTO `countrys` (`id`, `country`, `statusCountry`) VALUES
-(1, 'Venezuela', ''),
-(2, 'Francia', 'inactive'),
-(3, 'Eslovenia', 'inactive'),
-(4, 'Eslovaquia', 'inactive'),
-(5, 'Rusia', 'inactive'),
-(6, 'España', 'inactive'),
-(7, 'Ucrania', ''),
-(8, 'Paissolo', ''),
-(9, 'PaisUnico', ''),
-(10, 'Necesito', ''),
-(11, 'fdsa', ''),
-(12, 'Activosolo', ''),
-(13, 'paisolosa', 'active'),
-(14, 'lista', 'active'),
-(15, 'de', 'active'),
-(16, 'paises', 'active'),
-(17, 'mia', 'active'),
-(18, 'Vuelo', 'active'),
-(19, 'Adele', 'inactive'),
-(20, 'Activo', 'active'),
-(21, 'Skyfall', 'active');
+(24, 'Venezuela', 'active'),
+(26, 'España', 'active'),
+(31, 'Colombia', 'active');
 
 -- --------------------------------------------------------
 
@@ -129,14 +111,12 @@ CREATE TABLE `divisiones` (
 --
 
 INSERT INTO `divisiones` (`id`, `division`, `idCountry`, `order`) VALUES
-(8, 'Estado', '1', '2'),
-(9, 'Municipio', '1', '3'),
-(10, 'Region', '1', '1'),
-(12, 'Barrio', '1', '4'),
-(15, 'queso', '1', '5'),
-(17, 'jola', '1', '6'),
-(18, 'Comunidad Autónoma', '6', '1'),
-(19, 'Provincia', '6', '3');
+(21, 'Region', '24', '1'),
+(22, 'Estado', '24', '2'),
+(23, 'municipio', '24', '3'),
+(24, 'Barrio', '24', '4'),
+(25, 'Comunidad Autónoma', '26', '1'),
+(26, 'debajo', '26', '2');
 
 -- --------------------------------------------------------
 
@@ -171,25 +151,30 @@ CREATE TABLE `localizaciones` (
 --
 
 INSERT INTO `localizaciones` (`id`, `nombre`, `tipo`, `estado`, `pais`, `division`, `idParent`) VALUES
-(1, 'Bratislava', 'pais', 'active', 'Eslovaquia', 'NULL', 'base'),
-(2, 'Liubliana', 'pais', 'active', 'Eslovenia', 'NULL', 'base'),
-(5, 'una', 'pais', 'active', 'France', 'NULL', 'base'),
-(6, 'prueba', 'pais', 'active', 'France', 'NULL', 'base'),
-(7, 'de', 'pais', 'active', 'France', 'NULL', 'base'),
-(9, 'lista', 'pais', 'active', 'France', 'NULL', 'base'),
-(12, 'Berlín', 'pais', 'active', 'Rusia', 'NULL', 'base'),
-(13, 'Notebook', 'division', 'active', 'españa', 'españa', '6'),
-(14, 'Mac', 'division', 'active', 'españa', 'Eslovaquia', '13'),
-(15, 'Mac Pro', 'division', 'active', 'españa', 'Eslovaquia', '13'),
-(16, 'Local', 'division', 'inactive', 'españa', 'Eslovaquia', '2'),
-(17, 'Local Andorra', 'division', 'inactive', 'Eslovenia', 'Andorra', '9'),
-(18, 'Local Venezuela', 'pais', 'inactive', 'Venezuela', 'NULL', 'base'),
-(19, 'Creeré', 'pais', 'active', 'españa', '', 'base'),
-(20, 'le', 'pais', 'active', 'españa', '', 'base'),
-(21, 'estoy', 'pais', 'active', 'españa', '', 'base'),
-(22, 'enseñando', 'pais', 'active', 'españa', '', 'base'),
-(23, 'a', 'pais', 'active', 'españa', '', 'base'),
-(24, 'sobrevivir', 'pais', 'active', 'españa', '', 'base');
+(31, 'Venezuela', 'pais', 'active', 'NULL', 'pais', 'base'),
+(33, 'España', 'pais', 'active', 'NULL', 'pais', 'base'),
+(34, 'Bolívar', 'estado', 'active', 'Venezuela', 'estado', '31'),
+(35, 'Angostura del orinoco', 'municipio', 'active', 'Venezuela', 'municipio', '34'),
+(36, 'Heres', 'municipio', 'active', 'Venezuela', 'municipio', '34'),
+(37, 'Laritica', 'Barrio', 'inactive', 'Venezuela', 'Barrio', '43'),
+(38, 'Cedeño', 'municipio', 'active', 'Venezuela', 'municipio', '34'),
+(39, 'Aragua', 'estado', 'active', 'Venezuela', 'Estado', '31'),
+(40, 'Lara', 'Estado', 'inactive', 'Venezuela', 'Estado', '31'),
+(42, 'Barcelona', 'estado', 'active', 'Venezuela', 'Estado', '31'),
+(43, 'Larita', 'Barrio', 'inactive', 'Venezuela', 'Barrio', '46'),
+(45, 'Valencia', 'estado', 'active', 'Venezuela', 'Estado', '31'),
+(46, 'Valenciano', 'municipio', 'active', 'Venezuela', 'municipio', '45'),
+(47, 'Carabobo', 'estado', 'active', 'Venezuela', 'Estado', '31'),
+(51, 'Sucre', 'estado', 'active', 'Venezuela', 'Estado', '31'),
+(53, 'Petarea', 'barrio', 'active', 'Venezuela', 'Barrio', '52'),
+(58, 'Colombia', 'pais', 'active', 'NULL', 'pais', 'base'),
+(59, 'Cataluña', 'comunidad autónoma', 'active', 'España', 'Comunidad Autónoma', '33'),
+(60, 'Uno', 'comunidad autónoma', 'active', 'España', 'Comunidad Autónoma', '33'),
+(61, 'dos', 'comunidad autónoma', 'active', 'España', 'Comunidad Autónoma', '33'),
+(62, 'tres', 'comunidad autónoma', 'active', 'España', 'Comunidad Autónoma', '33'),
+(63, 'Dejabo de', 'debajo', 'inactive', 'España', 'debajo', '60'),
+(64, 'Yo no se mañana', 'debajo', 'inactive', 'España', 'debajo', '65'),
+(65, 'Uhhh', 'debajo', 'inactive', 'España', 'debajo', '60');
 
 --
 -- Índices para tablas volcadas
@@ -239,13 +224,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `countrys`
 --
 ALTER TABLE `countrys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `divisiones`
 --
 ALTER TABLE `divisiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `levels`
@@ -257,7 +242,7 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT de la tabla `localizaciones`
 --
 ALTER TABLE `localizaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

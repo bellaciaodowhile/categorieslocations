@@ -39,7 +39,7 @@
                             <div class="chevrondown-head-gj8">
                                 <i class="material-icons">chevron_right</i>
                                 <span class="chevrondown-radio-button not" item="base"></span>
-                                <span class="chevrondown-name">Todas las categorías</span>
+                                <span class="chevrondown-name" id="current__country__tree__update">Todas las categorías</span>
                             </div>
                             <div class="chevrondown-content-gj8 not"></div>
                         </div>
