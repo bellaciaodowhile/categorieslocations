@@ -28,3 +28,4 @@
 </div>
 <?php require 'Views/Components/UpdateCategorie.php'; ?>
 <?php require 'Views/Components/UpdateLocation.php'; ?>
+<?php require 'Views/Components/UpdateLocationCountry.php'; ?>

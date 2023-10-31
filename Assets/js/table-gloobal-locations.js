@@ -1,7 +1,7 @@
 function loadLocationsData(idParentCurrent = 'base') {
     let urlAllFilter = BASE_URL + 'Filter/getLocations/' + idParentCurrent
     
-    console.log(idParentCurrent)
+    console.log('Actualizando tabla . . .')
 
     async function fetchFilterJSON() {
         const response = await fetch(urlAllFilter);
@@ -11,8 +11,10 @@ function loadLocationsData(idParentCurrent = 'base') {
 
     fetchFilterJSON().then(tableLocations => {
         tableLocations.map((x, index) => {
-            // console.log(x)
+            console.log(x)
             x.index = index + 1
+            x.tipo = x.tipo.toUpperCase()
+            x.estado = x.estado.toUpperCase()
         });
         console.log('Debajo está ')
         console.log(tableLocations)
@@ -213,6 +215,16 @@ function loadLocationsData(idParentCurrent = 'base') {
                     deleteFilter(row._row.data.id, row);
                 }
             }
+
+            // * Modal Form Country
+            // update-location-form-country
+            let modalCountry = document.querySelector('.update-location-form-country');
+            let containerPersonalDataCountry = modalCountry.querySelector('.container-personal-data');
+            let closeModalCountry = modalCountry.querySelector('.close-modal-form');
+            let inputCountry = modalCountry.querySelector('.input-country')
+            let statusCountry = modalCountry.querySelector('.switch-gj8');
+            let sendCountry = modalCountry.querySelector('.send-update')
+            // * Modal Form Administrative Divition
             let modal = document.querySelector('.update-location-form');
             let containerPersonalData = modal.querySelector('.container-personal-data');
             let close = modal.querySelector('.close-modal-form');
@@ -221,333 +233,451 @@ function loadLocationsData(idParentCurrent = 'base') {
             let type = modal.querySelector('.input-type');
             let status = modal.querySelector('.switch-gj8');
             let send = modal.querySelector('.send-update')
+
             updateFilterBtn.onclick = () => {
                 // Star update
                 // alert('Actualizando '+row._row.data.nombre)
-                console.log('Actualizando. . .')
-                subcategoriesHTML.innerHTML = ''
-                async function fetchFilterParentJSON() {
-                    const response = await fetch(BASE_URL + 'Filter/getLocationParent');
-                    const categories = await response.json();
-                    return categories;
-                }
                 
-                fetchFilterParentJSON().then(tree => {
-        
-                    async function fetchFilterUpdateJSON() {
-                        const response = await fetch(BASE_URL + 'Filter/selectOnlyLocation/'+row._row.data.id);
-                        const categories = await response.json();
-                        return categories;
-                    }
-                    
-                    fetchFilterUpdateJSON().then(dataUpdate => {
-                        // console.log(dataUpdate)
-                        name.value = dataUpdate.nombre
-                        name.focus()
-                        if (dataUpdate.estado == 'active') {
-                            status.classList.remove('off')
-                        } else {
-                            status.classList.add('off')
-                        } 
-                        type.textContent =  'Se guardará como: ' + dataUpdate.tipo
-                        type.setAttribute('item', dataUpdate.idParent)
-                        type.setAttribute('x', dataUpdate.id)
-        
-                        let radiosMapCategories = [...modal.querySelectorAll('.chevrondown-radio-button')]
-                        let radioCurrent = radiosMapCategories.filter(x => x.attributes[1].nodeValue == dataUpdate.idParent)
-        
-                        console.log(radioCurrent)
-                        
-        
-        
-        
-        
-                        let nameMapCategories = [...modal.querySelectorAll('.chevrondown-name')]
-                        let nameCurrent = nameMapCategories.filter( x => x.textContent.trim() == dataUpdate.nombre)
-                        nameCurrent[0].parentElement.querySelector('.chevrondown-radio-button').remove()
-                        nameCurrent[0].style.fontWeight = '700'
-                        nameCurrent[0].parentElement.querySelector('.chevrondowm-editing')
-                        nameCurrent[0].parentElement.querySelector('.chevrondown-editing').textContent = 'Editando:'
-                        let previewParent = modal.querySelector('.preview-parent .preview-name')
-                        let previewChild = modal.querySelector('.preview-child .preview-name')
-                        let boxScroll = modal.querySelector('.main-chevrondown-gj8 .chevrondown-gj8')
-                        previewParent.textContent = radioCurrent[0].parentElement.querySelector('.chevrondown-name').textContent.trim()
-                        previewChild.textContent = nameCurrent[0].textContent.trim();
-                        [...modal.querySelectorAll('.chevrondown-radio-button')].map(x => x.classList.remove('active'))
-                        radioCurrent[0].classList.add('active')
-                        // console.log(nameParentCategorieCurrent.getBoundingClientRect().top)
-                        // console.log(dataUpdate.idParent)
-                        // boxScroll.offsetTop = '100px'
-        
-                        send.onclick = (e) => {
-                            e.preventDefault();
-                            // console.log('Datos enviados')
-                            // console.log(modal)
-                            // modal.style.display = 'none';
-                            let pointCategories = [...modal.querySelectorAll('.chevrondown-radio-button')]
-                            let idParent = pointCategories.filter(x => x.classList.contains('active'))
-                            let parent = idParent[0].attributes[1].nodeValue
-                            let nameParent = idParent[0].parentElement.querySelector('.chevrondown-name').textContent.trim()
-                            let id = type.attributes.x.textContent
-                            let categoryMark = idParent[0].parentElement.querySelector('.chevrondown-name').nextElementSibling
-        
-                            let categoryParent;
-                            if (parent == 'base' && categoryMark == null) {
-                                categoryParent = 'base'
-                            } else if (parent != 'base' && categoryMark != null) {
-                                categoryParent = 'categoria'
-                            } else if (parent != 'base' && categoryMark == null) {
-                                categoryParent = 'subcategoria'
-                            }
-        
-                            if (parent != 'base') {
-                                typeCategorie = 'subcategoria'
-                            } else {
-                                typeCategorie = 'categoria'
-                            }
-        
-                            let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
-                            let url = BASE_URL + 'Filter/updateFilter/' + id
-                            
-                            req.open("POST", url, true);
-                            function datosFormulario() {
-                                let datos = '';
-                                datos += 'nombre=' + name.value;
-                                datos += '&tipo=' + typeCategorie;
-                                datos += '&estado=' + (status.classList.contains('off') ? 'inactive' : 'active');
-                                datos += '&pais=' + parent;
-                                datos += '&division=' + parent;
-                                datos += '&idParent=' + parent;
-                                return datos;
-                            }
-                            console.log(datosFormulario())
-                            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                            req.send(datosFormulario())
-                            req.onreadystatechange = (e) => {
-                                if (req.readyState == 4 && req.status == 200) {
-                                    console.log(req.response)
-                                    req.response = ''
-                                    // console.log('New Update')
-                                    let data = JSON.parse(req.responseText)
-                                    
-                                    if (data.status) {
-                                        createToast('success', data.msg)
-                                        modal.style.display = 'none';
-                                        // loadLocationsData(parent);
-                                        loadTreeFilter();
-                                        reloadTableFilter(parent);
-                                        console.log(categoryParent)
-                                        const breadcumbLinks = [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')] 
-        
-                                        if (categoryParent == 'categoria') {
-                                            breadcumbLinks.map(x => {
-                                                x.remove()
-                                            })
-                                            console.log('Nombre Papa categoria: ',nameParent,'------- IdPapa: ',parent)
-                                            addLinkBreadCumbLocations(nameParent, parent)
-                                        } else if (categoryParent == 'subcategoria') {
-                                            console.log('Nombre Papa subcategoria: ',nameParent,'------- IdPapa: ',parent)
-                                            breadcumbLinks.map(x => {
-                                                x.remove()
-                                            })
-                                            async function fetchFilterJSON() {
-                                                const response = await fetch(BASE_URL + 'Filter/tree/' + parent);
-                                                const categories = await response.json();
-                                                return categories;
-                                            }
-                                        
-                                            fetchFilterJSON().then(x => {
-                                                // console.log(x)
-                                                x.map(item => {
-                                                    if (item) {
-                                                        // console.log(item)
-                                                        addLinkBreadCumbLocations(item.nombre, item.id)
-                                                        // No se tiene que ejecutar de nuevo el loadLocationsData() tu veras como hacer para hacer que todo salga bien
-                                                        // console.log(locationsTable)
+                if (row._row.data.tipo.toLowerCase() == 'pais') {
 
-                                                        
-                                                    }
-                                                })
-                                            })
-                                        }
-        
-                                    } else {
-                                        // createToast('warning', data.msg)
-                                    }
+                    // * Editando el país
+                    console.log(`Actualizando . . . ${row._row.data.tipo}:${row._row.data.nombre}`,row._row.data.id)
+                    async function fetchFilterParentJSON() {
+                        const response = await fetch(BASE_URL + 'Filter/getOnlyCountry/' + row._row.data.nombre);
+                        const data = await response.json();
+                        return data;
+                    }
+                    fetchFilterParentJSON().then(res => {
+                        console.log(res)
+                        inputCountry.value = res[0].country
+                        inputCountry.focus()
+                        res[0].locationStatus == 'active' ? statusCountry.classList.remove('off') : statusCountry.classList.add('off')
+                        // * Update country
+                        sendCountry.onclick = (e) => {
+                            e.preventDefault();
+    
+                            if (inputCountry.value == '') {
+                                createToast('warning', 'Debe llenar todos los campos')
+                            } else {
+                                let dataNew = [
+                                    res[0].idCountry, 
+                                    res[0].idLocation, 
+                                    (statusCountry.classList.contains('off') ? 'inactive' : 'active'),
+                                    inputCountry.value.trim()
+                                ]
+                                console.log(dataNew)
+                                async function fetchFilterParentJSON() {
+                                    const response = await fetch(BASE_URL + 'Filter/updateCountryLocation/' + JSON.stringify(dataNew));
+                                    const data = await response.json();
+                                    return data;
                                 }
+                                fetchFilterParentJSON().then(res => {
+                                    console.log(res)
+                                    if (res) {
+                                        createToast('success','¡Actualización exitosa!')
+                                        getCountryList()
+                                        loadLocationsTree()
+                                        locationsTable.updateData([{id: row._row.data.id, nombre: dataNew[3], estado: dataNew[2].toUpperCase()}])
+                                    } else {
+                                        createToast('warning','Ha ocurrido un error')
+                                    }
+                                    
+                                })
                             }
+    
                         }
-        
-        
-        
-        
-                    });
+                    })
                     
-                    tree.map(item => {
-                        if (item.subLocation.length > 0) {
-                            subcategoriesHTML.innerHTML += /* html */ `
-                            <div class="chevrondown-item-gj8">
+                    modalCountry.style.display = 'flex'
+                    closeModalCountry.addEventListener('click', (e) => {
+                        modalCountry.style.display = 'none'
+                    })
+                    containerPersonalData.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // console.log('message')
+                        if (!modalCountry.querySelector('.personal-data').contains(e.target)) {
+                            modalCountry.style.display = 'none'
+                        }
+                    });
+                } else {
+                    // * Editando divisiones administrativas
+                    // select__administrative__divition__update
+                    console.log(`Actualizando . . . ${row._row.data.tipo}:${row._row.data.nombre}`, row._row.data.id)
+                    // subcategoriesHTML.innerHTML = ''
+
+
+                    
+                    async function fetchFilterParentJSON() {
+                        const response = await fetch(BASE_URL + 'Filter/getLocationUpdate/' + row._row.data.id);
+                        const data = await response.json();
+                        return data;
+                    }
+
+                    fetchFilterParentJSON().then(res => {
+                        // ! De aquí para abajo estamos trabajando 
+                        res = res[0]
+                        console.log(res)
+                        let administrativeDivition = res.tipo
+                        let currentSelectDivitionUpdate = document.querySelector('#select__administrative__divition__update .select-gj8__title__current')
+                        getAdministrativeDivition(res.idCountry, 'normal')
+                        currentSelectDivitionUpdate.textContent = res.tipo
+
+
+                        //  ! Hasta aquí estamos trabajando
+
+
+
+
+
+            
+                        // async function fetchFilterUpdateJSON() {
+                        //     const response = await fetch(BASE_URL + 'Filter/selectOnlyLocation/'+row._row.data.id);
+                        //     const data = await response.json();
+                        //     return data;
+                        // }
+                        
+                        // fetchFilterUpdateJSON().then(dataUpdate => {
+                        //     // console.log(dataUpdate)
+                        //     name.value = dataUpdate.nombre
+                        //     name.focus()
+                            
+                        //     if (dataUpdate.estado == 'active') {
+                        //         status.classList.remove('off')
+                        //     } else {
+                        //         status.classList.add('off')
+                        //     } 
+                        //     type.textContent =  'Se guardará como: ' + dataUpdate.tipo
+                        //     type.setAttribute('item', dataUpdate.idParent)
+                        //     type.setAttribute('x', dataUpdate.id)
+            
+                        //     let radiosMapCategories = [...modal.querySelectorAll('.chevrondown-radio-button')]
+                        //     let radioCurrent = radiosMapCategories.filter(x => x.attributes[1].nodeValue == dataUpdate.idParent)
+            
+                        //     console.log(radioCurrent)
+                            
+                        //     let nameMapCategories = [...modal.querySelectorAll('.chevrondown-name')]
+                        //     let nameCurrent = nameMapCategories.filter( x => x.textContent.trim() == dataUpdate.nombre)
+                        //     nameCurrent[0].parentElement.querySelector('.chevrondown-radio-button').remove()
+                        //     nameCurrent[0].style.fontWeight = '700'
+                        //     nameCurrent[0].parentElement.querySelector('.chevrondowm-editing')
+                        //     nameCurrent[0].parentElement.querySelector('.chevrondown-editing').textContent = 'Editando:'
+                        //     let previewParent = modal.querySelector('.preview-parent .preview-name')
+                        //     let previewChild = modal.querySelector('.preview-child .preview-name')
+                        //     let boxScroll = modal.querySelector('.main-chevrondown-gj8 .chevrondown-gj8')
+                        //     previewParent.textContent = radioCurrent[0].parentElement.querySelector('.chevrondown-name').textContent.trim()
+                        //     previewChild.textContent = nameCurrent[0].textContent.trim();
+                        //     [...modal.querySelectorAll('.chevrondown-radio-button')].map(x => x.classList.remove('active'))
+                        //     radioCurrent[0].classList.add('active')
+                        //     // console.log(nameParentCategorieCurrent.getBoundingClientRect().top)
+                        //     // console.log(dataUpdate.idParent)
+                        //     // boxScroll.offsetTop = '100px'
+            
+                        //     send.onclick = (e) => {
+                        //         e.preventDefault();
+                        //         // console.log('Datos enviados')
+                        //         // console.log(modal)
+                        //         // modal.style.display = 'none';
+                        //         let pointCategories = [...modal.querySelectorAll('.chevrondown-radio-button')]
+                        //         let idParent = pointCategories.filter(x => x.classList.contains('active'))
+                        //         let parent = idParent[0].attributes[1].nodeValue
+                        //         let nameParent = idParent[0].parentElement.querySelector('.chevrondown-name').textContent.trim()
+                        //         let id = type.attributes.x.textContent
+                        //         let categoryMark = idParent[0].parentElement.querySelector('.chevrondown-name').nextElementSibling
+            
+                        //         let categoryParent;
+                        //         if (parent == 'base' && categoryMark == null) {
+                        //             categoryParent = 'base'
+                        //         } else if (parent != 'base' && categoryMark != null) {
+                        //             categoryParent = 'categoria'
+                        //         } else if (parent != 'base' && categoryMark == null) {
+                        //             categoryParent = 'subcategoria'
+                        //         }
+            
+                        //         if (parent != 'base') {
+                        //             typeCategorie = 'subcategoria'
+                        //         } else {
+                        //             typeCategorie = 'categoria'
+                        //         }
+            
+                        //         let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+                        //         let url = BASE_URL + 'Filter/updateFilter/' + id
+                                
+                        //         req.open("POST", url, true);
+                        //         function datosFormulario() {
+                        //             let datos = '';
+                        //             datos += 'nombre=' + name.value;
+                        //             datos += '&tipo=' + typeCategorie;
+                        //             datos += '&estado=' + (status.classList.contains('off') ? 'inactive' : 'active');
+                        //             datos += '&pais=' + parent;
+                        //             datos += '&division=' + parent;
+                        //             datos += '&idParent=' + parent;
+                        //             return datos;
+                        //         }
+                        //         console.log(datosFormulario())
+                        //         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        //         req.send(datosFormulario())
+                        //         req.onreadystatechange = (e) => {
+                        //             if (req.readyState == 4 && req.status == 200) {
+                        //                 console.log(req.response)
+                        //                 req.response = ''
+                        //                 // console.log('New Update')
+                        //                 let data = JSON.parse(req.responseText)
+                                        
+                        //                 if (data.status) {
+                        //                     createToast('success', data.msg)
+                        //                     modal.style.display = 'none';
+                        //                     // loadLocationsData(parent);
+                        //                     loadTreeFilter();
+                        //                     reloadTableFilter(parent);
+                        //                     console.log(categoryParent)
+                        //                     const breadcumbLinks = [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')] 
+            
+                        //                     if (categoryParent == 'categoria') {
+                        //                         breadcumbLinks.map(x => {
+                        //                             x.remove()
+                        //                         })
+                        //                         console.log('Nombre Papa categoria: ',nameParent,'------- IdPapa: ',parent)
+                        //                         addLinkBreadCumbLocations(nameParent, parent)
+                        //                     } else if (categoryParent == 'subcategoria') {
+                        //                         console.log('Nombre Papa subcategoria: ',nameParent,'------- IdPapa: ',parent)
+                        //                         breadcumbLinks.map(x => {
+                        //                             x.remove()
+                        //                         })
+                        //                         async function fetchFilterJSON() {
+                        //                             const response = await fetch(BASE_URL + 'Filter/tree/' + parent);
+                        //                             const categories = await response.json();
+                        //                             return categories;
+                        //                         }
+                                            
+                        //                         fetchFilterJSON().then(x => {
+                        //                             // console.log(x)
+                        //                             x.map(item => {
+                        //                                 if (item) {
+                        //                                     // console.log(item)
+                        //                                     addLinkBreadCumbLocations(item.nombre, item.id)
+                        //                                     // No se tiene que ejecutar de nuevo el loadLocationsData() tu veras como hacer para hacer que todo salga bien
+                        //                                     // console.log(locationsTable)
+
+                                                            
+                        //                                 }
+                        //                             })
+                        //                         })
+                        //                     }
+            
+                        //                 } else {
+                        //                     // createToast('warning', data.msg)
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+            
+            
+            
+            
+                        // });
+                        
+                    async function fetchFilterParentJSON() {
+                        const response = await fetch(BASE_URL + 'Filter/getLocations/' + res.idLocation);
+                        const data = await response.json();
+                        return data;
+                    }
+
+                    fetchFilterParentJSON().then(res => {
+                        console.log(res)
+                        res.map(item => {
+                            if (item.subcategory.length > 0) {
+                                subcategoriesHTML.innerHTML += /* html */ `
+                                <div class="chevrondown-item-gj8">
+                                    <div class="chevrondown-head-gj8">
+                                        <i class="material-icons">chevron_right</i>
+                                        <span class="chevrondown-radio-button" item="${item.id}"></span>
+                                        <span class="chevrondown-editing"></span>
+                                        <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
+                                    </div>
+                                    <div class="chevrondown-content-gj8">
+                                        ${ viewSubCat(item.subcategory) }
+                                    </div>
+                                </div>`
+                            } else {
+                                subcategoriesHTML.innerHTML += /* html */ `
                                 <div class="chevrondown-head-gj8">
-                                    <i class="material-icons">chevron_right</i>
+                                    <div class="sp"></div>
                                     <span class="chevrondown-radio-button" item="${item.id}"></span>
                                     <span class="chevrondown-editing"></span>
                                     <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
-                                </div>
-                                <div class="chevrondown-content-gj8">
-                                    ${ viewSubCat(item.subLocation) }
-                                </div>
-                            </div>`
-                        } else {
-                            subcategoriesHTML.innerHTML += /* html */ `
-                            <div class="chevrondown-head-gj8">
-                                <div class="sp"></div>
-                                <span class="chevrondown-radio-button" item="${item.id}"></span>
-                                <span class="chevrondown-editing"></span>
-                                <span class="chevrondown-name">${ item.nombre }</span> <span class="category-mark">(Localización)</span>
-                            </div>`
-                        }
-                    });
-        
-                    let chevrondownHead = [...modal.querySelectorAll('.chevrondown-head-gj8 i')];
-                    let radioBtns = [...modal.querySelectorAll('.chevrondown-gj8 .chevrondown-radio-button')];
-                    let chevrondownContents = [...modal.querySelectorAll('.chevrondown-content-gj8')];
-        
-                    chevrondownHead.map((item, index) => {
-                        const content = item.parentElement.parentElement.children[1]
-                        const arrow = item
-                        if (content != undefined && arrow != undefined) {
-                            item.addEventListener('click', (e) => {
-                                // console.log(content)
-                                e.preventDefault();
-                                if (content.classList.contains('not')) {
+                                </div>`
+                            }
+                        });
+                    })
+
+
+
+                        
+                        
+            
+                        let chevrondownHead = [...modal.querySelectorAll('.chevrondown-head-gj8 i')];
+                        let radioBtns = [...modal.querySelectorAll('.chevrondown-gj8 .chevrondown-radio-button')];
+                        let chevrondownContents = [...modal.querySelectorAll('.chevrondown-content-gj8')];
+            
+                        chevrondownHead.map((item, index) => {
+                            const content = item.parentElement.parentElement.children[1]
+                            const arrow = item
+                            if (content != undefined && arrow != undefined) {
+                                item.addEventListener('click', (e) => {
                                     // console.log(content)
-                                    content.style.display = 'block'
-                                    arrow.style.transform = 'rotate(90deg)'
-                                } else {
-                                    if (content.style.display == '' || content.style.display == 'none') {
+                                    e.preventDefault();
+                                    if (content.classList.contains('not')) {
+                                        // console.log(content)
                                         content.style.display = 'block'
                                         arrow.style.transform = 'rotate(90deg)'
                                     } else {
-                                        content.style.display = 'none'
-                                        arrow.style.transform = 'rotate(0deg)'
+                                        if (content.style.display == '' || content.style.display == 'none') {
+                                            content.style.display = 'block'
+                                            arrow.style.transform = 'rotate(90deg)'
+                                        } else {
+                                            content.style.display = 'none'
+                                            arrow.style.transform = 'rotate(0deg)'
+                                        }
                                     }
+                                });
+                            }
+                        });
+                        radioBtns.map(btn => {
+                            btn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                let content = btn.parentElement.parentElement.children[1]
+                                let text = btn.parentElement
+                                let arrow = btn.parentElement.querySelector('i')
+            
+                                if (arrow != null) {
+                                    console.log(btn.attributes[1].nodeValue)
+                                    if (btn.attributes[1].nodeValue == 'base') {
+                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
+                                    } else {
+                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
+                                    }
+                                    radioBtns.map(_btn => {
+                                        if (_btn.classList.contains('active')) {
+                                            // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
+                                            // console.log(btn.closest('.chevrondown-item-gj8'))
+                                            _btn.classList.remove('active')
+            
+                                            if (_btn.classList.contains('not')) {
+                                                btn.classList.add('active')
+                                                content.style.display = 'block'
+                                                arrow.style.transform = 'rotate(90deg)'
+                                            } else {
+                                                btn.classList.add('active')
+                                                content.style.display = 'block'
+                                                arrow.style.transform = 'rotate(90deg)'
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    if (btn.attributes[1].nodeValue == 'base') {
+                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
+                                    } else {
+                                        document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
+                                    }
+                                    radioBtns.map(_btn => {
+                                        if (_btn.classList.contains('active')) {
+                                            // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
+            
+                                            if (_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').contains(e.target)) {
+                                                // console.log('Estoy dentro de ti content')
+                                            } else {
+                                                _btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').style.display = 'none'
+                                                _btn.closest('.chevrondown-item-gj8').querySelector('i.material-icons').style.transform = 'rotate(0deg)'
+                                                // console.log('Fuera del content')
+                                            }
+                                            _btn.classList.remove('active')
+                                            btn.classList.add('active')
+                                        }
+                                    })
                                 }
+            
+            
+            
+            
                             });
+                        });
+                        chevrondownContents.map(content => {
+                            content.style.display = 'block'
+                        });
+                        [...modal.querySelectorAll('.chevrondown-gj8 i')].map(i => {
+                            i.style.transform = 'rotate(90deg)'
+                        });
+                        //  Hasta aquí
+            
+            
+            
+                    });
+                    
+                    modal.style.display = 'block'
+                    close.addEventListener('click', (e) => {
+                        modal.style.display = 'none'
+                    })
+                    containerPersonalData.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (!modal.querySelector('.personal-data').contains(e.target)) {
+                            modal.style.display = 'none'
                         }
                     });
-                    radioBtns.map(btn => {
-                        btn.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            let content = btn.parentElement.parentElement.children[1]
-                            let text = btn.parentElement
-                            let arrow = btn.parentElement.querySelector('i')
-        
-                            if (arrow != null) {
-                                console.log(btn.attributes[1].nodeValue)
-                                if (btn.attributes[1].nodeValue == 'base') {
-                                    document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
-                                } else {
-                                    document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
-                                }
-                                radioBtns.map(_btn => {
-                                    if (_btn.classList.contains('active')) {
-                                        // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
-                                        // console.log(btn.closest('.chevrondown-item-gj8'))
-                                        _btn.classList.remove('active')
-        
-                                        if (_btn.classList.contains('not')) {
-                                            btn.classList.add('active')
-                                            content.style.display = 'block'
-                                            arrow.style.transform = 'rotate(90deg)'
-                                        } else {
-                                            btn.classList.add('active')
-                                            content.style.display = 'block'
-                                            arrow.style.transform = 'rotate(90deg)'
-                                        }
-                                    }
-                                })
+            
+                    function viewSubCat(categories) {
+                        let html = ''
+                        categories.map(x => {
+                            if (x.subLocation.length > 0) {
+                                html += /* html */ `
+                            <div class="chevrondown-item-gj8">
+                                <div class="chevrondown-head-gj8">
+                                    <i class="material-icons">chevron_right</i>
+                                    <span class="chevrondown-radio-button" item="${x.id}"></span>
+                                    <span class="chevrondown-editing"></span>
+                                    <span class="chevrondown-name">${ x.nombre }</span>
+                                </div>
+                                `
+                                html += /* html */ `
+                                <div class="chevrondown-content-gj8">
+                                    ${ viewSubCat(x.subLocation) }
+                                </div>
+                            </div>`
                             } else {
-                                if (btn.attributes[1].nodeValue == 'base') {
-                                    document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: categoría'
-                                } else {
-                                    document.querySelector('.update-location-form .input-type').textContent = 'Se guardará como: subcategoría'
-                                }
-                                radioBtns.map(_btn => {
-                                    if (_btn.classList.contains('active')) {
-                                        // console.log(_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8'))
-        
-                                        if (_btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').contains(e.target)) {
-                                            // console.log('Estoy dentro de ti content')
-                                        } else {
-                                            _btn.closest('.chevrondown-item-gj8').querySelector('.chevrondown-content-gj8').style.display = 'none'
-                                            _btn.closest('.chevrondown-item-gj8').querySelector('i.material-icons').style.transform = 'rotate(0deg)'
-                                            // console.log('Fuera del content')
-                                        }
-                                        _btn.classList.remove('active')
-                                        btn.classList.add('active')
-                                    }
-                                })
-                            }
-        
-        
-        
-        
-                        });
-                    });
-                    chevrondownContents.map(content => {
-                        content.style.display = 'block'
-                    });
-                    [...modal.querySelectorAll('.chevrondown-gj8 i')].map(i => {
-                        i.style.transform = 'rotate(90deg)'
-                    });
-                    //  Hasta aquí
-        
-        
-        
-                });
-                
-                modal.style.display = 'block'
-                close.addEventListener('click', (e) => {
-                    modal.style.display = 'none'
-                })
-                containerPersonalData.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    // console.log('message')
-                    if (!modal.querySelector('.personal-data').contains(e.target)) {
-                        modal.style.display = 'none'
-                    }
-                });
-        
-                function viewSubCat(categories) {
-                    let html = ''
-                    categories.map(x => {
-                        if (x.subLocation.length > 0) {
-                            html += /* html */ `
-                        <div class="chevrondown-item-gj8">
+                                html += /* html */ `
                             <div class="chevrondown-head-gj8">
-                                <i class="material-icons">chevron_right</i>
+                                <div class="sp"></div>
                                 <span class="chevrondown-radio-button" item="${x.id}"></span>
                                 <span class="chevrondown-editing"></span>
                                 <span class="chevrondown-name">${ x.nombre }</span>
-                            </div>
-                            `
-                            html += /* html */ `
-                            <div class="chevrondown-content-gj8">
-                                ${ viewSubCat(x.subLocation) }
-                            </div>
-                        </div>`
-                        } else {
-                            html += /* html */ `
-                        <div class="chevrondown-head-gj8">
-                            <div class="sp"></div>
-                            <span class="chevrondown-radio-button" item="${x.id}"></span>
-                            <span class="chevrondown-editing"></span>
-                            <span class="chevrondown-name">${ x.nombre }</span>
-                        </div>`
-                        }
-                    })
-                    return html;
+                            </div>`
+                            }
+                        })
+                        return html;
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
+
+
+
+
+
+
+
+                
                 // end update
             }
         
@@ -645,6 +775,7 @@ function loadLocationsData(idParentCurrent = 'base') {
         
         function viewSubCatJson(id) {
             let urlAllFilter = BASE_URL + 'Filter/getLocations/' + id
+            console.log('Id: ',id)
             async function fetchFilterJSON() {
                 const response = await fetch(urlAllFilter);
                 const categories = await response.json();
@@ -652,8 +783,11 @@ function loadLocationsData(idParentCurrent = 'base') {
             }
             
             fetchFilterJSON().then(subcategories => {
+                console.log(subcategories)
                 subcategories.map((x, index) => {
                     x.index = index + 1
+                    x.tipo = x.tipo.toUpperCase()
+                    x.estado = x.estado.toUpperCase()
                 });
                 locationsTable.replaceData(subcategories)
             
@@ -720,7 +854,7 @@ function loadLocationsData(idParentCurrent = 'base') {
                         data.map((x, index) => {
                             x.index = index + 1
                         });
-                        // console.log(data)
+                        console.log(data)
                         locationsTable.replaceData(data)
                         console.log(locationsTable)
                     })
@@ -834,22 +968,23 @@ function loadLocationsData(idParentCurrent = 'base') {
         });
         
         function deleteFilter(id, item = '') {
-            let urlAllFilter = BASE_URL + 'Filter/delLocation/'+id
-                    
+            let urlAllFilter = BASE_URL + 'Filter/delLocation/'+ JSON.stringify([id, item._row.data.nombre])
+            // console.log(item._row.data.nombre)    
             async function fetchDelFilterJSON() {
                 const response = await fetch(urlAllFilter);
                 const filters = await response.json();
                 return filters;
             }
-            
+            // * Eliminando desde la tabla - Delete from table
             fetchDelFilterJSON().then(res => {
-                console.log(res)
                 if (res) {
                     if (item != '') {
                         item.delete()
-                        // createToast('success', '¡Registro eliminado con exito!')
+                        let rows = locationsTable.getRows()
+                        rows.map((x, index) => {
+                            locationsTable.updateData([{id: x._row.data.id, index: index + 1}]);
+                        })
                     }
-                    loadLocationsData();
                     loadLocationsTree();
                 } else {
                     // createToast('warning', 'Error al eliminar. . .')
@@ -861,11 +996,10 @@ function loadLocationsData(idParentCurrent = 'base') {
 }
 
 loadLocationsData();
-// console.clear();
-
 
 // Desde aquí para abajo
-function loadLocationsTree(id = 'base', country = 'españa') {
+// ! id, crea el arbol de localizaciones a partir de un país o idParent que se le indique. Por defecto está, españa
+function loadLocationsTree(id = '26', country = 'españa') {
     let urlAllLocationsParent = BASE_URL + 'Filter/getLocationParent/' + JSON.stringify([id, country]) 
     let arrX = [];
     let locationsTree = document.querySelector('#locations-tree');

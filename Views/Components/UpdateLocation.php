@@ -17,12 +17,21 @@
                         </span>
                     </label>
                 </div>
-                <div class="size-normal text-left mt-1 input-type font-bold fadeInLeft">Se guardará cómo: </div>
+                <!-- <div class="size-normal text-left mt-1 input-type font-bold fadeInLeft">Se guardará cómo: </div>
                 <div class="preview-categorie">
                     <span class="preview-parent">Padre: <span class="preview-name"></span></span>
                     <span class="preview-child">Hijo: <span class="preview-name"></span></span>
+                </div> -->
+                <!-- Select - Start Administrative Divition -->
+                <h4 class="subtitle normal mt-4 mb-1"><strong>División Administrativa</strong></h4>
+                <div class="select-gj8 fadeInLeft" id="select__administrative__divition__update">
+                    <div class="select-gj8__title">
+                        <div class="select-gj8__title__current"></div>
+                        <i class="material-icons select-gj8__title__arrow">expand_more</i>
+                    </div>
+                    <div class="select-gj8__content" id="select-gj8__administrative_divition--update"></div>
                 </div>
-                <!-- Select  -->
+                <!-- Select - End Administrative Divition -->
                 
                 <div class="main-chevrondown-gj8 mt-2">
                     <div class="chevrondown-gj8">

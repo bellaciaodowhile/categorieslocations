@@ -507,9 +507,6 @@ function loadDataFilter(idParentCurrent = 'base') {
                         i.style.transform = 'rotate(90deg)'
                     });
                     //  Hasta aquí
-        
-        
-        
                 });
                 
                 modal.style.display = 'block'

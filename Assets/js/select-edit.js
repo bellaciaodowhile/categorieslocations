@@ -2,7 +2,7 @@ console.log('Select Edit JS')
 // Listado de países
 function getCountryList() {
     console.log('getCountryList')
-    let boxCountrys = document.querySelector('#select-gj8__countrys')
+    let boxCountrys = [...document.querySelectorAll('#select-gj8__countrys')]
     async function fetchFilterJSONCountrys() {
         const response = await fetch(BASE_URL + 'Filter/getCountrys');
         const countrys = await response.json();
@@ -10,15 +10,17 @@ function getCountryList() {
     }
     fetchFilterJSONCountrys().then(countrys => {
         console.log(countrys)
-        boxCountrys.innerHTML = '';
-        if (countrys.length > 0) {
-            countrys.map(item => {
-                boxCountrys.innerHTML += /* html */`
-                <div class="select-gj8__option" item="${ item.idCountry }" location="${ item.idLocation }">${ item.country }</div>`
-            })
-        } else {
-            boxCountrys.innerHTML += /*html*/ `<strong class="p-1 block">No existen registros países registrados</strong>`
-        }
+        boxCountrys.map(x => {
+            x.innerHTML = '';
+            if (countrys.length > 0) {
+                countrys.map(item => {
+                    x.innerHTML += /* html */`
+                    <div class="select-gj8__option" item="${ item.idCountry }" location="${ item.idLocation }">${ item.country }</div>`
+                })
+            } else {
+                x.innerHTML += /*html*/ `<strong class="p-1 block">No existen registros países registrados</strong>`
+            }
+        })
     })
     setTimeout(() => {
         selectsGj8();
@@ -75,7 +77,10 @@ function selectsGj8() {
                     let idParentCurrent = document.querySelector('#locations-tree-main .chevrondown-radio-button.not.active')
                     currentCountryLocationsTree.textContent = name.toUpperCase()
                     idParentCurrent.setAttribute('item', idLocation)
+                    // ! idLocation, id de la localización (idParent) && name, nombre de la localización
                     loadLocationsTree(idLocation, name);
+
+                    // ! Ahora queda es probar que las nuevas localizaciones se guarden la base que son los países (según cada departamento del país)
 
 
                 }
@@ -342,9 +347,10 @@ function selectsGj8() {
 selectsGj8()
 // Listado de divisiones
 getAdministrativeDivition()
-function getAdministrativeDivition(id = '6') {
+function getAdministrativeDivition(/* id de país por defecto  */ id = '26', type = 'edit') {
     let urlGetDivition = BASE_URL + 'Filter/getAdministrativeDivition/' + id;
     let boxOptions = document.querySelector('#select-gj8__administrative_divition')
+    let boxOptionsUpdate = document.querySelector('#select-gj8__administrative_divition--update')
     async function fetchFilterJSONDivition() {
         const response = await fetch(urlGetDivition);
         const divitions = await response.json();
@@ -354,36 +360,50 @@ function getAdministrativeDivition(id = '6') {
         console.log(divitions)
         boxOptions.innerHTML = ``
         
-        if (divitions.length > 0) {
-            divitions.map(divition => {
-                boxOptions.innerHTML += /*html*/ `
-                <div class="select-gj8__option" data-id="${divition.id}">
-                    <div class="select-gj8__option__edit">
-                        <div class="select-gj8__option__name">
-                            <i class="material-icons select-gj8__option__drag__indicator">drag_indicator</i>
-                            <div class="select-gj8__option__name__current">${ divition.division }</div>
-                            <input type="text" disabled class="select-gj8__option__name__input"
-                                value="${ divition.division }" required>
+        if (type == 'edit') {
+            if (divitions.length > 0) {
+                divitions.map(divition => {
+                    boxOptions.innerHTML += /*html*/ `
+                    <div class="select-gj8__option" data-id="${divition.id}">
+                        <div class="select-gj8__option__edit">
+                            <div class="select-gj8__option__name">
+                                <i class="material-icons select-gj8__option__drag__indicator">drag_indicator</i>
+                                <div class="select-gj8__option__name__current">${ divition.division }</div>
+                                <input type="text" disabled class="select-gj8__option__name__input"
+                                    value="${ divition.division }" required>
+                            </div>
+                            <i class="material-icons select-gj8__option__trigger">more_vert</i>
+                            <button class="select-gj8__btn select-gj8__btn--option">
+                                <i class="material-icons-outlined">done</i>
+                            </button>
                         </div>
-                        <i class="material-icons select-gj8__option__trigger">more_vert</i>
-                        <button class="select-gj8__btn select-gj8__btn--option">
-                            <i class="material-icons-outlined">done</i>
-                        </button>
-                    </div>
-                    <div class="select-gj8__option__settings">
-                        <div class="select-gj8__option__settings__item" item="${ divition.id }">
-                            <i class="material-icons-outlined">drive_file_rename_outline</i>
+                        <div class="select-gj8__option__settings">
+                            <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                                <i class="material-icons-outlined">drive_file_rename_outline</i>
+                            </div>
+                            <div class="select-gj8__option__settings__item" item="${ divition.id }">
+                                <i class="material-icons-outlined">delete</i>
+                            </div>
                         </div>
-                        <div class="select-gj8__option__settings__item" item="${ divition.id }">
-                            <i class="material-icons-outlined">delete</i>
-                        </div>
-                    </div>
-                </div>`
-            })
+                    </div>`
+                })
+            } else {
+                document.querySelector('#select_divition_current').textContent = 'Seleccione una opción:'
+                boxOptions.innerHTML = /*html*/ `<strong class="p-1 block">No existen registros para este país</strong>`
+            }
         } else {
-            document.querySelector('#select_divition_current').textContent = 'Seleccione una opción:'
-            boxOptions.innerHTML = /*html*/ `<strong class="p-1 block">No existen registros para este país</strong>`
+            if (divitions.length > 0) {
+                boxOptionsUpdate.innerHTML = ''
+                divitions.map(item => {
+                    console.log(item)
+                    boxOptionsUpdate.innerHTML += /* html */`
+                    <div class="select-gj8__option" item="${ item.idCountry }">${ item.division }</div>`
+                })
+            } else {
+                boxOptionsUpdate.innerHTML += /*html*/ `<strong class="p-1 block">No existen registros países registrados</strong>`
+            }
         }
+        
         
         selectsGj8();
         let selectAdministrativeDivition = document.getElementById('select-gj8__administrative_divition')

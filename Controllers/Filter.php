@@ -73,6 +73,12 @@
             $arrData = $this->model->selectOnly($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
+        public function selectOnlyData($arr) {
+            $arr = json_decode($arr, true);
+            $arrData = $this->model->selectOnlyData($arr[0], $arr[1]);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+
         public function updateFilter($id) {
             $arrData = $this->model->updateFilter($id, $_POST['nombre'], $_POST['tipo'], $_POST['estado'], $_POST['idParent']);
             if ($arrData) {
@@ -161,6 +167,10 @@
             $arrData = $this->model->getCountrys();
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
+        public function getOnlyCountry($nombre) {
+            $arrData = $this->model->getOnlyCountry($nombre);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
         public function getLocationParent($arr) {
             $arr = json_decode($arr, true);
             $arrData = $this->model->selectLocationParent($arr[0], $arr[1]);
@@ -170,8 +180,9 @@
             $arrData = $this->model->selectLocations($idParent);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
-        public function delLocation($id) {
-            $arrData = $this->model->delLocation($id);
+        public function delLocation($arr) {
+            $arr = json_decode($arr, true);
+            $arrData = $this->model->delLocation($arr[0], $arr[1]);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
         public function selectOnlyLocation($id) {
@@ -221,6 +232,15 @@
         public function updateOrderDivitions() {
             $newOrder = json_decode($_POST['newOrder']);
             $arrData = $this->model->updateOrderDivitions($newOrder);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function updateCountryLocation($data) {
+            $data = json_decode($data, true);
+            $arrData = $this->model->updateCountryLocation($data[0], $data[1], $data[2], $data[3]);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function getLocationUpdate($id) {
+            $arrData = $this->model->getLocationUpdate($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
     }

@@ -181,6 +181,7 @@ function addFilters() {
                         countryList.value = ''
                         createToast('success', data.msg);
                         getCountryList()
+                        loadLocationsData();
                     } else {
                         createToast('warning', data.msg)
                     }
@@ -254,6 +255,7 @@ function addFilters() {
                     console.log(req.response) 
                     let data = JSON.parse(req.responseText)
                     if (data.status) {
+                        let currentIdParentCountry = document.querySelector('.chevrondown-gj8#locations-tree-main .chevrondown-radio-button')
                         createToast('success', data.msg)
                         valueUnique.value = ''
                         valueList.value = '';
@@ -262,8 +264,10 @@ function addFilters() {
                         [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')].map(item => {
                             item.remove();
                         });
-                        loadLocationsData();
-                        loadLocationsTree();
+                        setTimeout(() => {
+                            loadLocationsData();
+                            loadLocationsTree(currentIdParentCountry.attributes[1].nodeValue, countrySelect.textContent.trim());
+                        }, 300);
                         document.querySelector('#locations-tree-main .chevrondown-radio-button.not').classList.add('active')
                     } else {
                         createToast('warning', data.msg)

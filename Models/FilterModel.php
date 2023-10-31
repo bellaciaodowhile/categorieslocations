@@ -124,6 +124,11 @@
             
             return $req;
         }
+        public function selectOnlyData($table, $id) {
+            $sql = "SELECT * FROM $table WHERE id = $id";
+            $req = $this->select($sql);
+            return $req;
+        }
         public function updateFilter($id, $nombre, $tipo, $estado, $idParent) {
             $sql = "UPDATE categorias SET nombre = ?, tipo = ?, estado = ?, idParent = ? WHERE id = $id";
             $arrValues = array($nombre, $tipo, $estado, $idParent);
@@ -170,7 +175,7 @@
                 } else {
                     $order = 1;
                 }
-                $insert = "INSERT INTO divisiones (division, idCountry, order) VALUES (?,?,?)";
+                $insert = "INSERT INTO divisiones (division, idCountry, `order`) VALUES (?,?,?)";
                 $arrValues = array($divition, $idCountry, $order);
                 $reqInsert = $this->insert($insert, $arrValues);
                 $return = $reqInsert;
@@ -268,12 +273,22 @@
                     "idLocation" => $sq[0]["id"]);
             }
             return $arrCountries;
-
-
-
-            return $res;
         }
-        // * Acá tenemos que hacer un método que me traiga los países
+        public function getOnlyCountry($nombre) {
+            $sql = "SELECT * FROM countrys WHERE country = '{$nombre}'";
+            $res = $this->selectAll($sql);
+            $arrCountries = [];
+            foreach ($res as $row) {
+                $s = "SELECT * FROM localizaciones WHERE nombre = '{$row["country"]}'";
+                $sq = $this->selectAll($s);
+                $arrCountries[] = array(
+                    "idCountry" => $row["id"],
+                    "country" => $row["country"],
+                    "idLocation" => $sq[0]["id"],
+                    "locationStatus" => $sq[0]["estado"]);
+            }
+            return $arrCountries;
+        }
 
 
 
@@ -313,7 +328,7 @@
             return $locations;
         }
         public function selectLocations($idParent) {
-            $sql = "SELECT * FROM localizaciones WHERE idParent = '$idParent' and tipo = 'pais'";
+            $sql = "SELECT * FROM localizaciones WHERE idParent = '$idParent'";
             $req = $this->selectAll($sql);
             $locations = array();
 	
@@ -331,9 +346,13 @@
             }
             return $locations;
         }
-        public function delLocation($id) {
+        public function delLocation($id, $country) {
             $sql = "DELETE FROM localizaciones WHERE id = $id";
             $req = $this->delete($sql);
+            if ($country != null) {
+                $s = "DELETE FROM countrys WHERE country = '$country'";
+                $q = $this->delete($s);
+            }
             return $req;
         }
         public function selectOnlyLocation($id) {
@@ -411,6 +430,33 @@
                     
                 }
             }
+
+        }
+        public function updateCountryLocation($idCountry, $idLocation, $status, $country) {
+            $sql = "UPDATE countrys SET country = ? WHERE id = {$idCountry}";
+            $arrData = array($country);
+            $req = $this->update($sql, $arrData);
+            if ($req != null) {
+                $s = "UPDATE localizaciones SET nombre = ?, estado = ? WHERE id = {$idLocation}";
+                $arr = array($country, $status);
+                $reqLocation = $this->update($s, $arr);
+                return $reqLocation;
+            }
+        }
+        public function getLocationUpdate($id) {
+            $sql = "SELECT * FROM localizaciones WHERE id = {$id}";
+            $req = $this->selectAll($sql);
+            // $arrData = array();
+            if ($req != '') {
+                $s = "SELECT * FROM countrys WHERE country = '{$req[0]['pais']}'";
+                $q = $this->selectAll($s);
+                $req[0]["idCountry"] = $q[0]['id'];
+                $x = "SELECT * FROM localizaciones WHERE nombre = '{$req[0]['pais']}'";
+                $y = $this->selectAll($x);
+                $req[0]["idLocation"] = $y[0]["id"];
+            }
+            return $req;
+
 
         }
     }

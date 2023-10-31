@@ -287,7 +287,7 @@
                         <div class="chevrondown-item-gj8">
                             <div class="chevrondown-head-gj8">
                                 <i class="material-icons">chevron_right</i>
-                                <span class="chevrondown-radio-button not active" item="base"></span>
+                                <span class="chevrondown-radio-button not active" item="26"></span>
                                 <span class="current__country">ESPAÑA</span>
                             </div>
                             <div class="chevrondown-content-gj8 not" id="locations-tree"></div>
