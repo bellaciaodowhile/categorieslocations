@@ -66,6 +66,7 @@
     border: 1px solid var(--color-primary-light);
     color: var(--color-primary-light);
     transition: var(--trs);
+    text-align: center;
 }
 
 .main-file-upload-logo-cv .button:hover {
@@ -124,10 +125,10 @@
 }
 
 .main-file-upload-logo-cv .galleryLogoCv {
-    display: flex;
     flex-flow: row wrap;
     justify-content: center;
     padding: 0 0 20px 0;
+    display: none;
 }
 
 .main-file-upload-logo-cv .column {

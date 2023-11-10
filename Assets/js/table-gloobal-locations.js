@@ -662,44 +662,49 @@ function loadLocationsData(idParentCurrent = 'base') {
                                         currentSelectDivitionUpdate.textContent, // * División
                                         idParentCurrentUpdate // * IdParent
                                     ];
-                                    async function updateLocation() {
-                                        const res = await fetch(BASE_URL + 'Filter/updateLocations/'+ JSON.stringify([dataUpdate]))
-                                        const data = await res.json();
-                                        return data;
+                                    let req = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP')
+                                    let url = BASE_URL + 'Filter/updateLocations/';
+                                    req.open("POST", url, true);
+                                    function dataSetLocation() {
+                                        let datos = '';
+                                        datos += 'data=' + (Array.isArray([dataUpdate]) ? JSON.stringify([dataUpdate]) : [dataUpdate]);
+                                        return datos;
                                     }
-                                    updateLocation().then(res => {
-                                        console.log(res)
-                                        if (res) {
-                                            createToast('success', '¡Actualización exitosa!')
-                                            modal.style.display = 'none'
-                                            const breadcumbLinks = [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')] 
-                                            breadcumbLinks.map(x => {
-                                                x.remove()
-                                            });
-                                            console.log('Nombre Papa: ',nameCurrentUpdate.value,'------- IdPapa: ',idParentCurrentUpdate)
-                                            reloadTableFilter(idParentCurrentUpdate) // * Reload Table - New Data
-                                            async function fetchTreeLocations() {
-                                                const res = await fetch(BASE_URL + 'Filter/treeLocations/' + idParentCurrentUpdate)
-                                                const req = await res.json();
-                                                return req;
-                                            }
-                                            fetchTreeLocations().then(resTree => {
-                                                console.log(resTree)
-                                                resTree.map(option => {
-                                                    if (option) {
-                                                        addLinkBreadCumbLocations(option.nombre, option.id)
-                                                    }
+                                    console.log(dataSetLocation())
+                                    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                    req.send(dataSetLocation())
+                                    req.onreadystatechange = (e) => {
+                                        if (req.readyState == 4 && req.status == 200) {
+                                            console.log(req.response) 
+                                            let data = JSON.parse(req.response)
+                                            if (data) {
+                                                createToast('success', '¡Actualización exitosa!')
+                                                modal.style.display = 'none'
+                                                const breadcumbLinks = [...document.querySelectorAll('.breadcumb.breadcumb-locations .links .d-flex.fadeInLeft')] 
+                                                breadcumbLinks.map(x => {
+                                                    x.remove()
+                                                });
+                                                console.log('Nombre Papa: ',nameCurrentUpdate.value,'------- IdPapa: ',idParentCurrentUpdate)
+                                                reloadTableFilter(idParentCurrentUpdate) // * Reload Table - New Data
+                                                async function fetchTreeLocations() {
+                                                    const res = await fetch(BASE_URL + 'Filter/treeLocations/' + idParentCurrentUpdate)
+                                                    const req = await res.json();
+                                                    return req;
+                                                }
+                                                fetchTreeLocations().then(resTree => {
+                                                    console.log(resTree)
+                                                    resTree.map(option => {
+                                                        if (option) {
+                                                            addLinkBreadCumbLocations(option.nombre, option.id)
+                                                        }
+                                                    })
                                                 })
-                                            })
-
-
-
-
-                                            // addLinkBreadCumbLocations(nameParent, parent)
-                                        } else {
-                                            createToast('warning','Ha ocurrido un error al actualizar. . .')
+                                            } else {
+                                                createToast('warning','Ha ocurrido un error al actualizar. . .')
+                                            }
                                         }
-                                    })
+                                    }
+
                                     console.log('Comenzando actualización')
                                 }, 200);
                             }

@@ -1,0 +1,14 @@
++ CRUD de Resultados
+     - Logo
+     - Título
+     - Descripción
+     - URL
+     - Estado (Activo/Inactivo)
+     - Palabras clave
+     - Actividad (Estaría asociada a categorías) 
+        -- Pregunta: ¿Solamente puede estar asociada a las catgorías?
+                     ¿A cuántas categorías puede esar asociada?
+                     ¿No pude ser asociada a subcategorías?
+     - Dirección Estaria asociado a las localizaciones con los campos requeridos: dirección, código postal, etc...
+     - En el caso de la direccion sería opcional ya que puede haber resultados que no tengan ninguna localizacion al ser productos virtuales
+     - Un checkbox con texto NoFollow (Si se pulsa sobre ese checkbox la url debe contener la etiqueta rel="nofollow")

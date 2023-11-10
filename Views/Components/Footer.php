@@ -46,7 +46,7 @@
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/ratioCv.js"></script> -->
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/cv.js"></script> -->
 <!-- <script src="<?php echo BASE_URL;?>Assets/js/file-drop-drag-cv.js"></script> -->
-<!-- <script src="<?php echo BASE_URL;?>Assets/js/tags.js"></script> -->
+<script src="<?php echo BASE_URL;?>Assets/js/tags.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/rangeGloobal.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/editors.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/select-edit.js"></script>
@@ -69,5 +69,6 @@
 <script src="<?php echo BASE_URL;?>Assets/js/table-gloobal-particulares.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/table-gloobal-categories.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/table-gloobal-locations.js"></script>
+<script src="<?php echo BASE_URL;?>Assets/js/fileReader.js"></script>
 </body>
 </html>

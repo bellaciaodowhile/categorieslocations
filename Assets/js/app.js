@@ -114,48 +114,87 @@ document.body.addEventListener('scroll', function() {
   hideLoginRegister() 
 }); 
 
-// Tabs menu
-const wrapperTabs = document.querySelector('.wrapper-yt')
-wrapperTabs.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  wrapperTabs.scrollLeft += e.deltaY;
-});
-const sectionYt = document.querySelector('section .yt')
-const tabsBox = document.querySelector(".tabs-box-yt"),
-allTabs = tabsBox.querySelectorAll(".tab-yt"),
-arrowIcons = document.querySelectorAll(".icon-yt i");
-let isDragging = false;
-const handleIcons = (scrollVal) => {
-  let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-  arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-  arrowIcons[1].parentElement.style.display =
-  maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-};
-arrowIcons.forEach((icon) => {
-  icon.addEventListener("click", () => {
-    let scrollWidth = (tabsBox.scrollLeft += icon.id === "left" ? -340 : 340);
-    handleIcons(scrollWidth);
-  });
-});
-allTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabsBox.querySelector(".active").classList.remove("active");
-    tab.classList.add("active");
-  });
-});
-const dragging = (e) => {
-  if (!isDragging) return;
-  tabsBox.classList.add("dragging");
-  tabsBox.scrollLeft -= e.movementX;
-  handleIcons(tabsBox.scrollLeft);
-};
-const dragStop = () => {
-  isDragging = false;
-  tabsBox.classList.remove("dragging");
-};
-tabsBox.addEventListener("mousedown", () => (isDragging = true));
-tabsBox.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
+
+// * Trayendo categorías 
+function getCategoriesTabs(idParent = 'base') {
+
+  async function getCategoriesTabs() {
+    const res = await fetch(BASE_URL + 'Filter/getCategoriesTabs/' + idParent);
+    const req = await res.json();
+    return req;
+  }
+
+  getCategoriesTabs().then(res => {
+    console.log(res)
+    let categoriesTabs = document.querySelector('#categories__tabs');
+    categoriesTabs.innerHTML = ''
+    res.map((item, index) => {
+      categoriesTabs.innerHTML += /* html */ `
+      <li class="tab-yt ${index == 0 ? 'active' : ''}">${ item.nombre }</li>`
+    })
+    // * Tabs menu
+    const wrapperTabs = document.querySelector('.wrapper-yt')
+    wrapperTabs.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      wrapperTabs.scrollLeft += e.deltaY;
+    });
+    const sectionYt = document.querySelector('section .yt')
+    const tabsBox = document.querySelector(".tabs-box-yt"),
+    allTabs = tabsBox.querySelectorAll(".tab-yt"),
+    arrowIcons = document.querySelectorAll(".icon-yt i");
+    let isDragging = false;
+    const handleIcons = (scrollVal) => {
+      let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+      arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
+      arrowIcons[1].parentElement.style.display =
+      maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
+    };
+    arrowIcons.forEach((icon) => {
+      icon.addEventListener("click", () => {
+        let scrollWidth = (tabsBox.scrollLeft += icon.id === "left" ? -340 : 340);
+        handleIcons(scrollWidth);
+      });
+    });
+    allTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabsBox.querySelector(".active").classList.remove("active");
+        tab.classList.add("active");
+      });
+    });
+    const dragging = (e) => {
+      if (!isDragging) return;
+      tabsBox.classList.add("dragging");
+      tabsBox.scrollLeft -= e.movementX;
+      handleIcons(tabsBox.scrollLeft);
+    };
+    const dragStop = () => {
+      isDragging = false;
+      tabsBox.classList.remove("dragging");
+    };
+    tabsBox.addEventListener("mousedown", () => (isDragging = true));
+    tabsBox.addEventListener("mousemove", dragging);
+    document.addEventListener("mouseup", dragStop);
+  }) 
+  
+
+}
+getCategoriesTabs()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Sidebar
 const sidebar = document.querySelector('.sidebar')

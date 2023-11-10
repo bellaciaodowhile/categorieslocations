@@ -102,7 +102,8 @@
     display: none;
 }
 .select-form-gloobal-checkbox .content-options {
-    height: 260px;
+    position: relative;
+    height: 415px;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;

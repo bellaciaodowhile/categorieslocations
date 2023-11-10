@@ -441,5 +441,44 @@ function getAdministrativeDivition(/* id de país por defecto  */ id = '26', typ
             },
         });
     });
-}
+};
 
+// * Select checkbox
+function selectCheckbox() {
+    console.log('Select Checkbox')
+    const mainElement = [...document.querySelectorAll('.select-form-gloobal-checkbox')];
+    mainElement.map(function(select) {
+        const main = select.querySelector('.main')
+        const options = select.querySelector('.options');
+        const arrow = select.querySelector('.arrow-select');
+        const optionsItems = [...select.querySelectorAll('.option')];
+        
+        main.onclick = function() {
+            if (options.style.display === 'none' || options.style.display === '') {
+                options.style.display = 'block';
+                arrow.classList.toggle('arrow-select__active');
+            } else {
+                options.style.display = 'none';
+                arrow.classList.toggle('arrow-select__active');
+            }
+        }; 
+
+        optionsItems.map(function(option) {
+            option.onclick = function(e) {
+                let checkbox = option.querySelector('.checkbox-article-ads');
+                e.preventDefault();
+                checkbox.classList.toggle('checkbox-article-ads__active');
+                console.log(countActive())
+                if (countActive() >= 1) {
+                    select.querySelector('.main span').innerHTML = `<strong class="color-primary-light"> ${ countActive() } ${ countActive() == 1 ? 'widget seleccionado':'widgets seleccionados' }</strong>`;
+                } else {
+                    select.querySelector('.main span').innerHTML = `Selecciona widgets:`;
+                }
+            }
+        });
+        function countActive() {
+            return optionsItems.filter(item => item.querySelector('.checkbox-article-ads').classList.contains('checkbox-article-ads__active')).length;
+        }
+    });
+}
+selectCheckbox();

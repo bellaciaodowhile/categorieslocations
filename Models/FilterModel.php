@@ -464,6 +464,7 @@
             $sql = "UPDATE localizaciones SET nombre = ?, estado = ?,  division = ?, idParent = ?, tipo = ? WHERE id = '{$data[0][0]}'";
             $arrData = array($data[0][1], $data[0][2], $data[0][3], $data[0][4], $data[0][3]);
             $req = $this->update($sql, $arrData);
+            
             return $req;
         }
         public function treeLocations($idParent) {
@@ -484,5 +485,10 @@
             $ancestros[] = $req;
         
             return $ancestros;
+        }
+        public function getCategoriesTabs($idParent) {
+            $sql = "SELECT * FROM categorias WHERE idParent = '{$idParent}'";
+            $req = $this->selectAll($sql);
+            return $req;
         }
     }

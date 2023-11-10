@@ -13,20 +13,7 @@
         <div class="icon-yt">
             <i id="left" class="material-icons">chevron_left</i>
         </div>
-        <ul class="tabs-box-yt">
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt active">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-            <li class="tab-yt">Lorem option</li>
-        </ul>
+        <ul class="tabs-box-yt" id="categories__tabs"></ul>
         <div class="icon-yt">
             <i id="right" class="material-icons">chevron_right</i>
         </div>

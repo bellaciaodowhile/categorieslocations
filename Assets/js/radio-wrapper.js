@@ -256,7 +256,46 @@ radiosOptions.map((option, index) => {
                 });
                 console.log('División administrativa')
             }
-            // console.log(itemOption)
+            
+        }
+
+        // * Widgets Features
+        console.log(itemOption)
+        if (itemOption == 'widget') {
+            console.log('Creando Widget')
+            radiosContents.map(content => {
+                if (content.classList.contains('widget')) {
+                    content.style.display = 'block'
+                }
+                if (content.classList.contains('business-web')) {
+                    content.style.display = 'none'
+                }
+            });
+        }
+        if (itemOption == 'empresa / sitio web') {
+            console.log('Creando Empresa / Sitio Web')
+            radiosContents.map(content => {
+                if (content.classList.contains('business-web')) {
+                    content.style.display = 'block'
+                }
+                if (content.classList.contains('widget')) {
+                    content.style.display = 'none'
+                }
+            });
+        }
+        if (itemOption == 'si tiene direccion fisica asociada') {
+            radiosContents.map(content => {
+                if (content.classList.contains('locations-map')) {
+                    content.style.display = 'block'
+                }
+            });
+        }
+        if (itemOption == 'no tiene direccion fisica asociada') {
+            radiosContents.map(content => {
+                if (content.classList.contains('locations-map')) {
+                    content.style.display = 'none'
+                }
+            });
         }
 
 

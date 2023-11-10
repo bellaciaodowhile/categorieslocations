@@ -78,3 +78,45 @@
         }
     }
 }
+.arrow-select {
+    position: relative;
+    width: 50px;
+    height: 20px;
+    &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 12px;
+        height: 2.5px;
+        background: #c0c0c0;
+        top: 10px;
+        left: 31px;
+        transform: rotate(45deg);
+        transition: all 200ms ease-in-out;
+    }    
+    &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 10px;
+        width: 12px;
+        height: 2.5px;
+        background: #c0c0c0;
+        right: 0;
+        transform: rotate(-45deg);
+        transition: all 200ms ease-in-out;
+    }  
+    &__active {
+        &::before {
+            transform: rotate(-45deg);
+        } 
+        &::after {
+            transform: rotate(45deg);
+        }   
+    }  
+}
+.checkbox-article-ads {
+    &__active {
+        background: $color-primary-light;
+    }
+}

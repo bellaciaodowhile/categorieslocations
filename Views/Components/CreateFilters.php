@@ -1,5 +1,5 @@
 <div class="container-general-gj8 create-filters">
-    <h2 class="h2-title">Crea gratis tu Curriculum Vitae</h2>
+    <h2 class="h2-title">Crea categorías y localizaciones</h2>
     <h4 class="subtitle small"><span class="step-cv-number">1</span>/1: <span class="current-step-name">Filtros de
             Búsqueda</span></h4>
     <form method="POST" id="form-filters">

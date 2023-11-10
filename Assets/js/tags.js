@@ -6,7 +6,8 @@
         max: null,
         duplicate: false,
         wrapperClass: "tags-input-wrapper-gloobal",
-        tagClass: "tag"
+        tagClass: "tag",
+        placeholder: ""
       };
       this.arr = [];
       this.input = document.createElement("input");
@@ -70,7 +71,7 @@
   
         tag.appendChild(closeIcon);
         this.wrapper.insertBefore(tag, this.input);
-        this.input.setAttribute('placeholder', 'Especifica cuáles')
+        this.input.setAttribute('placeholder', defaults.placeholder)
         // this.original_input.value = this.arr.join(",");
         return this;
       };
@@ -109,11 +110,19 @@
     };
   })();
   
-  var dependients = new tagsInput({
-    selector: "dependients",
-    duplicate: false,
-    max: 10
-  });
+  // var dependients = new tagsInput({
+  //   selector: "dependients",
+  //   duplicate: false,
+  //   max: 10
+  // });
   
-  dependients.addData(['',"Madre", "Padre", "Hijo"]);
+  // dependients.addData(['',"Madre", "Padre", "Hijo"]);
+  // console.log('TagJS')
+  var keywords = new tagsInput({
+    selector: "keywords",
+    duplicate: false,
+    max: 50,
+    placeholder: 'Especifica las palabras clave'
+  });
+  keywords.addData(['', 'Ejemplo de palabra clave 1', 'Ejemplo de palabra clave 2', 'Ejemplo de palabra clave 3', 'Ejemplo de palabra clave 4',]);
   

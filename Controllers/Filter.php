@@ -247,12 +247,17 @@
             $arrData = $this->model->getLocationUpdate($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
-        public function updateLocations($data) {
+        public function updateLocations() {
+            $data = $_POST['data'];
             $arrData = $this->model->updateLocations($data);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
         public function treeLocations($id) {
             $arrData = $this->model->treeLocations($id);
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        }
+        public function getCategoriesTabs($id) { 
+            $arrData = $this->model->getCategoriesTabs($id);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         }
     }
