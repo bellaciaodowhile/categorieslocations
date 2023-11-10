@@ -12,6 +12,9 @@ dropBoxLogoCv.addEventListener('drop', function (e) {
     fileReader(files, 'galleryLogoCv', 'dropBoxLogoCv');
 }, false);
 
+
+
+// Funcion reutilizable
 function fileReader(files, galleryClass, dropZoneClass) {
 
     var selectedImage = files[0];
@@ -30,7 +33,7 @@ function fileReader(files, galleryClass, dropZoneClass) {
         close.innerHTML = '<span class="item-file-reader__close--text">Remover</span><span class="material-icons-outlined">remove_circle_outline</span>';
         item.appendChild(close);
         gallery.appendChild(item);
-
+        imagePreviewWidget(e.target.result);
         
         dropZone.style.display = 'none';
         gallery.style.display = 'flex';
@@ -42,8 +45,14 @@ function fileReader(files, galleryClass, dropZoneClass) {
             e.target.result = '';
             console.log(e.target)
             console.log(e.target.result)
+            imagePreviewWidget(BASE_URL + 'Assets/img/app/gloobal-jardins-logo.png');
         }
     }
 
     reader.readAsDataURL(selectedImage);
+}
+// Preview Image
+function imagePreviewWidget(image) {
+    const imagePreviewWidget = document.getElementById('imagePreviewWidget');
+    imagePreviewWidget.src = image;
 }

@@ -63,6 +63,7 @@
 <script src="<?php echo BASE_URL;?>Assets/js/radio-wrapper.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/autocomplete.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/create-filters.js"></script>
+<script src="<?php echo BASE_URL;?>Assets/js/create-widgets.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/subtabs.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/breadcumb.js"></script>
 <script src="<?php echo BASE_URL;?>Assets/js/table-gloobal.js"></script>

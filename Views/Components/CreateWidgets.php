@@ -1,7 +1,20 @@
 <div class="container-general-gj8 create-widgets">
-    <h2 class="h2-title">Crea un resultado</h2>
-    <h4 class="subtitle small"><span class="step-cv-number">1</span>/1: <span class="current-step-name">Widgets</span>
-    </h4>
+    <div class="d-flex aic jcsb">
+        <div>
+            <h2 class="h2-title">Crea un resultado</h2>
+            <h4 class="subtitle small"><span class="step-cv-number">1</span>/1: <span class="current-step-name">Widgets</span></h4>
+        </div>
+        <div>
+            <button class="btn btn--small mr-5px">
+                <i class="material-icons-outlined">file_download</i>
+            </button>
+            <button class="btn btn--small">
+                <i class="material-icons-outlined">file_upload</i>
+            </button>
+        </div>
+    </div>
+
+
     <form method="POST" id="form-widgets">
         <div class="bars-steps-gj8">
             <div class="bar-gj8 parent-tooltip-bar-gj8 active step-trigger" step="1">
@@ -25,12 +38,11 @@
                 <span>Empresa / Sitio Web</span>
             </label>
         </div>
-        <div class="radio-content widget" isActive>
+        <div class="radio-content widget fadeInLeft" isActive>
             <h1>Aqui vamos a crear los Widgets</h1>
 
         </div>
-        <div class="radio-content business-web">
-
+        <div class="radio-content business-web fadeInLeft">
             <h4 class="subtitle normal mt-4"><strong>Cargar en widget/s</strong></h4>
             <div class="section-articles-ads">
                 <div class="select-form-gloobal-checkbox">
@@ -159,13 +171,13 @@
             <div class="input-form user-data normal-my fadeInLeft">
                 <label class="txt-field icon-right">
                     <span class="input-normal"></span>
-                    <input type="text" name="input" placeholder="Específica un título" />
+                    <input type="text" name="input" class="input__title__widget" placeholder="Específica un título" />
                 </label>
             </div>
             <h4 class="subtitle normal mt-4"><strong>Descripción</strong></h4>
             <div class="input-form user-data mt-2 fadeInLeft">
                 <label class="txt-field">
-                    <textarea name="description" cols="30" rows="10"
+                    <textarea class="input__description__widget" name="description" cols="30" rows="10"
                         placeholder="Especifíca una descripción"></textarea>
                 </label>
             </div>
@@ -274,11 +286,11 @@
             </div>
             <h4 class="subtitle normal mt-4"><strong>Vista previa</strong></h4>
             <div class="preview__widget card__widget">
-                <img class="card__widget__logo" src="<?php echo BASE_URL;?>Assets/img/app/gloobal-jardins-logo.png"
+                <img class="card__widget__logo" id="imagePreviewWidget" src="<?php echo BASE_URL;?>Assets/img/app/gloobal-jardins-logo.png"
                     alt="">
                 <div class="card__widget__content">
-                    <h4 class="card__widget__content__title">Gloobal Jardins</h4>
-                    <p class="card__widget__content__paragraph">
+                    <h4 class="card__widget__content__title" id="titlePreviewWidget">Gloobal Jardins</h4>
+                    <p class="card__widget__content__paragraph" id="descriptionPreviewWidget">
                         Portal de profesionales del mundo de la Jardineria
                     </p>
                 </div>
